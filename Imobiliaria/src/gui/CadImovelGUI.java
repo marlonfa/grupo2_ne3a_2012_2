@@ -1,9 +1,20 @@
 package gui;
 
+import conexaoDataBase.Conexao;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+import javax.swing.JOptionPane;
+
 public class CadImovelGUI extends javax.swing.JFrame {
+    Conexao conexao = new Conexao();
+    Connection connection = conexao.getConnection();
+    PreparedStatement pst;
+    
     public CadImovelGUI() {
         super.setSize(1000, 1000);
         initComponents();
+        this.setLocationRelativeTo(null);
         
     }
 
@@ -51,7 +62,7 @@ public class CadImovelGUI extends javax.swing.JFrame {
         jLUf = new javax.swing.JLabel();
         jSeparator3 = new javax.swing.JSeparator();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Cadastro Imóvel");
         setResizable(false);
 
@@ -63,6 +74,11 @@ public class CadImovelGUI extends javax.swing.JFrame {
         jBSair.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/icons/exit.png"))); // NOI18N
         jBSair.setToolTipText("Sair");
         jBSair.setBorderPainted(false);
+        jBSair.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBSairActionPerformed(evt);
+            }
+        });
 
         jBCancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/icons/Stop.png"))); // NOI18N
         jBCancelar.setToolTipText("Cancelar");
@@ -71,6 +87,11 @@ public class CadImovelGUI extends javax.swing.JFrame {
         jBSalvar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/icons/Floppy.png"))); // NOI18N
         jBSalvar.setToolTipText("Salvar");
         jBSalvar.setBorderPainted(false);
+        jBSalvar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBSalvarActionPerformed(evt);
+            }
+        });
 
         jBNovo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/icons/Add.png"))); // NOI18N
         jBNovo.setToolTipText("Novo");
@@ -318,40 +339,37 @@ public class CadImovelGUI extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTFCepActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(CadImovelGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(CadImovelGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(CadImovelGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(CadImovelGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
+    private void jBSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBSairActionPerformed
+        
+    }//GEN-LAST:event_jBSairActionPerformed
 
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new CadImovelGUI().setVisible(true);
-            }
-        });
-    }
+    private void jBSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBSalvarActionPerformed
+        //String codigo = jCCliente.getText();
+        String endereco = jTFEndereco.getText();
+        String bairro = jTFBairro.getText();
+        String cidade = jTFCidade.getText();
+        String cep = jTFCep.getText();
+        Float valor = Float.parseFloat(jTFValor.getText());
+        String descricao = jTADescricao.getText();
+        //TAREFA PARA VOCE: implementar o código para inserir um livro com os dados informados
+        try{
+            pst = connection.prepareStatement("INSERT INTO imovel VALUES (?, ?, ?, ?, ?, ?)");
+            pst.setInt(1, 1);
+            pst.setString(2, endereco);
+            pst.setString(3, bairro);
+            pst.setString(4, cidade);
+            pst.setString(5, cep);
+            pst.setString(6, descricao);            
+            pst.execute();
+                  
+            JOptionPane.showMessageDialog(null, "Cadastrado com Sucesso!");
+            //this.limparCampos();
+            pst.close();
+        }catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }      
+    }//GEN-LAST:event_jBSalvarActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox JCStatus;
     private javax.swing.JButton jBCancelar;
