@@ -22,6 +22,9 @@
                 <Property name="text" type="java.lang.String" value="Cliente"/>
                 <Property name="toolTipText" type="java.lang.String" value="Clique aqui para cadastrar cliente"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMICadClienteActionPerformed"/>
+              </Events>
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="jMICadImovel">
               <Properties>
@@ -31,6 +34,9 @@
                 <Property name="text" type="java.lang.String" value="Im&#xf3;vel"/>
                 <Property name="toolTipText" type="java.lang.String" value="Clique aqui para cadastrar im&#xf3;vel"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMICadImovelActionPerformed"/>
+              </Events>
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="jMICadUsuario">
               <Properties>
@@ -40,6 +46,9 @@
                 <Property name="text" type="java.lang.String" value="Usu&#xe1;rio"/>
                 <Property name="toolTipText" type="java.lang.String" value="Clique aqui para cadastrar usu&#xe1;rio"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMICadUsuarioActionPerformed"/>
+              </Events>
             </MenuItem>
           </SubComponents>
         </Menu>
@@ -55,6 +64,9 @@
                 </Property>
                 <Property name="text" type="java.lang.String" value="Cliente"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMIConsClienteActionPerformed"/>
+              </Events>
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="jMIConsImovel">
               <Properties>
@@ -63,6 +75,9 @@
                 </Property>
                 <Property name="text" type="java.lang.String" value="Im&#xf3;vel"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMIConsImovelActionPerformed"/>
+              </Events>
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="jMIConsUsuario">
               <Properties>
@@ -71,6 +86,9 @@
                 </Property>
                 <Property name="text" type="java.lang.String" value="Usu&#xe1;rio"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMIConsUsuarioActionPerformed"/>
+              </Events>
             </MenuItem>
           </SubComponents>
         </Menu>
@@ -107,7 +125,7 @@
             <MenuItem class="javax.swing.JMenuItem" name="jMISobre">
               <Properties>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/img/icons/dialog_question.png"/>
+                  <Image iconType="3" name="/img/icons/help2.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Sobre"/>
               </Properties>
@@ -119,10 +137,16 @@
   </NonVisualComponents>
   <Properties>
     <Property name="defaultCloseOperation" type="int" value="3"/>
+    <Property name="title" type="java.lang.String" value="Sistema de Imobili&#xe1;ria"/>
     <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
       <Color blue="5a" green="5a" red="b1" type="rgb"/>
     </Property>
+    <Property name="name" type="java.lang.String" value="Sistema de Imobili&#xe1;ria" noResource="true"/>
+    <Property name="resizable" type="boolean" value="false"/>
   </Properties>
+  <AccessibilityProperties>
+    <Property name="AccessibleContext.accessibleName" type="java.lang.String" value=""/>
+  </AccessibilityProperties>
   <SyntheticProperties>
     <SyntheticProperty name="menuBar" type="java.lang.String" value="jMBMenu"/>
     <SyntheticProperty name="formSizePolicy" type="int" value="1"/>
@@ -161,7 +185,7 @@
           <Group type="102" alignment="1" attributes="0">
               <EmptySpace min="-2" pref="141" max="-2" attributes="0"/>
               <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
-              <EmptySpace max="32767" attributes="0"/>
+              <EmptySpace pref="18" max="32767" attributes="0"/>
               <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Component id="jPanel1" min="-2" pref="35" max="-2" attributes="0"/>
