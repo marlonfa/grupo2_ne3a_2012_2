@@ -1,21 +1,84 @@
 package gui;
 
 import conexaoDataBase.Conexao;
+import dao.ImovelDAO;
+import entidade.uf.EstadoEntidade;
+import entidade.imovel.ImovelCategoriaEntidade;
+import entidade.imovel.ImovelChavesEntidade;
+import entidade.imovel.ImovelEntidade;
+import entidade.imovel.ImovelEspecEntidade;
+import entidade.imovel.ImovelModalidadeEntidade;
+import entidade.imovel.ImovelStatusEntidade;
+import entidade.imovel.ImovelTipoEntidade;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
 
 public class CadImovelGUI extends javax.swing.JFrame {
-    Conexao conexao = new Conexao();
-    Connection connection = conexao.getConnection();
-    PreparedStatement pst;
+    private ImovelDAO imovelDao;
+    private ImovelEntidade imovel = new ImovelEntidade();    
+    private boolean desabilitado = true;
     
     public CadImovelGUI() {
         super.setSize(1000, 1000);
         initComponents();
         this.setLocationRelativeTo(null);
         
+    }
+    
+    public void limparCampos(){
+        jCCliente.setEnabled(false);
+        jTFEndereco.setText(null);
+        jTFBairro.setText(null);
+        jTFCidade.setText(null);
+        jTFCep.setText(null);
+        jCUf.setSelectedItem("UF");
+        jCTipo.setSelectedItem("Tipo");
+        jCCategoria.setSelectedItem("Categoria");
+        jCModalidade.setSelectedItem("Modalidade");
+        JCStatus.setSelectedItem("Status");
+        jCChaves.setSelectedItem("Chaves");
+        jTFValor.setText(null);
+        jTADescricao.setText(null);
+    }
+    
+    public void desabilitarCampos(){
+        jCCliente.setEnabled(false);
+        jTFEndereco.setEnabled(false);
+        jTFBairro.setEnabled(false);
+        jTFCidade.setEnabled(false);
+        jTFCep.setEnabled(false);
+        jCUf.setEnabled(false);
+        jCTipo.setEnabled(false);
+        jCCategoria.setEnabled(false);
+        jCModalidade.setEnabled(false);
+        JCStatus.setEnabled(false);
+        jCChaves.setEnabled(false);
+        jTFValor.setEnabled(false);
+        jTADescricao.setEnabled(false);
+        
+        this.desabilitado = true;
+    }
+    
+    public void habilitarCampos(){
+        jCCliente.setEnabled(true);
+        jTFEndereco.setEnabled(true);
+        jTFBairro.setEnabled(true);
+        jTFCidade.setEnabled(true);
+        jTFCep.setEnabled(true);
+        jCUf.setEnabled(true);
+        jCTipo.setEnabled(true);
+        jCCategoria.setEnabled(true);
+        jCModalidade.setEnabled(true);
+        JCStatus.setEnabled(true);
+        jCChaves.setEnabled(true);
+        jTFValor.setEnabled(true);
+        jTADescricao.setEnabled(true);
+        
+        jCCliente.requestFocus();
+        
+        this.desabilitado = false;
     }
 
     /**
@@ -68,6 +131,7 @@ public class CadImovelGUI extends javax.swing.JFrame {
 
         jCCliente.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         jCCliente.setToolTipText("Escolha na Lista o Nome do Dono do Imóvel");
+        jCCliente.setEnabled(false);
 
         jLCliente.setText("Cliente:");
 
@@ -83,6 +147,11 @@ public class CadImovelGUI extends javax.swing.JFrame {
         jBCancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/icons/Stop.png"))); // NOI18N
         jBCancelar.setToolTipText("Cancelar");
         jBCancelar.setBorderPainted(false);
+        jBCancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBCancelarActionPerformed(evt);
+            }
+        });
 
         jBSalvar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/icons/Floppy.png"))); // NOI18N
         jBSalvar.setToolTipText("Salvar");
@@ -96,13 +165,24 @@ public class CadImovelGUI extends javax.swing.JFrame {
         jBNovo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/icons/Add.png"))); // NOI18N
         jBNovo.setToolTipText("Novo");
         jBNovo.setBorderPainted(false);
+        jBNovo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBNovoActionPerformed(evt);
+            }
+        });
 
         jBPesquisar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/icons/Search.png"))); // NOI18N
         jBPesquisar.setToolTipText("Pesquisar");
         jBPesquisar.setBorderPainted(false);
+        jBPesquisar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBPesquisarActionPerformed(evt);
+            }
+        });
 
         jTADescricao.setColumns(20);
         jTADescricao.setRows(5);
+        jTADescricao.setEnabled(false);
         jScrollPane1.setViewportView(jTADescricao);
 
         jLDescricao.setText("Descrição:");
@@ -113,9 +193,13 @@ public class CadImovelGUI extends javax.swing.JFrame {
 
         jLStatus.setText("Status:");
 
-        JCStatus.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        JCStatus.setModel(new javax.swing.DefaultComboBoxModel(this.imovel.getStatus().values()));
+        JCStatus.setEnabled(false);
 
-        jCChaves.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jCChaves.setModel(new javax.swing.DefaultComboBoxModel(this.imovel.getChaves().values()));
+        jCChaves.setEnabled(false);
+
+        jTFValor.setEnabled(false);
 
         jLEndereco.setText("Endereço:");
 
@@ -131,13 +215,17 @@ public class CadImovelGUI extends javax.swing.JFrame {
 
         jLModalidade.setText("Modalidade:");
 
-        jCModalidade.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jCModalidade.setModel(new javax.swing.DefaultComboBoxModel(this.imovel.getModalidade().values()));
+        jCModalidade.setEnabled(false);
 
-        jCCategoria.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jCCategoria.setModel(new javax.swing.DefaultComboBoxModel(this.imovel.getCategoria().values()));
+        jCCategoria.setEnabled(false);
 
-        jCTipo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jCTipo.setModel(new javax.swing.DefaultComboBoxModel(this.imovel.getTipo().values()));
+        jCTipo.setEnabled(false);
 
         jTFCep.setToolTipText("Digite Aqui o CEP do Imóvel");
+        jTFCep.setEnabled(false);
         jTFCep.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTFCepActionPerformed(evt);
@@ -145,6 +233,7 @@ public class CadImovelGUI extends javax.swing.JFrame {
         });
 
         jTFCidade.setToolTipText("Digite Aqui a Cidade do Imóvel");
+        jTFCidade.setEnabled(false);
         jTFCidade.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTFCidadeActionPerformed(evt);
@@ -152,6 +241,7 @@ public class CadImovelGUI extends javax.swing.JFrame {
         });
 
         jTFBairro.setToolTipText("Digite Aqui o Bairro do Imóvel");
+        jTFBairro.setEnabled(false);
         jTFBairro.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTFBairroActionPerformed(evt);
@@ -159,15 +249,17 @@ public class CadImovelGUI extends javax.swing.JFrame {
         });
 
         jTFEndereco.setToolTipText("Digite Aqui o Endereço do Imóvel");
-        jTFEndereco.setName("jTFEndereco"); // NOI18N
+        jTFEndereco.setEnabled(false);
+        jTFEndereco.setName(""); // NOI18N
         jTFEndereco.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTFEnderecoActionPerformed(evt);
             }
         });
 
-        jCUf.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jCUf.setModel(new javax.swing.DefaultComboBoxModel(this.imovel.getUf().values()));
         jCUf.setToolTipText("Escolha na Lista o Estado do Imóvel");
+        jCUf.setEnabled(false);
 
         jLUf.setText("UF:");
 
@@ -344,31 +436,39 @@ public class CadImovelGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_jBSairActionPerformed
 
     private void jBSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBSalvarActionPerformed
-        //String codigo = jCCliente.getText();
-        String endereco = jTFEndereco.getText();
-        String bairro = jTFBairro.getText();
-        String cidade = jTFCidade.getText();
-        String cep = jTFCep.getText();
-        Float valor = Float.parseFloat(jTFValor.getText());
-        String descricao = jTADescricao.getText();
-        //TAREFA PARA VOCE: implementar o código para inserir um livro com os dados informados
-        try{
-            pst = connection.prepareStatement("INSERT INTO imovel VALUES (?, ?, ?, ?, ?, ?)");
-            pst.setInt(1, 1);
-            pst.setString(2, endereco);
-            pst.setString(3, bairro);
-            pst.setString(4, cidade);
-            pst.setString(5, cep);
-            pst.setString(6, descricao);            
-            pst.execute();
-                  
-            JOptionPane.showMessageDialog(null, "Cadastrado com Sucesso!");
-            //this.limparCampos();
-            pst.close();
-        }catch (SQLException ex) {
-            System.out.println(ex.getMessage());
-        }      
+        if(this.desabilitado){
+            JOptionPane.showMessageDialog(null, "Para Inserir um Imóvel é Preciso Criar um Novo!");
+        }else{
+            String cliente = (String) jCCliente.getSelectedItem();
+            this.imovel.setImovelEspec(new ImovelEspecEntidade(jTFEndereco.getText(), jTFBairro.getText(), jTFCidade.getText(), jTFCep.getText(), jTADescricao.getText()));
+            this.imovel.setCategoria((ImovelCategoriaEntidade) jCCategoria.getSelectedItem());
+            this.imovel.setModalidade((ImovelModalidadeEntidade) jCModalidade.getSelectedItem());
+            this.imovel.setStatus((ImovelStatusEntidade) JCStatus.getSelectedItem());
+            this.imovel.setChaves((ImovelChavesEntidade) jCChaves.getSelectedItem());
+            this.imovel.setValor(Float.parseFloat(jTFValor.getText()));
+            this.imovel.setUf((EstadoEntidade) jCUf.getSelectedItem());
+            this.imovel.setTipo((ImovelTipoEntidade) jCTipo.getSelectedItem()); 
+
+            this.imovelDao = new ImovelDAO(); 
+            this.imovelDao.adicionar(imovel);
+            limparCampos();
+            desabilitarCampos();             
+        }   
     }//GEN-LAST:event_jBSalvarActionPerformed
+
+    private void jBNovoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBNovoActionPerformed
+        habilitarCampos();
+    }//GEN-LAST:event_jBNovoActionPerformed
+
+    private void jBCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBCancelarActionPerformed
+        limparCampos();
+        desabilitarCampos();
+    }//GEN-LAST:event_jBCancelarActionPerformed
+
+    private void jBPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBPesquisarActionPerformed
+        ConsImovelGUI conImovel = new ConsImovelGUI();
+        conImovel.setVisible(true);
+    }//GEN-LAST:event_jBPesquisarActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox JCStatus;
