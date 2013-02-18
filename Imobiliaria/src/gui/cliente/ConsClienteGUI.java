@@ -7,6 +7,7 @@ package gui.cliente;
 import entidade.cliente.ClienteEntidade;
 import dao.ClienteDAO;
 import java.util.List;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -20,6 +21,7 @@ public class ConsClienteGUI extends javax.swing.JFrame {
      */
     public ConsClienteGUI() {
         initComponents();
+        setLocationRelativeTo(null);
     }
 
     /**
@@ -38,6 +40,9 @@ public class ConsClienteGUI extends javax.swing.JFrame {
         jBEditar = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTResultadoConsulta = new javax.swing.JTable();
+        jBExcluir = new javax.swing.JButton();
+        jLNomeCliente = new javax.swing.JLabel();
+        jBDescricaoCliente = new javax.swing.JButton();
 
         setTitle("Pesquisar Cadastro de Cliente");
 
@@ -79,6 +84,26 @@ public class ConsClienteGUI extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(jTResultadoConsulta);
 
+        jBExcluir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/icons/trash.png"))); // NOI18N
+        jBExcluir.setToolTipText("Excluir");
+        jBExcluir.setBorderPainted(false);
+        jBExcluir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBExcluirActionPerformed(evt);
+            }
+        });
+
+        jLNomeCliente.setText("Nome do Cliente:");
+
+        jBDescricaoCliente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/icons/edit_find.png"))); // NOI18N
+        jBDescricaoCliente.setToolTipText("Descrição Cliente");
+        jBDescricaoCliente.setBorderPainted(false);
+        jBDescricaoCliente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBDescricaoClienteActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -87,19 +112,22 @@ public class ConsClienteGUI extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jScrollPane1)
-                        .addContainerGap())
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jTFCampoPesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, 294, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(26, 26, 26)
-                                .addComponent(jBpesquisar))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jBEditar)
-                                .addGap(14, 14, 14)
-                                .addComponent(jBSair)))
-                        .addGap(114, 194, Short.MAX_VALUE))))
+                        .addComponent(jBDescricaoCliente)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jBEditar)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jBExcluir)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jBSair)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(jScrollPane1)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jLNomeCliente)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jTFCampoPesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, 294, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 76, Short.MAX_VALUE)
+                        .addComponent(jBpesquisar)))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -107,59 +135,92 @@ public class ConsClienteGUI extends javax.swing.JFrame {
                 .addGap(10, 10, 10)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jBEditar)
-                    .addComponent(jBSair))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                    .addComponent(jBSair)
+                    .addComponent(jBExcluir)
+                    .addComponent(jBDescricaoCliente))
+                .addGap(17, 17, 17)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jTFCampoPesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jBpesquisar))
-                .addGap(11, 11, 11)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jBpesquisar)
+                    .addComponent(jLNomeCliente))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 201, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
     ClienteDAO c = new ClienteDAO();
+    ClienteEntidade cliente = new ClienteEntidade();
     List<ClienteEntidade> lista;
+    
     private void jBpesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBpesquisarActionPerformed
         // TODO add your handling code here:
-        String[] columNames = {"Nome", "Cpf", "Cidade"};
-        ClienteEntidade cliente;
-        List<ClienteEntidade> lista = c.consultar(jTFCampoPesquisa.getText().toString());
+        String[] columNames = {"id", "Nome", "Cpf", "Cidade"};
+        lista = c.consultar(jTFCampoPesquisa.getText().toString());
+        if(lista != null){
         jTResultadoConsulta.setModel(new DefaultTableModel(columNames, lista.size()));
         for (int i = 0; i < lista.size(); i++) {
             cliente = lista.get(i);
-            jTResultadoConsulta.setValueAt(cliente.getNome(), i, 0);
-            jTResultadoConsulta.setValueAt(cliente.getCpf(), i, 1);
-            jTResultadoConsulta.setValueAt(cliente.getEndereco().getCidade(), i, 2);
+            jTResultadoConsulta.setValueAt(cliente.getId(), i, 0);
+            jTResultadoConsulta.setValueAt(cliente.getNome(), i, 1);
+            jTResultadoConsulta.setValueAt(cliente.getCpf(), i, 2);
+            jTResultadoConsulta.setValueAt(cliente.getEndereco().getCidade(), i, 3);
+        }
+        }else{
+            JOptionPane.showMessageDialog(null, "Cliente não Cadastrado");
         }
     }//GEN-LAST:event_jBpesquisarActionPerformed
 
     private void jBEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBEditarActionPerformed
         // TODO add your handling code here:
-        new EditClienteGUI().setVisible(true);
+        setarCliente();
+        EditClienteGUI edit = new EditClienteGUI();
+        edit.recuperarClienteEntidade(cliente);
+        edit.inserirCampos();
+        edit.setVisible(true);
+    }//GEN-LAST:event_jBEditarActionPerformed
+
+    private void setarCliente() {
         int i = jTResultadoConsulta.getSelectedRow();
-        String cpf = jTResultadoConsulta.getValueAt(i, 1).toString();
-        ClienteEntidade cliente = null;
+        String id = jTResultadoConsulta.getValueAt(i, 0).toString();
+        cliente = new ClienteEntidade();
+        String idCliente = cliente.getId() +"";
         for (int j = 0; j < lista.size(); j++) {
             cliente = lista.get(i);
-            if (cliente.getCpf().equals(cpf)) {
+            if (idCliente.equals(id)) {
                 break;
             }
         }
-        EditClienteGUI edit = new EditClienteGUI();
-        edit.recuperarClienteEntidade(cliente);
-        edit.setVisible(true);
-    }//GEN-LAST:event_jBEditarActionPerformed
+    }
 
     private void jBSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBSairActionPerformed
         // TODO add your handling code here:
         setVisible(false);
     }//GEN-LAST:event_jBSairActionPerformed
+
+    private void jBExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBExcluirActionPerformed
+        // TODO add your handling code here:
+        int i = jTResultadoConsulta.getSelectedRow();
+        String id = jTResultadoConsulta.getValueAt(i, 0).toString();
+        c.remover(id);
+    }//GEN-LAST:event_jBExcluirActionPerformed
+
+    private void jBDescricaoClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBDescricaoClienteActionPerformed
+        // TODO add your handling code here:
+        setarCliente();
+        DescClienteGUI descricao = new DescClienteGUI();
+        descricao.recuperarCliente(cliente);
+        descricao.inserirCampos();
+        descricao.setVisible(true);
+    }//GEN-LAST:event_jBDescricaoClienteActionPerformed
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jBDescricaoCliente;
     private javax.swing.JButton jBEditar;
+    private javax.swing.JButton jBExcluir;
     private javax.swing.JButton jBSair;
     private javax.swing.JButton jBpesquisar;
+    private javax.swing.JLabel jLNomeCliente;
     private javax.swing.JPopupMenu jPopupMenu1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField jTFCampoPesquisa;
