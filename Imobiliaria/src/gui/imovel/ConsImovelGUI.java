@@ -3,6 +3,9 @@ package gui.imovel;
 import dao.ImovelDAO;
 import entidade.imovel.ImovelEntidade;
 import entidade.imovel.ImovelTableModel;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 public class ConsImovelGUI extends javax.swing.JFrame {  
@@ -11,7 +14,7 @@ public class ConsImovelGUI extends javax.swing.JFrame {
     private ImovelTableModel tableModel;
     private ImovelEntidade imovel;
         
-    public ConsImovelGUI() {
+    public ConsImovelGUI() throws SQLException {
         initComponents();
         this.setLocationRelativeTo(null);
     }
@@ -20,19 +23,19 @@ public class ConsImovelGUI extends javax.swing.JFrame {
         return imovel;
     }   
       
-     private ImovelTableModel getTableModel() {               
+     private ImovelTableModel getTableModel() throws SQLException {               
         imovelDAO.todosRegistros();
         this.tableModel = new ImovelTableModel(this.imovelDAO.getLista());        
         return this.tableModel;
     }
      
-     public void atualizarTabela(){
+     public void atualizarTabela() throws SQLException{
         imovelDAO.todosRegistros();
         this.tableModel = new ImovelTableModel(this.imovelDAO.getLista());  
         jTable1.setModel(tableModel);  
      }
      
-     public void consultar(){
+     public void consultar() throws SQLException{
         this.consultar = jTFConsultar.getText();
         if(jRBEndereco.isSelected()){
             imovelDAO.consultarPorEndereco(consultar);
@@ -48,7 +51,7 @@ public class ConsImovelGUI extends javax.swing.JFrame {
     
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
-    private void initComponents() {
+    private void initComponents() throws SQLException{
 
         buttonGroup1 = new javax.swing.ButtonGroup();
         jBEditar = new javax.swing.JButton();
@@ -107,6 +110,11 @@ public class ConsImovelGUI extends javax.swing.JFrame {
         jBSair.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/icons/exit.png"))); // NOI18N
         jBSair.setToolTipText("Sair");
         jBSair.setBorderPainted(false);
+        jBSair.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBSairActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -163,7 +171,11 @@ public class ConsImovelGUI extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jBConsultarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBConsultarActionPerformed
-        consultar();
+        try {        
+            consultar();
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, ex.getMessage());
+        }
     }//GEN-LAST:event_jBConsultarActionPerformed
 
     private void jBEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBEditarActionPerformed
@@ -189,11 +201,19 @@ public class ConsImovelGUI extends javax.swing.JFrame {
         if(row == -1){
             JOptionPane.showMessageDialog(null, "Por favor Selecione uma linha da Tabela para Excluir!");
         }else{
-            this.imovel = this.tableModel.getImovelEntidade(row);            
-            imovelDAO.remover(imovel);
-            atualizarTabela();
+            try {
+                this.imovel = this.tableModel.getImovelEntidade(row);            
+                imovelDAO.remover(imovel);
+                atualizarTabela();
+            } catch (SQLException ex) {
+                JOptionPane.showMessageDialog(null, ex.getMessage());
+            }
         }
     }//GEN-LAST:event_jBExcluirActionPerformed
+
+    private void jBSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBSairActionPerformed
+        this.dispose();
+    }//GEN-LAST:event_jBSairActionPerformed
 
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
