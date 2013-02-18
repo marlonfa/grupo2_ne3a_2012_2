@@ -4,6 +4,9 @@
  */
 package gui.usuario;
 
+import dao.UsuarioDAO;
+import entidade.usuario.UsuarioEntidade;
+
 /**
  *
  * @author eder
@@ -15,6 +18,7 @@ public class EditUsuarioGUI extends javax.swing.JFrame {
      */
     public EditUsuarioGUI() {
         initComponents();
+        setLocationRelativeTo(null);
     }
 
     /**
@@ -29,13 +33,13 @@ public class EditUsuarioGUI extends javax.swing.JFrame {
         jPasswordConfirmacao = new javax.swing.JPasswordField();
         jBSalvar = new javax.swing.JButton();
         jLNome = new javax.swing.JLabel();
-        jLUsuario = new javax.swing.JLabel();
+        jLLogin = new javax.swing.JLabel();
         jTFNome = new javax.swing.JTextField();
-        jTFUsuario = new javax.swing.JTextField();
+        jTFLogin = new javax.swing.JTextField();
         jLConfimarSEnha = new javax.swing.JLabel();
         jLSenha = new javax.swing.JLabel();
         jBCancelar = new javax.swing.JButton();
-        jPFSenha = new javax.swing.JPasswordField();
+        jPasswordSenha = new javax.swing.JPasswordField();
 
         jPasswordConfirmacao.setToolTipText("Confirme Senha");
 
@@ -50,7 +54,7 @@ public class EditUsuarioGUI extends javax.swing.JFrame {
 
         jLNome.setText("Nome");
 
-        jLUsuario.setText("Login");
+        jLLogin.setText("Login");
 
         jLConfimarSEnha.setText("Confirmar Senha");
 
@@ -65,7 +69,7 @@ public class EditUsuarioGUI extends javax.swing.JFrame {
             }
         });
 
-        jPFSenha.setToolTipText("Digite Senha");
+        jPasswordSenha.setToolTipText("Digite Senha");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -77,14 +81,14 @@ public class EditUsuarioGUI extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLNome)
-                            .addComponent(jLUsuario)
+                            .addComponent(jLLogin)
                             .addComponent(jLSenha))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jTFUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jTFLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                 .addGroup(layout.createSequentialGroup()
-                                    .addComponent(jPFSenha, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jPasswordSenha, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(jLConfimarSEnha)
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -109,12 +113,12 @@ public class EditUsuarioGUI extends javax.swing.JFrame {
                     .addComponent(jTFNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLUsuario)
-                    .addComponent(jTFUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLLogin)
+                    .addComponent(jTFLogin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLSenha)
-                    .addComponent(jPFSenha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jPasswordSenha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLConfimarSEnha)
                     .addComponent(jPasswordConfirmacao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -123,8 +127,16 @@ public class EditUsuarioGUI extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    UsuarioEntidade user;
+    
     private void jBSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBSalvarActionPerformed
         // TODO add your handling code here:
+        user = new UsuarioEntidade();
+        user.setNome(jTFNome.getText());
+        user.setLogin(jTFLogin.getText());
+        user.setSenha(jPasswordSenha.getText());
+        user.setConfirmaSenha(jPasswordConfirmacao.getText());
+        new UsuarioDAO().alterar(user);
     }//GEN-LAST:event_jBSalvarActionPerformed
 
     private void jBCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBCancelarActionPerformed
@@ -170,12 +182,23 @@ public class EditUsuarioGUI extends javax.swing.JFrame {
     private javax.swing.JButton jBCancelar;
     private javax.swing.JButton jBSalvar;
     private javax.swing.JLabel jLConfimarSEnha;
+    private javax.swing.JLabel jLLogin;
     private javax.swing.JLabel jLNome;
     private javax.swing.JLabel jLSenha;
-    private javax.swing.JLabel jLUsuario;
-    private javax.swing.JPasswordField jPFSenha;
     private javax.swing.JPasswordField jPasswordConfirmacao;
+    private javax.swing.JPasswordField jPasswordSenha;
+    private javax.swing.JTextField jTFLogin;
     private javax.swing.JTextField jTFNome;
-    private javax.swing.JTextField jTFUsuario;
     // End of variables declaration//GEN-END:variables
+
+    void recuperarUsuarioEntidade(UsuarioEntidade user) {
+        this.user = user;
+    }
+
+    void inserirCampos() {
+        jTFNome.setText(user.getNome());
+        jTFLogin.setText(user.getLogin());
+        jPasswordSenha.setText(user.getSenha());
+        jPasswordConfirmacao.setText(user.getConfirmaSenha());
+    }
 }

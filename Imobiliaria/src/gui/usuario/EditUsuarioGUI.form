@@ -26,15 +26,15 @@
                   <Group type="102" alignment="0" attributes="0">
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="jLNome" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="jLUsuario" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="jLLogin" alignment="0" min="-2" max="-2" attributes="0"/>
                           <Component id="jLSenha" alignment="0" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="jTFUsuario" alignment="0" min="-2" pref="150" max="-2" attributes="0"/>
+                          <Component id="jTFLogin" alignment="0" min="-2" pref="150" max="-2" attributes="0"/>
                           <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
                               <Group type="102" alignment="1" attributes="0">
-                                  <Component id="jPFSenha" min="-2" pref="94" max="-2" attributes="0"/>
+                                  <Component id="jPasswordSenha" min="-2" pref="94" max="-2" attributes="0"/>
                                   <EmptySpace max="32767" attributes="0"/>
                                   <Component id="jLConfimarSEnha" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
@@ -69,13 +69,13 @@
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="jLUsuario" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="jTFUsuario" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jLLogin" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jTFLogin" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="jLSenha" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="jPFSenha" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jPasswordSenha" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="jLConfimarSEnha" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="jPasswordConfirmacao" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
@@ -107,14 +107,14 @@
         <Property name="text" type="java.lang.String" value="Nome"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="jLUsuario">
+    <Component class="javax.swing.JLabel" name="jLLogin">
       <Properties>
         <Property name="text" type="java.lang.String" value="Login"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="jTFNome">
     </Component>
-    <Component class="javax.swing.JTextField" name="jTFUsuario">
+    <Component class="javax.swing.JTextField" name="jTFLogin">
     </Component>
     <Component class="javax.swing.JLabel" name="jLConfimarSEnha">
       <Properties>
@@ -138,7 +138,7 @@
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jBCancelarActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JPasswordField" name="jPFSenha">
+    <Component class="javax.swing.JPasswordField" name="jPasswordSenha">
       <Properties>
         <Property name="toolTipText" type="java.lang.String" value="Digite Senha"/>
       </Properties>
