@@ -1,26 +1,27 @@
 package entidade.imovel;
 
 import entidade.uf.EstadoEntidade;
-import entidade.ClienteEntidade;
+//import entidade.ClienteEntidade;
 
 public class ImovelEntidade {  
     private long id;
     private Float  valor;
     private ImovelEspecEntidade imovelEspec;;
     private ImovelStatusEntidade status;
-    private ClienteEntidade cliente;    
+  //  private ClienteEntidade cliente;    
     private ImovelTipoEntidade tipo;
     private ImovelCategoriaEntidade categoria;
     private ImovelModalidadeEntidade modalidade;   
     private ImovelChavesEntidade chaves;
     private EstadoEntidade uf;
 
-    public ImovelEntidade(long id, Float valor, ImovelEspecEntidade imovelEspec, ImovelStatusEntidade status, ClienteEntidade cliente, ImovelTipoEntidade tipo, ImovelCategoriaEntidade categoria, ImovelModalidadeEntidade modalidade, ImovelChavesEntidade chaves, EstadoEntidade uf) {
+    public ImovelEntidade(long id, Float valor, ImovelEspecEntidade imovelEspec, ImovelStatusEntidade status, //ClienteEntidade cliente, 
+            ImovelTipoEntidade tipo, ImovelCategoriaEntidade categoria, ImovelModalidadeEntidade modalidade, ImovelChavesEntidade chaves, EstadoEntidade uf) {
         this.id = id;
         this.valor = valor;
         this.imovelEspec = imovelEspec;
         this.status = status;
-        this.cliente = cliente;
+        //this.cliente = cliente;
         this.tipo = tipo;
         this.categoria = categoria;
         this.modalidade = modalidade;
@@ -64,13 +65,13 @@ public class ImovelEntidade {
         this.status = status;
     }
 
-    public ClienteEntidade getCliente() {
-        return cliente;
-    }
-
-    public void setCliente(ClienteEntidade cliente) {
-        this.cliente = cliente;
-    }
+//    public ClienteEntidade getCliente() {
+//        return cliente;
+//    }
+//
+//    public void setCliente(ClienteEntidade cliente) {
+//        this.cliente = cliente;
+//    }
 
     public ImovelTipoEntidade getTipo() {
         return tipo;
@@ -114,7 +115,8 @@ public class ImovelEntidade {
 
     @Override
     public String toString() {
-        return "ImovelEntidade{" + "id=" + id + ", valor=" + valor + ", imovelEspec=" + imovelEspec + ", status=" + status + ", cliente=" + cliente + ", tipo=" + tipo + ", categoria=" + categoria + ", modalidade=" + modalidade + ", chaves=" + chaves + ", uf=" + uf + '}';
+        return "ImovelEntidade{" + "id=" + id + ", valor=" + valor + ", imovelEspec=" + imovelEspec + ", status=" + status + //", cliente=" + cliente +
+                ", tipo=" + tipo + ", categoria=" + categoria + ", modalidade=" + modalidade + ", chaves=" + chaves + ", uf=" + uf + '}';
     }
 
      
