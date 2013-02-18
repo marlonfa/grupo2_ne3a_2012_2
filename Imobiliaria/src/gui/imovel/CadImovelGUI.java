@@ -9,6 +9,9 @@ import entidade.imovel.ImovelEspecEntidade;
 import entidade.imovel.ImovelModalidadeEntidade;
 import entidade.imovel.ImovelStatusEntidade;
 import entidade.imovel.ImovelTipoEntidade;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 public class CadImovelGUI extends javax.swing.JFrame {
@@ -428,7 +431,7 @@ public class CadImovelGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_jTFCepActionPerformed
 
     private void jBSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBSairActionPerformed
-        
+        this.dispose();
     }//GEN-LAST:event_jBSairActionPerformed
 
     private void jBSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBSalvarActionPerformed
@@ -462,8 +465,12 @@ public class CadImovelGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_jBCancelarActionPerformed
 
     private void jBPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBPesquisarActionPerformed
-        ConsImovelGUI conImovel = new ConsImovelGUI();
-        conImovel.setVisible(true);
+        try {
+            ConsImovelGUI conImovel = new ConsImovelGUI();
+            conImovel.setVisible(true);
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, ex.getMessage());
+        }
     }//GEN-LAST:event_jBPesquisarActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
