@@ -184,7 +184,7 @@ public class ConsImovelGUI extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Por favor Selecione uma linha da Tabela para editar!");
         }else{
             this.imovel = this.tableModel.getImovelEntidade(row);            
-            EditImovelGUI1 editImovel = new EditImovelGUI1();
+            EditImovelGUI editImovel = new EditImovelGUI();
             editImovel.imovel(imovel);
             editImovel.setVisible(true);
         }
