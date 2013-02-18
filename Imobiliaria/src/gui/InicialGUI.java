@@ -1,4 +1,12 @@
 package gui;
+
+import gui.imovel.CadImovelGUI;
+import gui.imovel.ConsImovelGUI;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+
 public class InicialGUI extends javax.swing.JFrame {
 
     public InicialGUI() {        
@@ -170,23 +178,22 @@ public class InicialGUI extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel2)
-                .addContainerGap())
             .addGroup(layout.createSequentialGroup()
                 .addGap(217, 217, 217)
                 .addComponent(jLabel3)
                 .addContainerGap(217, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jLabel2))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(141, 141, 141)
                 .addComponent(jLabel3)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
                 .addComponent(jLabel2)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
@@ -196,8 +203,8 @@ public class InicialGUI extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jMICadClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMICadClienteActionPerformed
-        CadClienteGUI cadCliente = new CadClienteGUI();
-        cadCliente.setVisible(true);
+//        CadClienteGUI cadCliente = new CadClienteGUI();
+//        cadCliente.setVisible(true);
     }//GEN-LAST:event_jMICadClienteActionPerformed
 
     private void jMICadImovelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMICadImovelActionPerformed
@@ -206,8 +213,8 @@ public class InicialGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_jMICadImovelActionPerformed
 
     private void jMICadUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMICadUsuarioActionPerformed
-        CadUsuarioGUI cadUsuario = new CadUsuarioGUI();
-        cadUsuario.setVisible(true);
+//        CadUsuarioGUI cadUsuario = new CadUsuarioGUI();
+//        cadUsuario.setVisible(true);
     }//GEN-LAST:event_jMICadUsuarioActionPerformed
 
     private void jMIConsClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMIConsClienteActionPerformed
@@ -215,13 +222,17 @@ public class InicialGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_jMIConsClienteActionPerformed
 
     private void jMIConsImovelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMIConsImovelActionPerformed
-        ConsImovelGUI conImovel = new ConsImovelGUI();
-        conImovel.setVisible(true);
+        try {
+            ConsImovelGUI consImovel = new ConsImovelGUI();
+            consImovel.setVisible(true);
+        } catch (SQLException ex) {
+           JOptionPane.showMessageDialog(null, ex.getMessage());
+        }
     }//GEN-LAST:event_jMIConsImovelActionPerformed
 
     private void jMIConsUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMIConsUsuarioActionPerformed
-        ConsUsuarioGUI conUsuario = new ConsUsuarioGUI();
-        conUsuario.setVisible(true);
+//        ConsUsuarioGUI conUsuario = new ConsUsuarioGUI();
+//        conUsuario.setVisible(true);
     }//GEN-LAST:event_jMIConsUsuarioActionPerformed
 
     /**
