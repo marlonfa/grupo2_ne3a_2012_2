@@ -100,8 +100,14 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="jTFNome">
+      <Properties>
+        <Property name="toolTipText" type="java.lang.String" value="Informe um Nome"/>
+      </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="jTFLogin">
+      <Properties>
+        <Property name="toolTipText" type="java.lang.String" value="Informe um Login"/>
+      </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLNome">
       <Properties>

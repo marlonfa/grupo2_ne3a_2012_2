@@ -4,6 +4,9 @@
  */
 package gui.usuario;
 
+import dao.UsuarioDAO;
+import entidade.usuario.UsuarioEntidade;
+
 /**
  *
  * @author a1253980
@@ -15,6 +18,7 @@ public class CadUsuarioGUI extends javax.swing.JFrame {
      */
     public CadUsuarioGUI() {
         initComponents();
+        setLocationRelativeTo(null);
     }
 
     /**
@@ -42,6 +46,10 @@ public class CadUsuarioGUI extends javax.swing.JFrame {
         setTitle("Cadastro de Usuário");
 
         jPasswordConfirmacao.setToolTipText("Comfirme Senha");
+
+        jTFNome.setToolTipText("Informe um Nome");
+
+        jTFLogin.setToolTipText("Informe um Login");
 
         jLNome.setText("Nome");
 
@@ -158,6 +166,12 @@ public class CadUsuarioGUI extends javax.swing.JFrame {
 
     private void jBSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBSalvarActionPerformed
         // TODO add your handling code here:
+        UsuarioEntidade user = new UsuarioEntidade();
+        user.setNome(jTFNome.getText().toUpperCase().trim());
+        user.setLogin(jTFLogin.getText().trim());
+        user.setSenha(jPasswordSenha.getText().trim());
+        user.setConfirmaSenha(jPasswordConfirmacao.getText().trim());
+        new UsuarioDAO().adicionar(user);
     }//GEN-LAST:event_jBSalvarActionPerformed
 
     private void jBCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBCancelarActionPerformed
