@@ -16,8 +16,17 @@ public class EnderecoEntidade {
     private String bairro;
     private String rua;
     private int numero;
+    private int id;
 
     public EnderecoEntidade() {
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getRua() {

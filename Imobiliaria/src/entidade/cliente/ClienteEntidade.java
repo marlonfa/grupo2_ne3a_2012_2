@@ -20,10 +20,19 @@ public class ClienteEntidade {
     private String celular;
     private String email;
     private String estadoCivil;
+    private int id;
     
     private EnderecoEntidade endereco;
 
     public ClienteEntidade() {
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getNome() {
