@@ -14,8 +14,17 @@ public class UsuarioEntidade{
    private String login;
    private String senha;
    private String confirmaSenha;
+   private long id;
 
     public UsuarioEntidade() {
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
     }
 
     public String getNome() {
