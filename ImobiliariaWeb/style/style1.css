@@ -1,0 +1,51 @@
+/* Style para alinhar formulário */
+label,  input {
+	display: block;
+	float: left;
+}
+
+label {	
+	text-align: right;
+	width: 35px;
+	padding-right: 50px;
+	padding-bottom: 10px;
+}
+
+fieldset {
+	border: solid 1px #000;
+}
+
+br {
+	clear: left;
+}
+/* Fim do Style para alinhar formulário */
+
+#div_desenvolvedores{
+	width: 50%;	
+	background-color: aqua;
+	margin: 0 auto;
+}
+
+#div_contato{
+	width: 50%;	
+	background-color: aqua;
+	margin: 0 auto;
+}
+
+#div_index{
+	width: 50%;	
+	background-color: aqua;
+	margin: 0 auto;
+}
+
+#div_index_head{
+	width: 50%;	
+	margin: 0 auto;
+	height: 105px;
+	
+}
+
+#logo{
+	margin: 0px;
+}
+
