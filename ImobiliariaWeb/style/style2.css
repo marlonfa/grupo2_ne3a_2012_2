@@ -1,6 +1,6 @@
 body {
 	margin:0px;
-	background-image:url(../img/layout/div_background.jpg);
+	background-image:url(../img/layout/div_background2.jpg);
 	background-repeat:no-repeat;
 }
 
@@ -39,7 +39,7 @@ body {
 	font:"Times New Roman";
 	font-weight:bold;
 	font-size: 15px;
-	background-color:#663399;
+	background-color:#1874CD;
 	color:#FFF;	
 }
 
@@ -49,17 +49,7 @@ body {
 }
 
 #div_menu a:hover{
-	color:#FF0;
-	text-decoration:underline;
-}
-
-#div_conteudo a{
-	color:#663399;
-	text-decoration:none;
-}
-
-#div_conteudo a:hover{
-	color:#663399;
+	color:#1C1C1C;
 	text-decoration:underline;
 }
 
@@ -89,9 +79,10 @@ body {
 }
 
 h1 {
-	background-color:#663399;
-	color:#FF0;	
+	background-color:#1874CD;
+	color:#FFF;	
 	font-size:20px;	
+        text-align: center;
 }
 
 h2 {
@@ -120,10 +111,17 @@ label {
 }
 
 fieldset {
-	border: solid 1px #000;
+	border: solid 2px #000;
+        font-weight: bold;
 }
 
 br {
 	clear: left;
+        font-weight: normal;
+}
+
+p{
+    font-weight: normal;
 }
 /* Fim do Style para alinhar formulário */
+
