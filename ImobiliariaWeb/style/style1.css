@@ -1,3 +1,111 @@
+body {
+	margin:0px;
+	background-image:url(../img/layout/background.png);
+	background-repeat:repeat-x;
+}
+
+#div_conteudo{
+	width: 850px;	
+	margin:0 auto;
+	font-size: 15px;
+	font-family: sans-serif;
+	color: black;
+	
+}
+
+#div_body{
+	width: 900px;	
+	background-image:url(../img/layout/background_div.png);
+	background-repeat:repeat-y;
+	margin:0 auto;
+}
+
+#div_head{
+	width: 850px;
+	height: 105px;
+	margin-top: 0;
+	margin-right: auto;
+	margin-bottom: 0;
+	margin-left: auto;
+	
+}
+
+#div_menu{
+	width: 875px;
+	height: 20px;
+	margin: 0 auto;
+	text-align:center;
+	font-family: sans-serif;
+	font:"Times New Roman";
+	font-weight:bold;
+	font-size: 15px;
+	background-color:#663399;
+	color:#FFF;	
+}
+
+#div_menu a{
+	color:#FFF;
+	text-decoration:none;
+}
+
+#div_menu a:hover{
+	color:#FF0;
+	text-decoration:underline;
+}
+
+#div_conteudo a{
+	color:#663399;
+	text-decoration:none;
+}
+
+#div_conteudo a:hover{
+	color:#663399;
+	text-decoration:underline;
+}
+
+#div_foot{
+	width: 900px;
+	height: 80px;
+	top:0;
+	margin: 0 auto;
+	font-size: 15px;
+	font-family: sans-serif;
+	color: black;	
+	text-align:center;
+	font:"Times New Roman";
+	background-image:url(../img/layout/background_div_foot.png);
+}
+
+#div_w3{
+	width:200px;
+	margin: 0 auto;
+	margin-top: 10px;
+}
+
+#div_volta_proximo{
+	top: 20px;
+	width: 300px;
+	margin: 0 auto;
+}
+
+h1 {
+	background-color:#663399;
+	color:#FF0;	
+	font-size:20px;	
+}
+
+h2 {
+	font-size: 25px;
+	font-family: sans-serif;
+	color: black;
+	text-align: center;
+}
+
+#img_inicial{
+	margin-left: 120px;
+}
+
+
 /* Style para alinhar formulário */
 label,  input {
 	display: block;
@@ -7,7 +115,7 @@ label,  input {
 label {	
 	text-align: right;
 	width: 35px;
-	padding-right: 50px;
+	padding-right: 65px;
 	padding-bottom: 10px;
 }
 
@@ -19,33 +127,3 @@ br {
 	clear: left;
 }
 /* Fim do Style para alinhar formulário */
-
-#div_desenvolvedores{
-	width: 50%;	
-	background-color: aqua;
-	margin: 0 auto;
-}
-
-#div_contato{
-	width: 50%;	
-	background-color: aqua;
-	margin: 0 auto;
-}
-
-#div_index{
-	width: 50%;	
-	background-color: aqua;
-	margin: 0 auto;
-}
-
-#div_index_head{
-	width: 50%;	
-	margin: 0 auto;
-	height: 105px;
-	
-}
-
-#logo{
-	margin: 0px;
-}
-
