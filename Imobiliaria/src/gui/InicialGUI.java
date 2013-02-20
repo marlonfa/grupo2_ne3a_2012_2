@@ -1,7 +1,10 @@
 package gui;
 
+import gui.cliente.CadClienteGUI;
+import gui.cliente.ConsClienteGUI;
 import gui.imovel.CadImovelGUI;
 import gui.imovel.ConsImovelGUI;
+import gui.usuario.CadUsuarioGUI;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -203,8 +206,8 @@ public class InicialGUI extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jMICadClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMICadClienteActionPerformed
-//        CadClienteGUI cadCliente = new CadClienteGUI();
-//        cadCliente.setVisible(true);
+        CadClienteGUI cadCliente = new CadClienteGUI();
+        cadCliente.setVisible(true);
     }//GEN-LAST:event_jMICadClienteActionPerformed
 
     private void jMICadImovelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMICadImovelActionPerformed
@@ -213,12 +216,13 @@ public class InicialGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_jMICadImovelActionPerformed
 
     private void jMICadUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMICadUsuarioActionPerformed
-//        CadUsuarioGUI cadUsuario = new CadUsuarioGUI();
-//        cadUsuario.setVisible(true);
+        CadUsuarioGUI cadUsuario = new CadUsuarioGUI();
+        cadUsuario.setVisible(true);
     }//GEN-LAST:event_jMICadUsuarioActionPerformed
 
     private void jMIConsClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMIConsClienteActionPerformed
-        
+        ConsClienteGUI consCliente = new ConsClienteGUI();
+        consCliente.setVisible(true);
     }//GEN-LAST:event_jMIConsClienteActionPerformed
 
     private void jMIConsImovelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMIConsImovelActionPerformed
@@ -231,8 +235,8 @@ public class InicialGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_jMIConsImovelActionPerformed
 
     private void jMIConsUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMIConsUsuarioActionPerformed
-//        ConsUsuarioGUI conUsuario = new ConsUsuarioGUI();
-//        conUsuario.setVisible(true);
+        ConsUsuarioGUI conUsuario = new ConsUsuarioGUI();
+        conUsuario.setVisible(true);
     }//GEN-LAST:event_jMIConsUsuarioActionPerformed
 
     /**
