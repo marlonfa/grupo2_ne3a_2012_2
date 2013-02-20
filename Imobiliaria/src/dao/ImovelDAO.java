@@ -220,6 +220,63 @@ public class ImovelDAO {
         return this.lista;
     }
 
+    public List<ImovelEntidade> consultar(String consulta, TipoConsulta tipo) {
+        try {
+            connection.setAutoCommit(false);
+            
+            pst = connection.prepareStatement("SELECT * FROM imovel WHERE " + tipo.getFieldName() + "LIKE ?");
+            pst.setString(1, "%" + consulta + "%");
+            pst.execute();
+            rs = pst.executeQuery();
+
+            this.lista = new ArrayList<ImovelEntidade>();
+
+            while (rs.next()) {
+                ImovelEntidade imovel = new ImovelEntidade();
+                imovel.setId(rs.getInt("id"));
+                //imovel.setCliente(rs.getString("cliente"));
+                imovel.setImovelEspec(new ImovelEspecEntidade(
+                        rs.getString("endereco"),
+                        rs.getString("bairro"),
+                        rs.getString("cidade"),
+                        rs.getString("cep"),
+                        rs.getString("descricao")));
+                imovel.setCategoria((ImovelCategoriaEntidade.valueOf(rs.getString("categoria"))));
+                imovel.setModalidade((ImovelModalidadeEntidade.valueOf(rs.getString("modalidade"))));
+                imovel.setStatus((ImovelStatusEntidade.valueOf(rs.getString("status"))));
+                imovel.setChaves((ImovelChavesEntidade.valueOf(rs.getString("chaves"))));
+                imovel.setValor(rs.getFloat("valor"));
+                imovel.setUf((EstadoEntidade.valueOf(rs.getString("uf"))));
+                imovel.setTipo((ImovelTipoEntidade.valueOf(rs.getString("tipo"))));
+                this.lista.add(imovel);
+            }
+
+            connection.commit();
+        } catch (SQLException ex1) {
+            if (connection != null) {
+                try {
+                    try {
+                        connection.rollback();
+                    } catch (SQLException ex2) {
+                        JOptionPane.showMessageDialog(null, ex2.getMessage());
+                    }
+                    throw ex1;
+                } catch (SQLException ex3) {
+                    JOptionPane.showMessageDialog(null, ex3.getMessage());
+                }
+            }
+
+        } finally {
+            try {
+                pst.close();
+                rs.close();
+            } catch (SQLException ex) {
+                JOptionPane.showMessageDialog(null, ex.getMessage());
+            }
+        }
+        return this.lista;
+    }
+
     public List<ImovelEntidade> consultarPorCidade(String consulta) {
         try {
             connection.setAutoCommit(false);
@@ -330,5 +387,34 @@ public class ImovelDAO {
 
     public List<ImovelEntidade> getLista() {
         return this.lista;
+    }
+
+    private static enum TipoConsulta {
+        POR_CIDADE("cidade", "por Cidade"),
+        POR_ENDERECO("endereco", "por Endereço"),
+        POR_NOME("nome", "pelo Nome da pessoa");
+        
+        private String fieldName;
+        private String displayName;
+        public String getFieldName(){return this.fieldName;}
+
+        public String getDisplayName() {
+            return displayName;
+        }
+        
+
+        private TipoConsulta(String fieldName, String displayName) {
+            this.fieldName = fieldName;
+            this.displayName = displayName;
+        }
+
+        @Override
+        public String toString() {
+            return this.displayName;
+        }
+        
+        
+        
+        
     }
 }
