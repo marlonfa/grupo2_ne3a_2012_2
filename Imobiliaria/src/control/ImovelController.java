@@ -18,7 +18,7 @@ public class ImovelController {
     private ImovelDao imovelDao;
     private ImovelEntity imovel;
     private ImovelEnderecoEntity endereco;
-    private static ImovelEntity imovelCurrent;
+    private static ImovelEntity imovelSelecionado;
     
     public ImovelController(){
         this.imovelDao = new ImovelDao();
@@ -34,27 +34,33 @@ public class ImovelController {
         return endereco;
     }
 
-    public static ImovelEntity getImovelCurrent() {
-        return imovelCurrent;
-    }
-
-    public static void setImovelCurrent(ImovelEntity imovelCurrent) {
-        ImovelController.imovelCurrent = imovelCurrent;
+    public void setEndereco(ImovelEnderecoEntity endereco) {
+        this.endereco = endereco;
     }
     
-   
-        
+    
+
+    public static ImovelEntity getImovelSelecionado() {
+        return imovelSelecionado;
+    }
+
+    public static void setImovelSelecionado(ImovelEntity imovelSelecionado) {
+        ImovelController.imovelSelecionado = imovelSelecionado;
+    }
+
+           
     public void create(){
-        imovelDao.persist(imovel);
-        ImovelController.imovelCurrent = new ImovelEntity();
-        ImovelController.imovelCurrent = this.imovel;
-        this.imovel = new ImovelEntity();
-        this.endereco = new ImovelEnderecoEntity();
+        ImovelController.setImovelSelecionado(this.imovel);
+        imovelDao.persist(imovel);        
+    }
+    
+     public void delete(ImovelEntity imovel) throws RuntimeException{
+        imovelDao.delete(imovel);
     }
     
     public List<ImovelEntity> findAll(){
-        List<ImovelEntity> imoveis;
-        imoveis = imovelDao.findAll();
-        return imoveis;
+        return this.imovelDao.findAll();
     }
+    
+    
 }
