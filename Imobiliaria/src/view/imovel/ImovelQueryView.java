@@ -5,6 +5,7 @@
 package view.imovel;
 
 import control.ImovelController;
+import java.awt.Frame;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import model.imovel.ImovelEntity;
@@ -32,6 +33,11 @@ public class ImovelQueryView extends javax.swing.JDialog {
     public ImovelTableModel getImovelTableModel() {
         this.imovelTableModel = new ImovelTableModel(imovelController.findAll());
         return imovelTableModel;
+    }
+    
+    private void refreshTable(){
+        this.imovelTableModel = new ImovelTableModel(imovelController.findAll());
+        jTable1.setModel(this.imovelTableModel);
     }
      /**
      * This method is called from within the constructor to initialize the form.
@@ -133,71 +139,51 @@ public class ImovelQueryView extends javax.swing.JDialog {
 
     private void jBExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBExcluirActionPerformed
         // TODO add your handling code here:
+        int row = jTable1.getSelectedRow();
+        if(row >= 0){
+            int opcao = JOptionPane.showConfirmDialog(null, "Deseja Excluir este Imóvel? " , "Excluir Imóvel", 2);
+            if(opcao == 0){
+                this.imovelController.delete(this.imovelTableModel.getImovelEntidade(row));
+                refreshTable();
+                JOptionPane.showMessageDialog(null, "Imóvel Excluído com Sucesso!");
+            }
+        }else{
+            JOptionPane.showMessageDialog(null, "Por favor Selecione uma linha da Tabela para Excluir!");
+        }
+        
     }//GEN-LAST:event_jBExcluirActionPerformed
 
     private void jBEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBEditarActionPerformed
-        this.imovelEditView = new ImovelEditView(new JFrame(), true);
-        int row = jTable1.getSelectedRow();        
+        int row = jTable1.getSelectedRow();
         if(row >= 0){
-           ImovelController.setImovelCurrent(imovelTableModel.getImovelEntidade(row)); 
-            imovelEditView.show();
+            ImovelController.setImovelSelecionado(this.imovelTableModel.getImovelEntidade(row));
+            imovelEditView = new ImovelEditView(new Frame(), true);
+            dispose();
+            imovelEditView.getImovel();
+            imovelEditView.setLocationRelativeTo(null);
+            imovelEditView.setVisible(true);
         }else{
-            JOptionPane.showMessageDialog(null, "Por favor Selecione uma linha da Tabela para editar!");
+            JOptionPane.showMessageDialog(null, "Por favor Selecione uma linha da Tabela para Editar!");
         }
     }//GEN-LAST:event_jBEditarActionPerformed
 
     private void jBViewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBViewActionPerformed
-        imovelView = new ImovelView(new JFrame(), true);
-        //TEM QUE PASSAR UM OBJETO AINDA        
-        imovelView.show();
+        int row = jTable1.getSelectedRow();
+        if(row >= 0){
+            ImovelController.setImovelSelecionado(this.imovelTableModel.getImovelEntidade(row));
+            imovelView = new ImovelView(new Frame(), true);
+            dispose();
+            imovelView.setLocationRelativeTo(null);
+            imovelView.setVisible(true);            
+        }else{
+            JOptionPane.showMessageDialog(null, "Por favor Selecione uma linha da Tabela para Visualizar!");
+        }
     }//GEN-LAST:event_jBViewActionPerformed
 
     private void jBFecharActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBFecharActionPerformed
         dispose();
     }//GEN-LAST:event_jBFecharActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(ImovelQueryView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(ImovelQueryView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(ImovelQueryView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(ImovelQueryView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the dialog */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                ImovelQueryView dialog = new ImovelQueryView(new javax.swing.JFrame(), true);
-                dialog.setLocationRelativeTo(null);
-                dialog.addWindowListener(new java.awt.event.WindowAdapter() {
-                    @Override
-                    public void windowClosing(java.awt.event.WindowEvent e) {
-                        System.exit(0);
-                    }
-                });
-                dialog.setVisible(true);
-            }
-        });
-    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jBEditar;
     private javax.swing.JButton jBExcluir;

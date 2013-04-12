@@ -4,9 +4,11 @@
  */
 package view.imovel;
 
+import control.ClienteController;
 import control.ImovelController;
 import java.awt.Color;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -17,29 +19,33 @@ public class ImovelView extends javax.swing.JDialog {
     /**
      * Creates new form ImovelView
      */
+    private ImovelController imovelController;
+    
     public ImovelView(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         super.setLocationRelativeTo(null);
+        this.imovelController = new ImovelController();
         initComponents();
         setLabel();
     }
     
     public void setLabel(){
-//        jLCliente.setText(ImovelController.getImovelCurrent().getCliente().toString());
-//        jLData.setText(ImovelController.getImovelCurrent().getData().toString());
-        jLLogradouro.setText(ImovelController.getImovelCurrent().getEndereco().getLogradouro());
-        jLNumero.setText(String.valueOf(ImovelController.getImovelCurrent().getEndereco().getNumero()));
-        jLComplemento.setText(ImovelController.getImovelCurrent().getEndereco().getComplemento()); 
-        jLBairro.setText(ImovelController.getImovelCurrent().getEndereco().getBairro());
-        jLCidade.setText(ImovelController.getImovelCurrent().getEndereco().getCidade());
-        jLCep.setText(ImovelController.getImovelCurrent().getEndereco().getCep());
-        jLUf.setText(String.valueOf(ImovelController.getImovelCurrent().getEndereco().getUf()));
-        jLDormitorio.setText(String.valueOf(ImovelController.getImovelCurrent().getDormitorio()));
-        jLModalidade.setText(String.valueOf(ImovelController.getImovelCurrent().getModalidade()));
-        jLTipo.setText(String.valueOf(ImovelController.getImovelCurrent().getTipo()));
-        jLStatus.setText(String.valueOf(ImovelController.getImovelCurrent().getStatus()));
-        jLValor.setText(String.valueOf(ImovelController.getImovelCurrent().getValor()));
-        jLDescricao.setText(ImovelController.getImovelCurrent().getDescricao());
+//        jLCliente.setText(ImovelController.getImovelSelecionado().getCliente().toString());
+//        jLData.setText(ImovelController.getImovelSelecionado().getData().toString());
+        System.out.println("========== " + ImovelController.getImovelSelecionado().toString());
+        jLLogradouro.setText(ImovelController.getImovelSelecionado().getEndereco().getLogradouro());
+        jLNumero.setText(String.valueOf(ImovelController.getImovelSelecionado().getEndereco().getNumero()));
+        jLComplemento.setText(ImovelController.getImovelSelecionado().getEndereco().getComplemento()); 
+        jLBairro.setText(ImovelController.getImovelSelecionado().getEndereco().getBairro());
+        jLCidade.setText(ImovelController.getImovelSelecionado().getEndereco().getCidade());
+        jLCep.setText(ImovelController.getImovelSelecionado().getEndereco().getCep());
+        jLUf.setText(String.valueOf(ImovelController.getImovelSelecionado().getEndereco().getUf()));
+        jLDormitorio.setText(String.valueOf(ImovelController.getImovelSelecionado().getDormitorio()));
+        jLModalidade.setText(String.valueOf(ImovelController.getImovelSelecionado().getModalidade()));
+        jLTipo.setText(String.valueOf(ImovelController.getImovelSelecionado().getTipo()));
+        jLStatus.setText(String.valueOf(ImovelController.getImovelSelecionado().getStatus()));
+        jLValor.setText(String.valueOf(ImovelController.getImovelSelecionado().getValor()));
+        jLDescricao.setText(ImovelController.getImovelSelecionado().getDescricao());
         
 //        jLCliente.setForeground(Color.red);
 //        jLData.setForeground(Color.red);      
@@ -466,55 +472,26 @@ public class ImovelView extends javax.swing.JDialog {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         ImovelEditView imovelEditView = new ImovelEditView(new JFrame(), true);
+        dispose();
         imovelEditView.getImovel();
-        imovelEditView.show(true);
+        imovelEditView.setLocationRelativeTo(null);
+        imovelEditView.setVisible(true);
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
+        int opcao = JOptionPane.showConfirmDialog(null, "Deseja Excluir este Imóvel: " , "Excluir Imóvel", 2);
+            if(opcao == 0){        
+                try{
+                    this.imovelController.delete(ImovelController.getImovelSelecionado());
+                    JOptionPane.showMessageDialog(null, "Imóvel Excluído com Sucesso!");
+                    dispose();
+                }catch (RuntimeException e){
+                     JOptionPane.showMessageDialog(null, " Erro ao Deletar Imóvel: ERRO: "+e);
+                }             
+            }
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(ImovelView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(ImovelView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(ImovelView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(ImovelView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the dialog */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                ImovelView dialog = new ImovelView(new javax.swing.JFrame(), true);
-                dialog.addWindowListener(new java.awt.event.WindowAdapter() {
-                    @Override
-                    public void windowClosing(java.awt.event.WindowEvent e) {
-                        System.exit(0);
-                    }
-                });
-                dialog.setVisible(true);
-            }
-        });
-    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;

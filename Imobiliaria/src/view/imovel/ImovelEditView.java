@@ -5,6 +5,7 @@
 package view.imovel;
 
 import control.ImovelController;
+import java.awt.Frame;
 import javax.swing.JFrame;
 import model.imovel.ImovelModalidadeEnum;
 import model.imovel.ImovelStatusEnum;
@@ -26,7 +27,6 @@ public class ImovelEditView extends javax.swing.JDialog {
     public ImovelEditView(java.awt.Frame parent, boolean modal) {        
         super(parent, modal);
         this.imovelController = new ImovelController();
-        imovelView = new ImovelView(new JFrame(), true);
         initComponents();      
     }
            
@@ -75,20 +75,20 @@ public class ImovelEditView extends javax.swing.JDialog {
     public void getImovel(){
         
 //        imovel.setData(jFTData.getText());
-        jTFLogradouro.setText(ImovelController.getImovelCurrent().getEndereco().getLogradouro());
-        jTFNumero.setText(String.valueOf(ImovelController.getImovelCurrent().getEndereco().getNumero()));
-        jTFComplemento.setText(ImovelController.getImovelCurrent().getEndereco().getComplemento());        
-        jTFBairro.setText(ImovelController.getImovelCurrent().getEndereco().getBairro());        
-        jTFCidade.setText(ImovelController.getImovelCurrent().getEndereco().getCidade());        
-        jCBUf.setSelectedItem(ImovelController.getImovelCurrent().getEndereco().getUf());        
-        jFTCep.setText(ImovelController.getImovelCurrent().getEndereco().getCep());
+        jTFLogradouro.setText(ImovelController.getImovelSelecionado().getEndereco().getLogradouro());
+        jTFNumero.setText(String.valueOf(ImovelController.getImovelSelecionado().getEndereco().getNumero()));
+        jTFComplemento.setText(ImovelController.getImovelSelecionado().getEndereco().getComplemento());        
+        jTFBairro.setText(ImovelController.getImovelSelecionado().getEndereco().getBairro());        
+        jTFCidade.setText(ImovelController.getImovelSelecionado().getEndereco().getCidade());        
+        jCBUf.setSelectedItem(ImovelController.getImovelSelecionado().getEndereco().getUf());        
+        jFTCep.setText(ImovelController.getImovelSelecionado().getEndereco().getCep());
         
-        jTFNumeroDormitorios.setText(String.valueOf(ImovelController.getImovelCurrent().getDormitorio()));
-        jCBModalidade.setSelectedItem(ImovelController.getImovelCurrent().getModalidade());
-        jCBTipo.setSelectedItem(ImovelController.getImovelCurrent().getTipo());
-        jCBStatus.setSelectedItem(ImovelController.getImovelCurrent().getStatus());
-        jFTValor.setText(String.valueOf(ImovelController.getImovelCurrent().getValor()));
-        jTADescricao.setText(ImovelController.getImovelCurrent().getDescricao());
+        jTFNumeroDormitorios.setText(String.valueOf(ImovelController.getImovelSelecionado().getDormitorio()));
+        jCBModalidade.setSelectedItem(ImovelController.getImovelSelecionado().getModalidade());
+        jCBTipo.setSelectedItem(ImovelController.getImovelSelecionado().getTipo());
+        jCBStatus.setSelectedItem(ImovelController.getImovelSelecionado().getStatus());
+        jFTValor.setText(String.valueOf(ImovelController.getImovelSelecionado().getValor()));
+        jTADescricao.setText(ImovelController.getImovelSelecionado().getDescricao());
      }
 
     /**
@@ -136,8 +136,10 @@ public class ImovelEditView extends javax.swing.JDialog {
         jSeparator2 = new javax.swing.JSeparator();
         jLabel16 = new javax.swing.JLabel();
         jLabel17 = new javax.swing.JLabel();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        jBOk = new javax.swing.JButton();
+        jBFechar = new javax.swing.JButton();
+        jLabel18 = new javax.swing.JLabel();
+        jTFCodigoImovel = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -188,8 +190,8 @@ public class ImovelEditView extends javax.swing.JDialog {
 
         jLabel13.setText("Descrição:");
 
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/small_search.png"))); // NOI18N
-        jButton1.setToolTipText("Pesquisar");
+        jButton1.setText("Procurar");
+        jButton1.setToolTipText("Procurar");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -221,25 +223,30 @@ public class ImovelEditView extends javax.swing.JDialog {
 
         jLabel15.setText("Data Cadastro:");
 
-        jLabel16.setForeground(new java.awt.Color(47, 145, 249));
+        jLabel16.setForeground(new java.awt.Color(0, 0, 255));
         jLabel16.setText("Endereço do Imóvel:");
 
-        jLabel17.setForeground(new java.awt.Color(47, 145, 249));
+        jLabel17.setForeground(new java.awt.Color(0, 0, 255));
         jLabel17.setText("Descrição do Imóvel:");
 
-        jButton2.setText("Ok");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        jBOk.setText("Ok");
+        jBOk.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                jBOkActionPerformed(evt);
             }
         });
 
-        jButton3.setText("Fechar");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        jBFechar.setText("Fechar");
+        jBFechar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                jBFecharActionPerformed(evt);
             }
         });
+
+        jLabel18.setForeground(new java.awt.Color(255, 0, 0));
+        jLabel18.setText("Código:");
+
+        jTFCodigoImovel.setEnabled(false);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -265,9 +272,9 @@ public class ImovelEditView extends javax.swing.JDialog {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton2)
+                .addComponent(jBOk)
                 .addGap(18, 18, 18)
-                .addComponent(jButton3)
+                .addComponent(jBFechar)
                 .addGap(21, 21, 21))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -311,14 +318,16 @@ public class ImovelEditView extends javax.swing.JDialog {
                                         .addGap(79, 79, 79)
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                             .addComponent(jLabel15)
-                                            .addComponent(jLabel6))
+                                            .addComponent(jLabel6)
+                                            .addComponent(jLabel18))
                                         .addGap(25, 25, 25)
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addGroup(layout.createSequentialGroup()
                                                 .addComponent(jTFCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 381, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                 .addGap(23, 23, 23)
                                                 .addComponent(jButton1))
-                                            .addComponent(jFTData, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                            .addComponent(jFTData, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(jTFCodigoImovel, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                             .addGroup(layout.createSequentialGroup()
                                 .addContainerGap()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -336,14 +345,18 @@ public class ImovelEditView extends javax.swing.JDialog {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(37, 37, 37)
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel18)
+                    .addComponent(jTFCodigoImovel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(9, 9, 9)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jTFCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jLabel6))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jButton1)
+                        .addGap(22, 22, 22)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jFTData, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -408,8 +421,8 @@ public class ImovelEditView extends javax.swing.JDialog {
                                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(jButton2)
-                                    .addComponent(jButton3))))))
+                                    .addComponent(jBOk)
+                                    .addComponent(jBFechar))))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -420,23 +433,16 @@ public class ImovelEditView extends javax.swing.JDialog {
                 // TODO add your handling code here:
     }//GEN-LAST:event_jFTDataActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void jBOkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBOkActionPerformed
         /*Seta os valores dos campos da tela para o objeto imovel e endereco.*/
-        setImovel();
-        /*Cria um endereco já preenchido dentro do atributo endereço do imóvel*/
-        this.imovelController.getImovel().setEndereco(this.imovelController.getEndereco());   
-        /*Salva no banco imovel e endereco*/
+       setImovel();
+       this.imovelController.getImovel().setEndereco(this.imovelController.getEndereco());
         this.imovelController.create();
-        /*Limpa os Campos da tela*/
-        limparCampos();
-        /*Seta os labels da tela ImoveView*/
-        imovelView.setLabel();
-        /*Chama a tela View*/
-        imovelView.show(true);
-        /*Fecha a tela*/
+        ImovelView view = new ImovelView(new Frame(), true);
         dispose();
-        
-    }//GEN-LAST:event_jButton2ActionPerformed
+        view.setLocationRelativeTo(null);
+        view.setVisible(true);   
+    }//GEN-LAST:event_jBOkActionPerformed
 
     private void jTFNumeroDormitoriosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTFNumeroDormitoriosActionPerformed
         // TODO add your handling code here:
@@ -451,55 +457,14 @@ public class ImovelEditView extends javax.swing.JDialog {
         // TODO add your handling code here:
     }//GEN-LAST:event_jCBModalidadeActionPerformed
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+    private void jBFecharActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBFecharActionPerformed
         dispose();
-    }//GEN-LAST:event_jButton3ActionPerformed
+    }//GEN-LAST:event_jBFecharActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(ImovelEditView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(ImovelEditView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(ImovelEditView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(ImovelEditView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the dialog */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                ImovelEditView dialog = new ImovelEditView(new javax.swing.JFrame(), true);
-                dialog.addWindowListener(new java.awt.event.WindowAdapter() {
-                    @Override
-                    public void windowClosing(java.awt.event.WindowEvent e) {
-                        System.exit(0);
-                    }
-                });
-                dialog.setVisible(true);
-            }
-        });
-    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jBFechar;
+    private javax.swing.JButton jBOk;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
     private javax.swing.JComboBox jCBModalidade;
     private javax.swing.JComboBox jCBStatus;
     private javax.swing.JComboBox jCBTipo;
@@ -516,6 +481,7 @@ public class ImovelEditView extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
+    private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -531,6 +497,7 @@ public class ImovelEditView extends javax.swing.JDialog {
     private javax.swing.JTextField jTFBairro;
     private javax.swing.JTextField jTFCidade;
     private javax.swing.JTextField jTFCliente;
+    private javax.swing.JTextField jTFCodigoImovel;
     private javax.swing.JTextField jTFComplemento;
     private javax.swing.JTextField jTFLogradouro;
     private javax.swing.JTextField jTFNumero;
