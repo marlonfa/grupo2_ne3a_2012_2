@@ -4,7 +4,11 @@
  */
 package view.main;
 
+import java.awt.Frame;
 import javax.swing.JFrame;
+import view.imovel.ImovelEditView;
+import view.imovel.ImovelQueryView;
+import view.imovel.ImovelView;
 import view.usuario.UsuarioEditView;
 
 /**
@@ -273,15 +277,20 @@ public class Imobiliaria extends javax.swing.JDialog {
     private void jButtonConsClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonConsClienteActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButtonConsClienteActionPerformed
-
-    
+   
     //Imovel
     private void jButtonCadImovelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCadImovelActionPerformed
         // TODO add your handling code here:
+        ImovelEditView editView = new ImovelEditView(new Frame(), true);
+        editView.setLocationRelativeTo(null);
+        editView.setVisible(true);
     }//GEN-LAST:event_jButtonCadImovelActionPerformed
 
     private void jButtonConsImovelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonConsImovelActionPerformed
         // TODO add your handling code here:
+        ImovelQueryView imovelQueryView = new ImovelQueryView(new Frame(), true);
+        imovelQueryView.setLocationRelativeTo(null);
+        imovelQueryView.setVisible(true);
     }//GEN-LAST:event_jButtonConsImovelActionPerformed
 
     

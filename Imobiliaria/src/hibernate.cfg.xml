@@ -15,5 +15,8 @@
     <mapping class="model.cliente.ContatoEntity"/>
     <mapping class="model.endereco.EnderecoEntity"/>
     <mapping class="model.usuario.UsuarioEntity"/>
+    <mapping class="model.imovel.ImovelEntity" />
+    <mapping class="model.imovel.ImovelEnderecoEntity" />
+    
   </session-factory>
 </hibernate-configuration>
