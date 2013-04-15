@@ -26,17 +26,15 @@ public class UsuarioEntity {
     @Column(name = "id")
     private Long id;
     
-    @Column(length = 50)
+    @Column(name = "nome", length = 100)
     private String nome;
     
-    @Column(length = 10)
+    @Column(name = "login", length = 10)
     private String login;
     
-    @Column(length = 16)
+    @Column(name = "senha", length = 6)
     private String senha;
     
-//    private String confirmaSenha;
-
     public UsuarioEntity() {
     }
 
@@ -45,7 +43,6 @@ public class UsuarioEntity {
         this.nome = nome;
         this.login = login;
         this.senha = senha;
-//        this.confirmaSenha = confirmaSenha;
     }
 
     public Long getId() {
@@ -80,14 +77,6 @@ public class UsuarioEntity {
         this.senha = senha;
     }
 
-//    public String getConfirmaSenha() {
-//        return confirmaSenha;
-//    }
-//
-//    public void setConfirmaSenha(String confirmaSenha) {
-//        this.confirmaSenha = confirmaSenha;
-//    }
-
     @Override
     public int hashCode() {
         int hash = 5;
@@ -95,7 +84,6 @@ public class UsuarioEntity {
         hash = 29 * hash + Objects.hashCode(this.nome);
         hash = 29 * hash + Objects.hashCode(this.login);
         hash = 29 * hash + Objects.hashCode(this.senha);
-//        hash = 29 * hash + Objects.hashCode(this.confirmaSenha);
         return hash;
     }
 
@@ -120,9 +108,6 @@ public class UsuarioEntity {
         if (!Objects.equals(this.senha, other.senha)) {
             return false;
         }
-//        if (!Objects.equals(this.confirmaSenha, other.confirmaSenha)) {
-//            return false;
-//        }
         return true;
     }
 
