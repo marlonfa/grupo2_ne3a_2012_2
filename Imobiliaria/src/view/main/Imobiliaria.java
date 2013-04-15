@@ -6,14 +6,16 @@ package view.main;
 
 import java.awt.Frame;
 import javax.swing.JFrame;
+import view.cliente.ClienteEditView;
+import view.cliente.ClienteQueryView;
 import view.imovel.ImovelEditView;
 import view.imovel.ImovelQueryView;
-import view.imovel.ImovelView;
 import view.usuario.UsuarioEditView;
+import view.usuario.UsuarioQueryView;
 
 /**
  *
- * @author eder
+ * @author marlon e eder
  */
 public class Imobiliaria extends javax.swing.JDialog {
 
@@ -35,94 +37,123 @@ public class Imobiliaria extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jButtonConsCliente = new javax.swing.JButton();
+        jLUsuarioLogado = new javax.swing.JLabel();
+        jToolBar1 = new javax.swing.JToolBar();
         jButtonCadCliente = new javax.swing.JButton();
+        jButtonConsCliente = new javax.swing.JButton();
         jButtonCadImovel = new javax.swing.JButton();
         jButtonConsImovel = new javax.swing.JButton();
         jButtonCadUsuario = new javax.swing.JButton();
         jButtonConsUsuario = new javax.swing.JButton();
         jButtonVenda = new javax.swing.JButton();
         jButtonLocar = new javax.swing.JButton();
+        jButtonLocar1 = new javax.swing.JButton();
         jButtonAjuda = new javax.swing.JButton();
-        jLUsuarioLogado = new javax.swing.JLabel();
         jMenuBarTop = new javax.swing.JMenuBar();
         jMCliente = new javax.swing.JMenu();
         jMICadCliente = new javax.swing.JMenuItem();
-        jMIConsCliente = new javax.swing.JMenuItem();
-        jMImovel = new javax.swing.JMenu();
         jMICadImovel = new javax.swing.JMenuItem();
-        jMIConsImovel = new javax.swing.JMenuItem();
-        jMUsuario = new javax.swing.JMenu();
         jMICadUsuario = new javax.swing.JMenuItem();
+        jMImovel = new javax.swing.JMenu();
+        jMIConsCliente = new javax.swing.JMenuItem();
+        jMIConsImovel = new javax.swing.JMenuItem();
         jMIConsUsuario = new javax.swing.JMenuItem();
-        jMVenda = new javax.swing.JMenu();
+        jMUsuario = new javax.swing.JMenu();
+        jMIVenderImovel = new javax.swing.JMenuItem();
+        jMILocarImovel = new javax.swing.JMenuItem();
         jMLocacao = new javax.swing.JMenu();
+        jMIConfiguracao = new javax.swing.JMenuItem();
         jMAjuda = new javax.swing.JMenu();
+        jMISobre = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-        jButtonConsCliente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/cliente.png"))); // NOI18N
-        jButtonConsCliente.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonConsClienteActionPerformed(evt);
-            }
-        });
+        jLUsuarioLogado.setToolTipText("Usuário Logado");
 
-        jButtonCadCliente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/cliente.png"))); // NOI18N
+        jToolBar1.setRollover(true);
+
+        jButtonCadCliente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/cadCliente.png"))); // NOI18N
         jButtonCadCliente.setToolTipText("Cadastrar um Novo Cliente");
         jButtonCadCliente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonCadClienteActionPerformed(evt);
             }
         });
+        jToolBar1.add(jButtonCadCliente);
 
-        jButtonCadImovel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/home.png"))); // NOI18N
+        jButtonConsCliente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/consCliente.png"))); // NOI18N
+        jButtonConsCliente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonConsClienteActionPerformed(evt);
+            }
+        });
+        jToolBar1.add(jButtonConsCliente);
+
+        jButtonCadImovel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/cadImovel.png"))); // NOI18N
         jButtonCadImovel.setToolTipText("Cadastrar um Novo Imóvel");
         jButtonCadImovel.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonCadImovelActionPerformed(evt);
             }
         });
+        jToolBar1.add(jButtonCadImovel);
 
-        jButtonConsImovel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/home.png"))); // NOI18N
+        jButtonConsImovel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/consImovel.png"))); // NOI18N
         jButtonConsImovel.setToolTipText("Pesquisar Dados de Imóvel");
         jButtonConsImovel.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonConsImovelActionPerformed(evt);
             }
         });
+        jToolBar1.add(jButtonConsImovel);
 
-        jButtonCadUsuario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/usuario.png"))); // NOI18N
+        jButtonCadUsuario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/cadUsuario.png"))); // NOI18N
         jButtonCadUsuario.setToolTipText("Cadastrar um Novo Usuário");
         jButtonCadUsuario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonCadUsuarioActionPerformed(evt);
             }
         });
+        jToolBar1.add(jButtonCadUsuario);
 
-        jButtonConsUsuario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/usuario.png"))); // NOI18N
+        jButtonConsUsuario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/consUsuario.png"))); // NOI18N
         jButtonConsUsuario.setToolTipText("Pesquisar Dados de Usuário");
         jButtonConsUsuario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonConsUsuarioActionPerformed(evt);
             }
         });
+        jToolBar1.add(jButtonConsUsuario);
 
-        jButtonVenda.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/dollars.png"))); // NOI18N
+        jButtonVenda.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/venderImovel.png"))); // NOI18N
         jButtonVenda.setToolTipText("Vender Imóvel");
         jButtonVenda.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonVendaActionPerformed(evt);
             }
         });
+        jToolBar1.add(jButtonVenda);
 
-        jButtonLocar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/contract.png"))); // NOI18N
+        jButtonLocar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/locarImovel.png"))); // NOI18N
         jButtonLocar.setToolTipText("Locar Imóvel");
         jButtonLocar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonLocarActionPerformed(evt);
             }
         });
+        jToolBar1.add(jButtonLocar);
+
+        jButtonLocar1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/conf.png"))); // NOI18N
+        jButtonLocar1.setToolTipText("Locar Imóvel");
+        jButtonLocar1.setFocusable(false);
+        jButtonLocar1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jButtonLocar1.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jButtonLocar1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonLocar1ActionPerformed(evt);
+            }
+        });
+        jToolBar1.add(jButtonLocar1);
 
         jButtonAjuda.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/help.png"))); // NOI18N
         jButtonAjuda.setToolTipText("Ajuda");
@@ -131,14 +162,14 @@ public class Imobiliaria extends javax.swing.JDialog {
                 jButtonAjudaActionPerformed(evt);
             }
         });
+        jToolBar1.add(jButtonAjuda);
 
-        jLUsuarioLogado.setToolTipText("Usuário Logado");
-
-        jMCliente.setText("Cliente");
+        jMCliente.setText("Cadastros");
         jMCliente.setToolTipText("");
 
         jMICadCliente.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_C, java.awt.event.InputEvent.SHIFT_MASK | java.awt.event.InputEvent.CTRL_MASK));
-        jMICadCliente.setText("Cadastrar");
+        jMICadCliente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/cadClienteMenu.png"))); // NOI18N
+        jMICadCliente.setText("Cliente");
         jMICadCliente.setToolTipText("Cadastrar um Novo Cliente");
         jMICadCliente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -147,32 +178,45 @@ public class Imobiliaria extends javax.swing.JDialog {
         });
         jMCliente.add(jMICadCliente);
 
-        jMIConsCliente.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_C, java.awt.event.InputEvent.ALT_MASK | java.awt.event.InputEvent.CTRL_MASK));
-        jMIConsCliente.setText("Pesquisar");
-        jMIConsCliente.setToolTipText("Pesquisar Dados de Clientes");
-        jMIConsCliente.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMIConsClienteActionPerformed(evt);
-            }
-        });
-        jMCliente.add(jMIConsCliente);
-
-        jMenuBarTop.add(jMCliente);
-
-        jMImovel.setText("Imóvel");
-
-        jMICadImovel.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_M, java.awt.event.InputEvent.SHIFT_MASK | java.awt.event.InputEvent.CTRL_MASK));
-        jMICadImovel.setText("Cadastrar");
-        jMICadImovel.setToolTipText("Cadastrar um Novo Imóvel");
+        jMICadImovel.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_I, java.awt.event.InputEvent.SHIFT_MASK | java.awt.event.InputEvent.CTRL_MASK));
+        jMICadImovel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/cadImovelMenu.png"))); // NOI18N
+        jMICadImovel.setText("Imóvel");
+        jMICadImovel.setToolTipText("Pesquisar Dados de Clientes");
         jMICadImovel.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMICadImovelActionPerformed(evt);
             }
         });
-        jMImovel.add(jMICadImovel);
+        jMCliente.add(jMICadImovel);
 
-        jMIConsImovel.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_M, java.awt.event.InputEvent.ALT_MASK | java.awt.event.InputEvent.CTRL_MASK));
-        jMIConsImovel.setText("Pesquisar");
+        jMICadUsuario.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_U, java.awt.event.InputEvent.SHIFT_MASK | java.awt.event.InputEvent.CTRL_MASK));
+        jMICadUsuario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/cadUsuarioMenu.png"))); // NOI18N
+        jMICadUsuario.setText("Usuário");
+        jMICadUsuario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMICadUsuarioActionPerformed(evt);
+            }
+        });
+        jMCliente.add(jMICadUsuario);
+
+        jMenuBarTop.add(jMCliente);
+
+        jMImovel.setText("Consultas");
+
+        jMIConsCliente.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_C, java.awt.event.InputEvent.ALT_MASK | java.awt.event.InputEvent.SHIFT_MASK));
+        jMIConsCliente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/conClienteMenu.png"))); // NOI18N
+        jMIConsCliente.setText("Cliente");
+        jMIConsCliente.setToolTipText("Cadastrar um Novo Imóvel");
+        jMIConsCliente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMIConsClienteActionPerformed(evt);
+            }
+        });
+        jMImovel.add(jMIConsCliente);
+
+        jMIConsImovel.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_I, java.awt.event.InputEvent.ALT_MASK | java.awt.event.InputEvent.SHIFT_MASK));
+        jMIConsImovel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/conImovelMenu.png"))); // NOI18N
+        jMIConsImovel.setText("Imóvel");
         jMIConsImovel.setToolTipText("Pesquisar Dados de Imóveis");
         jMIConsImovel.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -181,39 +225,65 @@ public class Imobiliaria extends javax.swing.JDialog {
         });
         jMImovel.add(jMIConsImovel);
 
-        jMenuBarTop.add(jMImovel);
-
-        jMUsuario.setText("Usuário");
-
-        jMICadUsuario.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_U, java.awt.event.InputEvent.SHIFT_MASK | java.awt.event.InputEvent.CTRL_MASK));
-        jMICadUsuario.setText("Cadastro");
-        jMICadUsuario.setToolTipText("Cadastrar um Novo Usuário");
-        jMICadUsuario.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMICadUsuarioActionPerformed(evt);
-            }
-        });
-        jMUsuario.add(jMICadUsuario);
-
-        jMIConsUsuario.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_U, java.awt.event.InputEvent.ALT_MASK | java.awt.event.InputEvent.CTRL_MASK));
-        jMIConsUsuario.setText("Pesquisar");
-        jMIConsUsuario.setToolTipText("Pesquisar Dados de Usuários");
+        jMIConsUsuario.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_U, java.awt.event.InputEvent.ALT_MASK | java.awt.event.InputEvent.SHIFT_MASK));
+        jMIConsUsuario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/conUsuarioMenu.png"))); // NOI18N
+        jMIConsUsuario.setText("Usuário");
         jMIConsUsuario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMIConsUsuarioActionPerformed(evt);
             }
         });
-        jMUsuario.add(jMIConsUsuario);
+        jMImovel.add(jMIConsUsuario);
+
+        jMenuBarTop.add(jMImovel);
+
+        jMUsuario.setText("Ações");
+
+        jMIVenderImovel.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_V, java.awt.event.InputEvent.ALT_MASK | java.awt.event.InputEvent.SHIFT_MASK));
+        jMIVenderImovel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/venderImovelMenu.png"))); // NOI18N
+        jMIVenderImovel.setText("Vender Imóvel");
+        jMIVenderImovel.setToolTipText("Cadastrar um Novo Usuário");
+        jMIVenderImovel.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMIVenderImovelActionPerformed(evt);
+            }
+        });
+        jMUsuario.add(jMIVenderImovel);
+
+        jMILocarImovel.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_A, java.awt.event.InputEvent.ALT_MASK | java.awt.event.InputEvent.SHIFT_MASK));
+        jMILocarImovel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/locarImovelMenu.png"))); // NOI18N
+        jMILocarImovel.setText("Locar Imóvel");
+        jMILocarImovel.setToolTipText("Pesquisar Dados de Usuários");
+        jMILocarImovel.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMILocarImovelActionPerformed(evt);
+            }
+        });
+        jMUsuario.add(jMILocarImovel);
 
         jMenuBarTop.add(jMUsuario);
 
-        jMVenda.setText("Venda");
-        jMenuBarTop.add(jMVenda);
+        jMLocacao.setText("Sistema");
 
-        jMLocacao.setText("Locação");
+        jMIConfiguracao.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_B, java.awt.event.InputEvent.SHIFT_MASK | java.awt.event.InputEvent.CTRL_MASK));
+        jMIConfiguracao.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/confMenu.png"))); // NOI18N
+        jMIConfiguracao.setText("Conf. Sistema");
+        jMIConfiguracao.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMIConfiguracaoActionPerformed(evt);
+            }
+        });
+        jMLocacao.add(jMIConfiguracao);
+
         jMenuBarTop.add(jMLocacao);
 
         jMAjuda.setText("Ajuda");
+
+        jMISobre.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_H, java.awt.event.InputEvent.SHIFT_MASK | java.awt.event.InputEvent.CTRL_MASK));
+        jMISobre.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/helpMenu.png"))); // NOI18N
+        jMISobre.setText("Sobre o Sistema");
+        jMAjuda.add(jMISobre);
+
         jMenuBarTop.add(jMAjuda);
 
         setJMenuBar(jMenuBarTop);
@@ -226,42 +296,14 @@ public class Imobiliaria extends javax.swing.JDialog {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLUsuarioLogado, javax.swing.GroupLayout.PREFERRED_SIZE, 348, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jButtonCadCliente)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButtonConsCliente)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButtonCadImovel, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButtonConsImovel, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButtonCadUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButtonConsUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButtonVenda, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButtonLocar, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButtonAjuda, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(jToolBar1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jButtonVenda, javax.swing.GroupLayout.DEFAULT_SIZE, 88, Short.MAX_VALUE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(jButtonConsImovel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButtonCadImovel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButtonConsCliente, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButtonCadCliente, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButtonCadUsuario, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButtonConsUsuario, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addComponent(jButtonLocar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButtonAjuda, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 455, Short.MAX_VALUE)
+                .addComponent(jToolBar1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 235, Short.MAX_VALUE)
                 .addComponent(jLUsuarioLogado, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -269,87 +311,82 @@ public class Imobiliaria extends javax.swing.JDialog {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    //Cliente
     private void jButtonCadClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCadClienteActionPerformed
-        // TODO add your handling code here:
+        cadClienteView();
     }//GEN-LAST:event_jButtonCadClienteActionPerformed
 
     private void jButtonConsClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonConsClienteActionPerformed
-        // TODO add your handling code here:
+        consClienteView();
     }//GEN-LAST:event_jButtonConsClienteActionPerformed
    
-    //Imovel
     private void jButtonCadImovelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCadImovelActionPerformed
-        // TODO add your handling code here:
-        ImovelEditView editView = new ImovelEditView(new Frame(), true);
-        editView.setLocationRelativeTo(null);
-        editView.setVisible(true);
+        cadImovelView();
     }//GEN-LAST:event_jButtonCadImovelActionPerformed
 
     private void jButtonConsImovelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonConsImovelActionPerformed
-        // TODO add your handling code here:
-        ImovelQueryView imovelQueryView = new ImovelQueryView(new Frame(), true);
-        imovelQueryView.setLocationRelativeTo(null);
-        imovelQueryView.setVisible(true);
+        consImovelView();
     }//GEN-LAST:event_jButtonConsImovelActionPerformed
-
     
-    //Usuario
     private void jButtonCadUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCadUsuarioActionPerformed
-        // TODO add your handling code here:
         cadastroUsuario();
     }//GEN-LAST:event_jButtonCadUsuarioActionPerformed
 
     private void jButtonConsUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonConsUsuarioActionPerformed
-        // TODO add your handling code here:
+        consUsuarioView();
     }//GEN-LAST:event_jButtonConsUsuarioActionPerformed
 
-    
-    //Venda
     private void jButtonVendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonVendaActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButtonVendaActionPerformed
-
     
-    //Locação
     private void jButtonLocarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLocarActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButtonLocarActionPerformed
-
-    
-    //Ajuda
+  
     private void jButtonAjudaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAjudaActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButtonAjudaActionPerformed
 
-    //Menu Cliente
     private void jMICadClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMICadClienteActionPerformed
-        // TODO add your handling code here:
+        cadClienteView();
     }//GEN-LAST:event_jMICadClienteActionPerformed
 
+    private void jMICadImovelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMICadImovelActionPerformed
+        cadImovelView();
+    }//GEN-LAST:event_jMICadImovelActionPerformed
+    
     private void jMIConsClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMIConsClienteActionPerformed
-        // TODO add your handling code here:
+        consClienteView();
     }//GEN-LAST:event_jMIConsClienteActionPerformed
 
-    
-    //Menu Imovel
-    private void jMICadImovelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMICadImovelActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jMICadImovelActionPerformed
-
     private void jMIConsImovelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMIConsImovelActionPerformed
-        // TODO add your handling code here:
+        consImovelView();
     }//GEN-LAST:event_jMIConsImovelActionPerformed
 
     
-    //Menu Usuario
-    private void jMICadUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMICadUsuarioActionPerformed
+    private void jMIVenderImovelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMIVenderImovelActionPerformed
         // TODO add your handling code here:
+    }//GEN-LAST:event_jMIVenderImovelActionPerformed
+
+    private void jMILocarImovelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMILocarImovelActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jMILocarImovelActionPerformed
+
+    private void jButtonLocar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLocar1ActionPerformed
+        confView();
+    }//GEN-LAST:event_jButtonLocar1ActionPerformed
+
+    private void jMICadUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMICadUsuarioActionPerformed
+        cadUsuarioView();
     }//GEN-LAST:event_jMICadUsuarioActionPerformed
 
     private void jMIConsUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMIConsUsuarioActionPerformed
-        // TODO add your handling code here:
+        consUsuarioView();
     }//GEN-LAST:event_jMIConsUsuarioActionPerformed
+
+    private void jMIConfiguracaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMIConfiguracaoActionPerformed
+        confView();
+    }//GEN-LAST:event_jMIConfiguracaoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -401,6 +438,59 @@ public class Imobiliaria extends javax.swing.JDialog {
             }
         });
     }
+    
+    public void cadClienteView(){
+        ClienteEditView clienteEditView = new ClienteEditView(new Frame(), true);
+        clienteEditView.setLocationRelativeTo(null);
+        clienteEditView.setResizable(false);
+        clienteEditView.setVisible(true);
+    }
+    
+    public void cadImovelView(){
+        ImovelEditView imovelEditView = new ImovelEditView(new Frame(), true);
+        imovelEditView.setLocationRelativeTo(null);
+        imovelEditView.setResizable(false);
+        imovelEditView.setVisible(true);
+    }
+    
+    public void cadUsuarioView(){
+        UsuarioEditView usuarioEditView = new UsuarioEditView(new Frame(), true);
+        usuarioEditView.setLocationRelativeTo(null);
+        usuarioEditView.setResizable(false);
+        usuarioEditView.setVisible(true);
+    }
+    
+    public void consClienteView(){
+        ClienteQueryView clienteQueryView = new ClienteQueryView(new Frame(), true);
+        clienteQueryView.setLocationRelativeTo(null);
+        clienteQueryView.setResizable(false);
+        clienteQueryView.setVisible(true);
+    }
+    
+    public void consImovelView(){
+        ImovelQueryView imovelQueryView = new ImovelQueryView(new Frame(), true);
+        imovelQueryView.setLocationRelativeTo(null);
+        imovelQueryView.setResizable(false);
+        imovelQueryView.setVisible(true);
+    }
+    
+    public void consUsuarioView(){
+        UsuarioQueryView usuarioQueryView = new UsuarioQueryView(new Frame(), true);
+        usuarioQueryView.setLocationRelativeTo(null);
+        usuarioQueryView.setResizable(false);
+        usuarioQueryView.setVisible(true);
+    }
+    
+    public void confView(){
+        BancoConfigView bancoConfigView = new BancoConfigView(new Frame(), true);
+        bancoConfigView.setLocationRelativeTo(null);
+        bancoConfigView.setResizable(false);
+        bancoConfigView.setVisible(true);
+    }
+    
+    public void helpfView(){
+        
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonAjuda;
     private javax.swing.JButton jButtonCadCliente;
@@ -410,6 +500,7 @@ public class Imobiliaria extends javax.swing.JDialog {
     private javax.swing.JButton jButtonConsImovel;
     private javax.swing.JButton jButtonConsUsuario;
     private javax.swing.JButton jButtonLocar;
+    private javax.swing.JButton jButtonLocar1;
     private javax.swing.JButton jButtonVenda;
     protected static javax.swing.JLabel jLUsuarioLogado;
     private javax.swing.JMenu jMAjuda;
@@ -417,14 +508,18 @@ public class Imobiliaria extends javax.swing.JDialog {
     private javax.swing.JMenuItem jMICadCliente;
     private javax.swing.JMenuItem jMICadImovel;
     private javax.swing.JMenuItem jMICadUsuario;
+    private javax.swing.JMenuItem jMIConfiguracao;
     private javax.swing.JMenuItem jMIConsCliente;
     private javax.swing.JMenuItem jMIConsImovel;
     private javax.swing.JMenuItem jMIConsUsuario;
+    private javax.swing.JMenuItem jMILocarImovel;
+    private javax.swing.JMenuItem jMISobre;
+    private javax.swing.JMenuItem jMIVenderImovel;
     private javax.swing.JMenu jMImovel;
     private javax.swing.JMenu jMLocacao;
     private javax.swing.JMenu jMUsuario;
-    private javax.swing.JMenu jMVenda;
     private javax.swing.JMenuBar jMenuBarTop;
+    private javax.swing.JToolBar jToolBar1;
     // End of variables declaration//GEN-END:variables
 
     private void cadastroUsuario() {
