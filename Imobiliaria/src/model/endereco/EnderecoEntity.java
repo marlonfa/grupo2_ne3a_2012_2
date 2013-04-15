@@ -17,7 +17,7 @@ import javax.persistence.Table;
 
 /**
  *
- * @author eder
+ * @author marlon
  */
 
 @Entity
@@ -29,30 +29,30 @@ public class EnderecoEntity implements Serializable{
     @Column(name = "id")
     private Long id;
     
-    @Column(length = 5)
+    @Column(name = "numero", length = 6)
     private int numero;
     
-    @Column(length = 50)
+    @Column(name = "bairro", length = 70)
     private String bairro;
     
-    @Column(length = 25)
+    @Column(name = "complemento", length = 100)
     private String complemento;
     
-    @Column(name = "logradouro")
+    @Column(name = "logradouro", length = 100)
     private String logradouro;
     
     @Enumerated(EnumType.STRING)
-    @Column(name = "tipo_logradouro")
+    @Column(name = "tipo_logradouro", length = 20)
     private TipoLogradouroEnum tipoLogradouro;
     
-    @Column(name = "municipio")
+    @Column(name = "municipio", length = 100)
     private String municipio;
     
     @Enumerated(EnumType.STRING)
-    @Column(name = "uf")
+    @Column(name = "uf", length = 2)
     private EstadoEnum uf;
     
-    @Column(length = 8)
+    @Column(name = "cep", length = 8)
     private String cep;
 
     public Long getId() {

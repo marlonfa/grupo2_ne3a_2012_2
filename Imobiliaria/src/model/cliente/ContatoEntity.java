@@ -15,7 +15,7 @@ import javax.persistence.Table;
 
 /**
  *
- * @author eder
+ * @author marlon
  */
 @Entity
 @Table(name = "contato")
@@ -26,19 +26,19 @@ public class ContatoEntity implements Serializable{
     @Column(name = "id")
     private Long id;
     
-    @Column(length = 10, name = "telefone_residencial")
+    @Column(name = "telefone_residencial", length = 10)
     private String foneResidencial;
     
-    @Column(length = 10, name = "telefone_comercial")
+    @Column(name = "telefone_comercial", length = 10)
     private String foneComercial;
     
-    @Column(length = 11)
+    @Column(name = "celular", length = 11)
     private String celular;
     
-    @Column(length = 60)
+    @Column(name = "email", length = 50)
     private String email;
     
-    @Column(length = 10)
+    @Column(name = "fax", length = 10)
     private String fax;
 
     public Long getId() {

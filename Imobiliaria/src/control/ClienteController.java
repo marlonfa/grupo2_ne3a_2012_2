@@ -5,7 +5,6 @@
 package control;
 
 import dao.ClienteDao;
-import java.util.ArrayList;
 import java.util.List;
 import model.cliente.ClienteEntity;
 import model.cliente.ContatoEntity;
@@ -23,15 +22,11 @@ public class ClienteController {
     private static ClienteEntity clienteSelecionado;
 
     public ClienteController() {
-        initObjects();
-    }    
-    
-    private void initObjects(){
         this.clienteDao = new ClienteDao();
         this.cliente = new ClienteEntity();
         this.contato = new ContatoEntity();
         this.endereco = new EnderecoEntity();
-    }
+    }    
 
     public static ClienteEntity getClienteSelecionado() {
         return clienteSelecionado;
@@ -61,7 +56,7 @@ public class ClienteController {
         return endereco;
     }
    
-    public void create(){
+    public void create()throws RuntimeException{
         ClienteController.setClienteSelecionado(this.cliente);
         this.clienteDao.persist(cliente);
         
@@ -71,14 +66,6 @@ public class ClienteController {
         clienteDao.delete(cliente);
     }
     
-    public List<ClienteEntity> findCpf(String parametro){
-        return clienteDao.findFilter("cpf", parametro);
-    }
-    
-    public List<ClienteEntity> findNome(String parametro){
-        return clienteDao.findFilter("nome", parametro);
-    }
-
     public List<ClienteEntity> findAll(){
         return this.clienteDao.findAll();
     }

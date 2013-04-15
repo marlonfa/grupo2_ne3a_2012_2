@@ -6,7 +6,7 @@ package model.cliente;
 
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 import java.util.Objects;
 import javax.persistence.CascadeType;
@@ -24,12 +24,11 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import javax.persistence.Transient;
 import model.endereco.EnderecoEntity;
 
 /**
  *
- * @author eder
+ * @author marlon
  */
 @Entity
 @Table(name = "cliente")
@@ -40,22 +39,21 @@ public class ClienteEntity implements Serializable{
     @Column(name = "id")
     private Long id;
     
-    @Column
+    @Column(name = "nome", length = 100, nullable = false)
     private String nome;
     
-    @Column
+    @Column(name = "cpf", unique = true, length = 11, nullable = false)
     private String cpf;
     
-    @Column
+    @Column(name = "rg", length = 9, nullable = false)
     private String rg;
     
-    @Transient
     @Temporal(TemporalType.DATE)
-    @Column(name = "data_nascimento")
-    private Calendar dataNascimento;
+    @Column(name = "data_nascimento", length = 8, nullable = false)
+    private Date dataNascimento;
     
     @Enumerated(EnumType.STRING)
-    @Column(name = "estado_civil")
+    @Column(name = "estado_civil", length = 20, nullable = false)
     private EstadoCivilEnum estadoCivil;
     
     @JoinColumn(name = "cliente_id")
@@ -98,11 +96,11 @@ public class ClienteEntity implements Serializable{
         this.rg = rg;
     }
 
-    public Calendar getDataNascimento() {
+    public Date getDataNascimento() {
         return dataNascimento;
     }
 
-    public void setDataNascimento(Calendar dataNascimento) {
+    public void setDataNascimento(Date dataNascimento) {
         this.dataNascimento = dataNascimento;
     }
 
