@@ -11,7 +11,7 @@ import model.imovel.ImovelEntity;
 
 /**
  *
- * @author marlon
+ * @author marlon e eder
  */
 public class ImovelController {
     
@@ -29,7 +29,17 @@ public class ImovelController {
     public ImovelEntity getImovel() {
         return imovel;
     }
-   
+
+    public ImovelDao getImovelDao() {
+        return imovelDao;
+    }
+    
+    
+
+    public void setImovel(ImovelEntity imovel) {
+        this.imovel = imovel;
+    }
+      
     public ImovelEnderecoEntity getEndereco() {
         return endereco;
     }
@@ -49,18 +59,21 @@ public class ImovelController {
     }
 
            
-    public void create(){
+    public void create() throws RuntimeException {
         ImovelController.setImovelSelecionado(this.imovel);
-        imovelDao.persist(imovel);        
+        this.imovelDao.persist(imovel);        
     }
     
      public void delete(ImovelEntity imovel) throws RuntimeException{
         imovelDao.delete(imovel);
     }
-    
-    public List<ImovelEntity> findAll(){
+     
+     public List<ImovelEntity> findAll(){
         return this.imovelDao.findAll();
     }
-    
+     
+     
+     
+     
     
 }

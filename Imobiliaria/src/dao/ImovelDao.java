@@ -4,17 +4,102 @@
  */
 package dao;
 
-import dao.AbstractDao;
+import java.util.List;
 import model.imovel.ImovelEntity;
+import org.hibernate.Session;
+import org.hibernate.criterion.Restrictions;
+import util.HibernateUtil;
 
 /**
  *
- * @author marlon
+ * @author marlon e eder
  */
 public class ImovelDao extends AbstractDao<ImovelEntity>{
     
     public ImovelDao() {
         super(ImovelEntity.class);
     }
+    
+    
+    private Session session;
+    
+    public List<ImovelEntity> findImovelClienteAll(){
+        List<ImovelEntity> list = null;
+        this.session = HibernateUtil.getSessionFactory().openSession();        
+        try{
+            this.session.beginTransaction();
+            list = this.session.createCriteria(ImovelEntity.class).                                
+                    createAlias("endereco", "en").
+                    add(Restrictions.eqProperty("id", "en.id")).
+                    setMaxResults(20).list();       
+            this.session.getTransaction().commit();            
+        }catch(Exception e){
+            System.out.println("Erro ao Buscar "+e);
+            this.session.getTransaction().rollback();
+        }finally{
+            this.session.close();
+        }
+        return list;
+    }    
+    
+    public List<ImovelEntity> filterByModalidade(Enum modalidade){
+        List<ImovelEntity> list = null;
+        this.session = HibernateUtil.getSessionFactory().openSession();        
+        try{
+            this.session.beginTransaction();
+            list = this.session.createCriteria(ImovelEntity.class).                                
+                    createAlias("endereco", "en").
+                    add(Restrictions.eqProperty("id", "en.id")).
+                    add(Restrictions.like("modalidade", modalidade)).
+                    list();       
+            this.session.getTransaction().commit();            
+        }catch(Exception e){
+            System.out.println("Erro ao Buscar "+e);
+            this.session.getTransaction().rollback();
+        }finally{
+            this.session.close();
+        }
+        return list;
+    }
+    
+    public List<ImovelEntity> filterByStatus(Enum status){
+        List<ImovelEntity> list = null;
+        this.session = HibernateUtil.getSessionFactory().openSession();        
+        try{
+            this.session.beginTransaction();
+            list = this.session.createCriteria(ImovelEntity.class).                                
+                    createAlias("endereco", "en").
+                    add(Restrictions.eqProperty("id", "en.id")).
+                    add(Restrictions.like("status", status)).
+                    list();       
+            this.session.getTransaction().commit();            
+        }catch(Exception e){
+            System.out.println("Erro ao Buscar "+e);
+            this.session.getTransaction().rollback();
+        }finally{
+            this.session.close();
+        }
+        return list;
+    }
+    
+    public List<ImovelEntity> filterByTipo(Enum tipo){
+        List<ImovelEntity> list = null;
+        this.session = HibernateUtil.getSessionFactory().openSession();        
+        try{
+            this.session.beginTransaction();
+            list = this.session.createCriteria(ImovelEntity.class).                                
+                    createAlias("endereco", "en").
+                    add(Restrictions.eqProperty("id", "en.id")).
+                    add(Restrictions.like("tipo", tipo)).
+                    list();       
+            this.session.getTransaction().commit();            
+        }catch(Exception e){
+            System.out.println("Erro ao Buscar "+e);
+            this.session.getTransaction().rollback();
+        }finally{
+            this.session.close();
+        }
+        return list;
+    } 
     
 }
