@@ -7,6 +7,11 @@ package view.cliente;
 import control.ClienteController;
 import java.awt.Color;
 import java.awt.Frame;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import model.endereco.EnderecoEntity;
 
@@ -35,85 +40,32 @@ public class ClienteView extends javax.swing.JDialog {
     public void setLabel(){
         /*Coloca os valores do ClienteSelecionado para os Labels do Campo*/
         /*Dados do Cliente*/
-        if(jLId != null){
             jLId.setText(ClienteController.getClienteSelecionado().getId().toString());
-            jLId.setForeground(Color.green);
-        } else {
-            jLId.setText("Sem Informação.");
-            jLId.setForeground(Color.red);
-        }       
-        if(jLNome != null){
+            jLId.setForeground(Color.blue);
             jLNome.setText(ClienteController.getClienteSelecionado().getNome());
-            jLNome.setForeground(Color.green);
-        } else {
-            jLNome.setText("Sem Informação.");
-            jLNome.setForeground(Color.red);
-        }
-        if(jLCpf != null){
+            jLNome.setForeground(Color.blue);
             jLCpf.setText(ClienteController.getClienteSelecionado().getCpf().toString());
-            jLCpf.setForeground(Color.green);
-        } else {
-            jLCpf.setText("Sem Informação.");
-            jLCpf.setForeground(Color.red);
-        }
-        if(jLRg != null){
+            jLCpf.setForeground(Color.blue);
             jLRg.setText(ClienteController.getClienteSelecionado().getRg().toString());
-            jLRg.setForeground(Color.green);
-        } else {
-            jLRg.setText("Sem Informação.");
-            jLRg.setForeground(Color.red);
-        }
-        if(jLData != null){
-            jLData.setText(String.valueOf(ClienteController.getClienteSelecionado().getDataNascimento()));
-            jLData.setForeground(Color.green);
-        } else {
-            jLData.setText("Sem Informação.");
-            jLData.setForeground(Color.red);
-        }
-        if(jLEstadoCivil != null){
+            jLRg.setForeground(Color.blue);
+            
+                SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
+                jLData.setText(format.format(ClienteController.getClienteSelecionado().getDataNascimento()));
+            jLData.setForeground(Color.blue);
             jLEstadoCivil.setText(ClienteController.getClienteSelecionado().getEstadoCivil().toString());
-            jLEstadoCivil.setForeground(Color.green);
-        } else {
-            jLEstadoCivil.setText("Sem Informação.");
-            jLEstadoCivil.setForeground(Color.red);
-        }   
+            jLEstadoCivil.setForeground(Color.blue);
 
         /*Dados do Contato*/
-        if(jLCelular != null){
             jLCelular.setText(ClienteController.getClienteSelecionado().getContato().getCelular().toString());
-            jLCelular.setForeground(Color.green);
-        } else {
-            jLCelular.setText("Sem Informação.");
-            jLCelular.setForeground(Color.red);
-        }       
-        if(jLResidencial != null){
+            jLCelular.setForeground(Color.blue);
             jLResidencial.setText(ClienteController.getClienteSelecionado().getContato().getFoneResidencial().toString());
-            jLResidencial.setForeground(Color.green);
-        } else {
-            jLResidencial.setText("Sem Informação.");
-            jLResidencial.setForeground(Color.red);
-        }
-        if(jLComercial != null){
+            jLResidencial.setForeground(Color.blue);
             jLComercial.setText(ClienteController.getClienteSelecionado().getContato().getFoneComercial().toString());
-            jLComercial.setForeground(Color.green);
-        } else {
-            jLComercial.setText("Sem Informação.");
-            jLComercial.setForeground(Color.red);
-        }
-        if(jLFax != null){
+            jLComercial.setForeground(Color.blue);
             jLFax.setText(ClienteController.getClienteSelecionado().getContato().getFax().toString());
-            jLFax.setForeground(Color.green);
-        } else {
-            jLFax.setText("Sem Informação.");
-            jLFax.setForeground(Color.red);
-        }
-        if(jLEmail != null){
+            jLFax.setForeground(Color.blue);
             jLEmail.setText(ClienteController.getClienteSelecionado().getContato().getEmail());
-            jLEmail.setForeground(Color.green);
-        } else {
-            jLEmail.setText("Sem Informação.");
-            jLEmail.setForeground(Color.red);
-        }
+            jLEmail.setForeground(Color.blue);
         
         int i = 1;
        for(EnderecoEntity endereco : ClienteController.getClienteSelecionado().getEnderecos()){
@@ -142,14 +94,14 @@ public class ClienteView extends javax.swing.JDialog {
         jLMunicipio1.setText(endereco.getMunicipio());
         jLUf1.setText(String.valueOf(endereco.getUf()));
         
-        jLCep1.setForeground(Color.red);
-        jLTipo1.setForeground(Color.red);
-        jLLogradouro1.setForeground(Color.red);
-        jLNumero1.setForeground(Color.red);
-        jLComplemento1.setForeground(Color.red);
-        jLBairro1.setForeground(Color.red);
-        jLMunicipio1.setForeground(Color.red);
-        jLUf1.setForeground(Color.red);
+        jLCep1.setForeground(Color.blue);
+        jLTipo1.setForeground(Color.blue);
+        jLLogradouro1.setForeground(Color.blue);
+        jLNumero1.setForeground(Color.blue);
+        jLComplemento1.setForeground(Color.blue);
+        jLBairro1.setForeground(Color.blue);
+        jLMunicipio1.setForeground(Color.blue);
+        jLUf1.setForeground(Color.blue);
     }
     
     private void setEndereco2(EnderecoEntity endereco){
@@ -162,14 +114,14 @@ public class ClienteView extends javax.swing.JDialog {
         jLMunicipio2.setText(endereco.getMunicipio());
         jLUf2.setText(String.valueOf(endereco.getUf()));
         
-        jLCep2.setForeground(Color.red);
-        jLTipo2.setForeground(Color.red);
-        jLLogradouro2.setForeground(Color.red);
-        jLNumero2.setForeground(Color.red);
-        jLComplemento2.setForeground(Color.red);
-        jLBairro2.setForeground(Color.red);
-        jLMunicipio2.setForeground(Color.red);
-        jLUf2.setForeground(Color.red);
+        jLCep2.setForeground(Color.blue);
+        jLTipo2.setForeground(Color.blue);
+        jLLogradouro2.setForeground(Color.blue);
+        jLNumero2.setForeground(Color.blue);
+        jLComplemento2.setForeground(Color.blue);
+        jLBairro2.setForeground(Color.blue);
+        jLMunicipio2.setForeground(Color.blue);
+        jLUf2.setForeground(Color.blue);
     }
     
     private void setEndereco3(EnderecoEntity endereco){
@@ -182,14 +134,14 @@ public class ClienteView extends javax.swing.JDialog {
         jLMunicipio3.setText(endereco.getMunicipio());
         jLUf3.setText(String.valueOf(endereco.getUf()));
         
-        jLCep3.setForeground(Color.red);
-        jLTipo3.setForeground(Color.red);
-        jLLogradouro3.setForeground(Color.red);
-        jLNumero3.setForeground(Color.red);
-        jLComplemento3.setForeground(Color.red);
-        jLBairro3.setForeground(Color.red);
-        jLMunicipio3.setForeground(Color.red);
-        jLUf3.setForeground(Color.red);
+        jLCep3.setForeground(Color.blue);
+        jLTipo3.setForeground(Color.blue);
+        jLLogradouro3.setForeground(Color.blue);
+        jLNumero3.setForeground(Color.blue);
+        jLComplemento3.setForeground(Color.blue);
+        jLBairro3.setForeground(Color.blue);
+        jLMunicipio3.setForeground(Color.blue);
+        jLUf3.setForeground(Color.blue);
     }
 
     /**
@@ -220,7 +172,6 @@ public class ClienteView extends javax.swing.JDialog {
         jSeparator4 = new javax.swing.JSeparator();
         JP = new javax.swing.JTabbedPane();
         jPanel1 = new javax.swing.JPanel();
-        jLabel12 = new javax.swing.JLabel();
         jLabel18 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
         jLabel17 = new javax.swing.JLabel();
@@ -236,7 +187,6 @@ public class ClienteView extends javax.swing.JDialog {
         jLMunicipio1 = new javax.swing.JLabel();
         jLUf1 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
-        jLabel53 = new javax.swing.JLabel();
         jLabel54 = new javax.swing.JLabel();
         jLabel55 = new javax.swing.JLabel();
         jLabel56 = new javax.swing.JLabel();
@@ -252,7 +202,6 @@ public class ClienteView extends javax.swing.JDialog {
         jLMunicipio2 = new javax.swing.JLabel();
         jLUf2 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
-        jLabel68 = new javax.swing.JLabel();
         jLabel69 = new javax.swing.JLabel();
         jLabel70 = new javax.swing.JLabel();
         jLabel71 = new javax.swing.JLabel();
@@ -305,13 +254,13 @@ public class ClienteView extends javax.swing.JDialog {
 
         jLabel11.setText("Celular:");
 
-        jLabel19.setForeground(new java.awt.Color(0, 0, 255));
+        jLabel19.setForeground(new java.awt.Color(47, 145, 249));
         jLabel19.setText("Dados Pessoais");
 
-        jLabel20.setForeground(new java.awt.Color(0, 0, 255));
+        jLabel20.setForeground(new java.awt.Color(47, 145, 249));
         jLabel20.setText("Contato");
 
-        jLabel21.setForeground(new java.awt.Color(0, 0, 255));
+        jLabel21.setForeground(new java.awt.Color(47, 145, 249));
         jLabel21.setText("Endereço");
 
         JP.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -319,8 +268,6 @@ public class ClienteView extends javax.swing.JDialog {
                 JPMouseClicked(evt);
             }
         });
-
-        jLabel12.setText("Logradouro:");
 
         jLabel18.setText("Número:");
 
@@ -363,16 +310,13 @@ public class ClienteView extends javax.swing.JDialog {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(22, 22, 22)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addContainerGap()
                         .addComponent(jLTipo1)
-                        .addGap(18, 18, 18)
-                        .addComponent(jLabel12)
                         .addGap(18, 18, 18)
                         .addComponent(jLLogradouro1))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(22, 22, 22)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jLabel13)
                             .addComponent(jLabel18))
@@ -385,7 +329,7 @@ public class ClienteView extends javax.swing.JDialog {
                                 .addGap(18, 18, 18)
                                 .addComponent(jLComplemento1))
                             .addComponent(jLBairro1))))
-                .addGap(0, 148, Short.MAX_VALUE))
+                .addGap(0, 160, Short.MAX_VALUE))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -410,7 +354,6 @@ public class ClienteView extends javax.swing.JDialog {
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLTipo1)
-                    .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLLogradouro1))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -438,9 +381,6 @@ public class ClienteView extends javax.swing.JDialog {
         JP.addTab("Endereço 01", jPanel1);
 
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jLabel53.setText("Logradouro:");
-        jPanel2.add(jLabel53, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 20, -1, 20));
 
         jLabel54.setText("Número:");
         jPanel2.add(jLabel54, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 60, -1, -1));
@@ -487,9 +427,6 @@ public class ClienteView extends javax.swing.JDialog {
         JP.addTab("Endereço 02", jPanel2);
 
         jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jLabel68.setText("Logradouro:");
-        jPanel3.add(jLabel68, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 20, -1, 20));
 
         jLabel69.setText("Número:");
         jPanel3.add(jLabel69, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 60, -1, -1));
@@ -598,42 +535,22 @@ public class ClienteView extends javax.swing.JDialog {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addContainerGap()
-                                .addComponent(jLabel4)
-                                .addGap(18, 18, 18)
-                                .addComponent(jLData))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(68, 68, 68)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jLabel2)
-                                    .addComponent(jLabel1))
-                                .addGap(18, 18, 18)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLNome)
-                                    .addComponent(jLCpf))))
-                        .addGap(112, 112, 112)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel3)
-                                .addGap(18, 18, 18)
-                                .addComponent(jLRg))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel5)
-                                .addGap(18, 18, 18)
-                                .addComponent(jLEstadoCivil)))
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jSeparator3, javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(layout.createSequentialGroup()
+                                .addComponent(jSeparator4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(JP, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addGap(0, 0, Short.MAX_VALUE)
+                                .addComponent(jBExcluir)
+                                .addGap(18, 18, 18)
+                                .addComponent(jBEditar)
+                                .addGap(18, 18, 18)
+                                .addComponent(jBFechar))
+                            .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jLabel14)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(jLId))
                                     .addComponent(jLabel19)
                                     .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 618, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jLabel20)
@@ -658,22 +575,40 @@ public class ClienteView extends javax.swing.JDialog {
                                                         .addComponent(jLabel7)
                                                         .addGap(18, 18, 18)
                                                         .addComponent(jLResidencial))))
-                                            .addComponent(jLEmail))))
-                                .addGap(0, 0, Short.MAX_VALUE))
+                                            .addComponent(jLEmail)))
+                                    .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 618, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel21))
+                                .addGap(0, 12, Short.MAX_VALUE))
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jSeparator4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(JP, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                    .addGap(0, 0, Short.MAX_VALUE)
-                                    .addComponent(jBExcluir)
-                                    .addGap(18, 18, 18)
-                                    .addComponent(jBEditar)
-                                    .addGap(18, 18, 18)
-                                    .addComponent(jBFechar))
-                                .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 618, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jLabel21)))))
+                                .addComponent(jLabel14)
+                                .addGap(18, 18, 18)
+                                .addComponent(jLId))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(31, 31, 31)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel5)
+                                .addGap(18, 18, 18)
+                                .addComponent(jLEstadoCivil))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jLabel2)
+                                    .addComponent(jLabel1))
+                                .addGap(18, 18, 18)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLNome)
+                                    .addComponent(jLCpf))))
+                        .addGap(36, 36, 36)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel3)
+                                .addGap(18, 18, 18)
+                                .addComponent(jLRg))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel4)
+                                .addGap(18, 18, 18)
+                                .addComponent(jLData)))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -697,13 +632,15 @@ public class ClienteView extends javax.swing.JDialog {
                     .addComponent(jLCpf)
                     .addComponent(jLabel3)
                     .addComponent(jLRg))
-                .addGap(24, 24, 24)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel4)
-                    .addComponent(jLData)
-                    .addComponent(jLabel5)
-                    .addComponent(jLEstadoCivil))
                 .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel4)
+                        .addComponent(jLData))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel5)
+                        .addComponent(jLEstadoCivil)))
+                .addGap(24, 24, 24)
                 .addComponent(jLabel20)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -768,8 +705,8 @@ public class ClienteView extends javax.swing.JDialog {
                     this.clienteController.delete(ClienteController.getClienteSelecionado());
                     JOptionPane.showMessageDialog(null, "Cliente Excluído com Sucesso!");
                     dispose();
-                }catch (RuntimeException e){
-                     JOptionPane.showMessageDialog(null, " Erro ai Deletar Cliente: " + ClienteController.getClienteSelecionado().getNome() + " ERRO: "+e);
+                }catch (RuntimeException ex){
+                     JOptionPane.showMessageDialog(null,"Erro ao Excluir Cliente!","Erro",JOptionPane.ERROR_MESSAGE);                 
                 }             
             }
     }//GEN-LAST:event_jBExcluirActionPerformed
@@ -818,7 +755,6 @@ public class ClienteView extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel17;
@@ -832,7 +768,6 @@ public class ClienteView extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel53;
     private javax.swing.JLabel jLabel54;
     private javax.swing.JLabel jLabel55;
     private javax.swing.JLabel jLabel56;
@@ -840,7 +775,6 @@ public class ClienteView extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel58;
     private javax.swing.JLabel jLabel59;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel68;
     private javax.swing.JLabel jLabel69;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel70;

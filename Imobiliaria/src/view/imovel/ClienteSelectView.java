@@ -2,39 +2,37 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package view.cliente;
+package view.imovel;
 
 import control.ClienteController;
-import java.awt.Frame;
 import javax.swing.JOptionPane;
 import model.cliente.ClienteTableModel;
 
 /**
  *
- * @author marlon
+ * @author marlon e eder
  */
-public class ClienteQueryView extends javax.swing.JDialog {
+public class ClienteSelectView extends javax.swing.JDialog {
 
-    private ClienteView clienteView;
+    /**
+     * Creates new form ClienteSearch
+     */
+    
     private ClienteTableModel clienteTableModel;
     private ClienteController clienteController;
-    /**
-     * Creates new form ClienteQueryView
-     */
-    public ClienteQueryView(java.awt.Frame parent, boolean modal) {
+            
+    public ClienteSelectView(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
+        this.clienteTableModel = new ClienteTableModel();
         this.clienteController = new ClienteController();
         initComponents();
+        jRBCpf.setSelected(true);
+        jTFPesquisa.requestFocus();
     }
     
-    private ClienteTableModel getClienteTableModel() {
+    public ClienteTableModel getClienteTableModel() {
         this.clienteTableModel = new ClienteTableModel(clienteController.findAll());
         return this.clienteTableModel;
-    }
-    
-    private void refreshTable(){
-        this.clienteTableModel = new ClienteTableModel(clienteController.findAll());
-        jTable1.setModel(this.clienteTableModel);
     }
 
     /**
@@ -47,18 +45,32 @@ public class ClienteQueryView extends javax.swing.JDialog {
     private void initComponents() {
 
         buttonGroup1 = new javax.swing.ButtonGroup();
-        jButton5 = new javax.swing.JButton();
-        jBFechar = new javax.swing.JButton();
-        jBView = new javax.swing.JButton();
+        jBSelecionar = new javax.swing.JButton();
         jTFPesquisa = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
-        jBExcluir = new javax.swing.JButton();
-        jBEditar = new javax.swing.JButton();
         jRBCpf = new javax.swing.JRadioButton();
         jRBNome = new javax.swing.JRadioButton();
+        jButton5 = new javax.swing.JButton();
+        jBFechar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+
+        jBSelecionar.setText("Selecionar");
+        jBSelecionar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBSelecionarActionPerformed(evt);
+            }
+        });
+
+        jTable1.setModel(getClienteTableModel());
+        jScrollPane1.setViewportView(jTable1);
+
+        buttonGroup1.add(jRBCpf);
+        jRBCpf.setText("Pesquisar por CPF");
+
+        buttonGroup1.add(jRBNome);
+        jRBNome.setText("Pesquisar por Nome");
 
         jButton5.setText("Pesquisar");
         jButton5.addActionListener(new java.awt.event.ActionListener() {
@@ -74,36 +86,6 @@ public class ClienteQueryView extends javax.swing.JDialog {
             }
         });
 
-        jBView.setText("Visualizar");
-        jBView.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jBViewActionPerformed(evt);
-            }
-        });
-
-        jTable1.setModel(getClienteTableModel());
-        jScrollPane1.setViewportView(jTable1);
-
-        jBExcluir.setText("Excluir");
-        jBExcluir.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jBExcluirActionPerformed(evt);
-            }
-        });
-
-        jBEditar.setText("Editar");
-        jBEditar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jBEditarActionPerformed(evt);
-            }
-        });
-
-        buttonGroup1.add(jRBCpf);
-        jRBCpf.setText("Pesquisar por CPF");
-
-        buttonGroup1.add(jRBNome);
-        jRBNome.setText("Pesquisar por Nome");
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -114,11 +96,7 @@ public class ClienteQueryView extends javax.swing.JDialog {
                     .addComponent(jScrollPane1)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(jBEditar)
-                        .addGap(18, 18, 18)
-                        .addComponent(jBExcluir)
-                        .addGap(18, 18, 18)
-                        .addComponent(jBView)
+                        .addComponent(jBSelecionar)
                         .addGap(18, 18, 18)
                         .addComponent(jBFechar))
                     .addGroup(layout.createSequentialGroup()
@@ -131,7 +109,7 @@ public class ClienteQueryView extends javax.swing.JDialog {
                                 .addComponent(jRBCpf)
                                 .addGap(18, 18, 18)
                                 .addComponent(jRBNome)))
-                        .addGap(0, 330, Short.MAX_VALUE)))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -149,9 +127,7 @@ public class ClienteQueryView extends javax.swing.JDialog {
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jBEditar)
-                    .addComponent(jBExcluir)
-                    .addComponent(jBView)
+                    .addComponent(jBSelecionar)
                     .addComponent(jBFechar))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -159,54 +135,11 @@ public class ClienteQueryView extends javax.swing.JDialog {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jBFecharActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBFecharActionPerformed
-        dispose();
-    }//GEN-LAST:event_jBFecharActionPerformed
-
-    private void jBViewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBViewActionPerformed
+    private void jBSelecionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBSelecionarActionPerformed
         int row = jTable1.getSelectedRow();
-        if(row >= 0){
-            ClienteController.setClienteSelecionado(this.clienteTableModel.getClienteEntity(row));
-            clienteView = new ClienteView(new Frame(), true);
-            dispose();
-            clienteView.setLocationRelativeTo(null);
-            clienteView.setVisible(true);            
-        }else{
-            JOptionPane.showMessageDialog(null, "Por favor Selecione uma linha da Tabela para Visualizar!");
-        }
-    }//GEN-LAST:event_jBViewActionPerformed
-
-    private void jBExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBExcluirActionPerformed
-        int row = jTable1.getSelectedRow();
-        if(row >= 0){
-            int opcao = JOptionPane.showConfirmDialog(null, "Deseja Excluir o Cliente: " + this.clienteTableModel.getClienteEntity(row).getNome(), "Excluir Cliente", 2);
-            if(opcao == 0){
-                try{
-                    this.clienteController.delete(this.clienteTableModel.getClienteEntity(row));
-                    JOptionPane.showMessageDialog(null, "Cliente Excluído com Sucesso!");
-                }catch(RuntimeException ex){
-                    JOptionPane.showMessageDialog(null,"Erro ao Excluir Cliente!","Erro",JOptionPane.ERROR_MESSAGE); 
-                }                
-                refreshTable();                
-            }
-        }else{
-            JOptionPane.showMessageDialog(null, "Por favor Selecione uma linha da Tabela para Excluir!");
-        }
-    }//GEN-LAST:event_jBExcluirActionPerformed
-
-    private void jBEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBEditarActionPerformed
-        int row = jTable1.getSelectedRow();
-        if(row >= 0){
-            ClienteController.setClienteSelecionado(this.clienteTableModel.getClienteEntity(row));
-            ClienteEditView clienteEditView = new ClienteEditView(new Frame(), true); 
-            dispose();
-            clienteEditView.getCliente();
-            clienteEditView.setLocationRelativeTo(null);
-            clienteEditView.setVisible(true);
-        }else{
-            JOptionPane.showMessageDialog(null, "Por favor Selecione uma linha da Tabela para Editar!");
-        }
-    }//GEN-LAST:event_jBEditarActionPerformed
+        ClienteController.setClienteSelecionado(this.clienteTableModel.getClienteEntity(row));
+        dispose();        
+    }//GEN-LAST:event_jBSelecionarActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
         if(jRBCpf.isSelected()){
@@ -220,13 +153,15 @@ public class ClienteQueryView extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_jButton5ActionPerformed
 
+    private void jBFecharActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBFecharActionPerformed
+        dispose();
+    }//GEN-LAST:event_jBFecharActionPerformed
+
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup buttonGroup1;
-    private javax.swing.JButton jBEditar;
-    private javax.swing.JButton jBExcluir;
     private javax.swing.JButton jBFechar;
-    private javax.swing.JButton jBView;
+    private javax.swing.JButton jBSelecionar;
     private javax.swing.JButton jButton5;
     private javax.swing.JRadioButton jRBCpf;
     private javax.swing.JRadioButton jRBNome;
