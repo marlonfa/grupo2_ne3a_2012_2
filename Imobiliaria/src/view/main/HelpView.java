@@ -8,7 +8,7 @@ import java.awt.Desktop;
 import java.io.File;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-
+import java.net.URI;
 /**
  *
  * @author Eder
@@ -104,10 +104,11 @@ public class HelpView extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jBInformacoesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBInformacoesActionPerformed
-        String url = " C:\\Users\\Eder\\Desktop\\index.xhtml";
-        String comando = "C:\\Program Files (x86)\\Google\\Chrome\\Application\\chrome.exe";
+        
+        String url = System.getProperty("user.dir")+"Web\\index.xhtml";
         try {
-            Runtime.getRuntime().exec(comando + url);
+            Desktop d = Desktop.getDesktop();
+            d.open(new File(url));
         } catch (Exception ex) {
             Logger.getLogger(HelpView.class.getName()).log(Level.SEVERE, null, ex);
         }
