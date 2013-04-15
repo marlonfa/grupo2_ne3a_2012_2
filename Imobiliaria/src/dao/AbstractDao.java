@@ -9,7 +9,7 @@ import org.hibernate.Session;
 
 /**
  *
- * @author marlon
+ * @author marlon e eder
  */
 public abstract class AbstractDao<T> {
     
@@ -36,7 +36,7 @@ public abstract class AbstractDao<T> {
         }
     }
       
-    public void delete(T object) throws RuntimeException{
+    public void delete(T object) {
         //Supostamente o getCurrentSession() é fechado depois de um commit
 //        this.session = HibernateUtil.getSessionFactory().getCurrentSession();
         this.session = HibernateUtil.getSessionFactory().openSession();
@@ -45,31 +45,13 @@ public abstract class AbstractDao<T> {
             this.session.delete(object);
             this.session.getTransaction().commit();
         }catch(Exception e){
-            this.session.getTransaction().rollback();
-            throw new RuntimeException("Erro ao Persistir "+e);          
+            System.out.println("Erro ao Remover ERRO: "+ e);
+            this.session.getTransaction().rollback();           
         }finally{
             this.session.close();
         }
     }   
-    
-    public List<T> findFilter(String atributo, String parametro){
-        //Supostamente o getCurrentSession() é fechado depois de um commit
-//        this.session = HibernateUtil.getSessionFactory().getCurrentSession();
-        this.session = HibernateUtil.getSessionFactory().openSession();
-        List<T>list = null;
-        try{
-            this.session.beginTransaction();
-            list = this.session.createQuery("from "+entityClass.getSimpleName()+" as entity where entity." +atributo+" like '%"+parametro+"%'").list();
-            this.session.getTransaction().commit();
-        }catch(Exception e){
-            System.out.println("Erro ao Persistir "+e);
-            this.session.getTransaction().rollback();
-        }finally{
-            this.session.close();
-        }
-        return list;
-    }  
-    
+        
     public List<T>findAll(){
         //Supostamente o getCurrentSession() é fechado depois de um commit
 //        this.session = HibernateUtil.getSessionFactory().getCurrentSession();
