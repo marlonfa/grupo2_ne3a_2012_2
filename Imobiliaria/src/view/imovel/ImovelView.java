@@ -4,15 +4,16 @@
  */
 package view.imovel;
 
-import control.ClienteController;
 import control.ImovelController;
 import java.awt.Color;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
 /**
  *
- * @author marlon
+ * @author marlon e eder
  */
 public class ImovelView extends javax.swing.JDialog {
 
@@ -23,45 +24,47 @@ public class ImovelView extends javax.swing.JDialog {
     
     public ImovelView(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
-        super.setLocationRelativeTo(null);
-        this.imovelController = new ImovelController();
+        super.setTitle("..::Tela de Visualização de Imóvel::..");        
         initComponents();
+        this.imovelController = new ImovelController();
         setLabel();
     }
     
     public void setLabel(){
-//        jLCliente.setText(ImovelController.getImovelSelecionado().getCliente().toString());
+        jLId.setText(ImovelController.getImovelSelecionado().getId().toString());
+        jLCliente.setText(ImovelController.getImovelSelecionado().getCliente().getNome());
+//        jLCliente.setText(ClienteController.getClienteSelecionado().getNome());
 //        jLData.setText(ImovelController.getImovelSelecionado().getData().toString());
-        System.out.println("========== " + ImovelController.getImovelSelecionado().toString());
         jLLogradouro.setText(ImovelController.getImovelSelecionado().getEndereco().getLogradouro());
         jLNumero.setText(String.valueOf(ImovelController.getImovelSelecionado().getEndereco().getNumero()));
         jLComplemento.setText(ImovelController.getImovelSelecionado().getEndereco().getComplemento()); 
         jLBairro.setText(ImovelController.getImovelSelecionado().getEndereco().getBairro());
-        jLCidade.setText(ImovelController.getImovelSelecionado().getEndereco().getCidade());
+        jLCidade.setText(ImovelController.getImovelSelecionado().getEndereco().getMunicipio());
         jLCep.setText(ImovelController.getImovelSelecionado().getEndereco().getCep());
         jLUf.setText(String.valueOf(ImovelController.getImovelSelecionado().getEndereco().getUf()));
-        jLDormitorio.setText(String.valueOf(ImovelController.getImovelSelecionado().getDormitorio()));
+        jLNumeroDormitorios.setText(String.valueOf(ImovelController.getImovelSelecionado().getDormitorio()));
         jLModalidade.setText(String.valueOf(ImovelController.getImovelSelecionado().getModalidade()));
         jLTipo.setText(String.valueOf(ImovelController.getImovelSelecionado().getTipo()));
         jLStatus.setText(String.valueOf(ImovelController.getImovelSelecionado().getStatus()));
         jLValor.setText(String.valueOf(ImovelController.getImovelSelecionado().getValor()));
-        jLDescricao.setText(ImovelController.getImovelSelecionado().getDescricao());
+        jTextArea2.setText(ImovelController.getImovelSelecionado().getDescricao());
         
-//        jLCliente.setForeground(Color.red);
-//        jLData.setForeground(Color.red);      
-        jLLogradouro.setForeground(Color.red);
-        jLNumero.setForeground(Color.red);
-        jLComplemento.setForeground(Color.red);
-        jLBairro.setForeground(Color.red);
-        jLCidade.setForeground(Color.red);
-        jLCep.setForeground(Color.red);
-        jLUf.setForeground(Color.red);
-        jLDormitorio.setForeground(Color.red);
-        jLModalidade.setForeground(Color.red);
-        jLTipo.setForeground(Color.red);
-        jLStatus.setForeground(Color.red);
-        jLValor.setForeground(Color.red);
-        jLDescricao.setForeground(Color.red);   
+        jLId.setForeground(Color.blue);
+        jLCliente.setForeground(Color.blue);
+//        jLData.setForeground(Color.blue);      
+        jLLogradouro.setForeground(Color.blue);
+        jLNumero.setForeground(Color.blue);
+        jLComplemento.setForeground(Color.blue);
+        jLBairro.setForeground(Color.blue);
+        jLCidade.setForeground(Color.blue);
+        jLCep.setForeground(Color.blue);
+        jLUf.setForeground(Color.blue);
+        jLNumeroDormitorios.setForeground(Color.blue);
+        jLModalidade.setForeground(Color.blue);
+        jLTipo.setForeground(Color.blue);
+        jLStatus.setForeground(Color.blue);
+        jLValor.setForeground(Color.blue);
+        jTextArea2.setForeground(Color.blue);
 
     }
 
@@ -78,7 +81,6 @@ public class ImovelView extends javax.swing.JDialog {
         jLabel5 = new javax.swing.JLabel();
         jLabel16 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
-        jLabel15 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
@@ -91,8 +93,10 @@ public class ImovelView extends javax.swing.JDialog {
         jLabel12 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
         jLabel14 = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
+        jButton3 = new javax.swing.JButton();
         jLCliente = new javax.swing.JLabel();
-        jLData = new javax.swing.JLabel();
         jLLogradouro = new javax.swing.JLabel();
         jLNumero = new javax.swing.JLabel();
         jLComplemento = new javax.swing.JLabel();
@@ -100,31 +104,17 @@ public class ImovelView extends javax.swing.JDialog {
         jLCidade = new javax.swing.JLabel();
         jLCep = new javax.swing.JLabel();
         jLUf = new javax.swing.JLabel();
-        jLDormitorio = new javax.swing.JLabel();
+        jLNumeroDormitorios = new javax.swing.JLabel();
         jLModalidade = new javax.swing.JLabel();
-        jLTipo = new javax.swing.JLabel();
-        jLStatus = new javax.swing.JLabel();
         jLValor = new javax.swing.JLabel();
-        jLDescricao = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jLabelCliente = new javax.swing.JLabel();
-        jLabelDataCadastro = new javax.swing.JLabel();
-        jLabelLogradouro = new javax.swing.JLabel();
-        jLabelNumero = new javax.swing.JLabel();
-        jLabelComplemento = new javax.swing.JLabel();
-        jLabelBairro = new javax.swing.JLabel();
-        jLabelMunicipio = new javax.swing.JLabel();
-        jLabelCEP = new javax.swing.JLabel();
-        jLabelUF = new javax.swing.JLabel();
-        jLabelQtdDormitorios = new javax.swing.JLabel();
-        jLabelModalidade = new javax.swing.JLabel();
-        jLabelTipo = new javax.swing.JLabel();
-        jLabelStatus = new javax.swing.JLabel();
-        jLabelValor = new javax.swing.JLabel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
+        jLStatus = new javax.swing.JLabel();
+        jLTipo = new javax.swing.JLabel();
+        jLabel18 = new javax.swing.JLabel();
+        jLId = new javax.swing.JLabel();
+        jSeparator1 = new javax.swing.JSeparator();
+        jSeparator2 = new javax.swing.JSeparator();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jTextArea2 = new javax.swing.JTextArea();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -137,9 +127,7 @@ public class ImovelView extends javax.swing.JDialog {
 
         jLabel6.setText("Cliente:");
 
-        jLabel15.setText("Data Cadastro:");
-
-        jLabel3.setText("Número de Dormitórios: ");
+        jLabel3.setText("Núm. Dormitórios: ");
 
         jLabel4.setText("Modalidade:");
 
@@ -156,7 +144,7 @@ public class ImovelView extends javax.swing.JDialog {
 
         jLabel10.setText("Bairro:");
 
-        jLabel11.setText("Município");
+        jLabel11.setText("Munícipio:");
 
         jLabel12.setText("CEP:");
 
@@ -185,286 +173,253 @@ public class ImovelView extends javax.swing.JDialog {
             }
         });
 
-        jLabelCliente.setForeground(new java.awt.Color(25, 118, 18));
-        jLabelCliente.setText("jlabel");
-        jLabelCliente.setToolTipText("Cliente");
+        jLCliente.setForeground(new java.awt.Color(255, 0, 0));
+        jLCliente.setText("Sem Informação");
+        jLCliente.setToolTipText("Cliente");
 
-        jLabelDataCadastro.setForeground(new java.awt.Color(25, 118, 18));
-        jLabelDataCadastro.setText("jLabel18");
+        jLLogradouro.setForeground(new java.awt.Color(255, 0, 0));
+        jLLogradouro.setText("Sem Informação");
+        jLLogradouro.setToolTipText("Logradouro");
 
-        jLabelLogradouro.setForeground(new java.awt.Color(25, 118, 18));
-        jLabelLogradouro.setText("jLabel18");
-        jLabelLogradouro.setToolTipText("Logradouro");
+        jLNumero.setForeground(new java.awt.Color(255, 0, 0));
+        jLNumero.setText("Sem Informação");
+        jLNumero.setToolTipText("Número");
 
-        jLabelNumero.setForeground(new java.awt.Color(25, 118, 18));
-        jLabelNumero.setText("jLabel18");
-        jLabelNumero.setToolTipText("Número");
+        jLComplemento.setForeground(new java.awt.Color(255, 0, 0));
+        jLComplemento.setText("Sem Informação");
+        jLComplemento.setToolTipText("Complemento");
 
-        jLabelComplemento.setForeground(new java.awt.Color(25, 118, 18));
-        jLabelComplemento.setText("jLabel18");
-        jLabelComplemento.setToolTipText("Complemento");
+        jLBairro.setForeground(new java.awt.Color(255, 0, 0));
+        jLBairro.setText("Sem Informação");
+        jLBairro.setToolTipText("Bairro");
 
-        jLabelBairro.setForeground(new java.awt.Color(25, 118, 18));
-        jLabelBairro.setText("jLabel18");
-        jLabelBairro.setToolTipText("Bairro");
+        jLCidade.setForeground(new java.awt.Color(255, 0, 0));
+        jLCidade.setText("Sem Informação");
+        jLCidade.setToolTipText("Município");
 
-        jLabelMunicipio.setForeground(new java.awt.Color(25, 118, 18));
-        jLabelMunicipio.setText("jLabel18");
-        jLabelMunicipio.setToolTipText("Município");
+        jLCep.setForeground(new java.awt.Color(255, 0, 0));
+        jLCep.setText("Sem Informação");
+        jLCep.setToolTipText("CEP");
 
-        jLabelCEP.setForeground(new java.awt.Color(25, 118, 18));
-        jLabelCEP.setText("jLabel18");
-        jLabelCEP.setToolTipText("CEP");
+        jLUf.setForeground(new java.awt.Color(255, 0, 0));
+        jLUf.setText("Sem Informação");
+        jLUf.setToolTipText("Unidade Federativa");
 
-        jLabelUF.setForeground(new java.awt.Color(25, 118, 18));
-        jLabelUF.setText("jLabel18");
-        jLabelUF.setToolTipText("Unidade Federativa");
+        jLNumeroDormitorios.setForeground(new java.awt.Color(255, 0, 0));
+        jLNumeroDormitorios.setText("Sem Informação");
+        jLNumeroDormitorios.setToolTipText("Números de Dormitórios");
 
-        jLabelQtdDormitorios.setForeground(new java.awt.Color(25, 118, 18));
-        jLabelQtdDormitorios.setText("jLabel18");
-        jLabelQtdDormitorios.setToolTipText("Números de Dormitórios");
+        jLModalidade.setForeground(new java.awt.Color(255, 0, 0));
+        jLModalidade.setText("Sem Informação");
+        jLModalidade.setToolTipText("Modalidade");
 
-        jLabelModalidade.setForeground(new java.awt.Color(25, 118, 18));
-        jLabelModalidade.setText("jLabel18");
-        jLabelModalidade.setToolTipText("Modalidade");
+        jLValor.setForeground(new java.awt.Color(255, 0, 0));
+        jLValor.setText("Sem Informação");
+        jLValor.setToolTipText("Tipo");
 
-        jLabelTipo.setForeground(new java.awt.Color(25, 118, 18));
-        jLabelTipo.setText("jLabel18");
-        jLabelTipo.setToolTipText("Tipo");
+        jLStatus.setForeground(new java.awt.Color(255, 0, 0));
+        jLStatus.setText("Sem Informação");
+        jLStatus.setToolTipText("Status");
 
-        jLabelStatus.setForeground(new java.awt.Color(25, 118, 18));
-        jLabelStatus.setText("jLabel18");
-        jLabelStatus.setToolTipText("Status");
+        jLTipo.setForeground(new java.awt.Color(255, 0, 0));
+        jLTipo.setText("Sem Informação");
+        jLTipo.setToolTipText("R$");
 
-        jLabelValor.setForeground(new java.awt.Color(25, 118, 18));
-        jLabelValor.setText("jLabel18");
-        jLabelValor.setToolTipText("R$");
+        jLabel18.setText("Código:");
 
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jScrollPane1.setViewportView(jTextArea1);
+        jLId.setForeground(new java.awt.Color(255, 0, 0));
+        jLId.setText("Sem Informação");
+
+        jTextArea2.setEditable(false);
+        jTextArea2.setColumns(20);
+        jTextArea2.setRows(5);
+        jScrollPane2.setViewportView(jTextArea2);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(139, 139, 139)
-                .addComponent(jLabel6)
-                .addGap(24, 24, 24)
-                .addComponent(jLabelCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 355, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(556, 556, 556)
-                .addComponent(jLCliente))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(562, 562, 562)
-                .addComponent(jLData))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(97, 97, 97)
-                .addComponent(jLabel15)
-                .addGap(24, 24, 24)
-                .addComponent(jLabelDataCadastro, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(556, 556, 556)
-                .addComponent(jLLogradouro))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(12, 12, 12)
-                .addComponent(jLabel16))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(112, 112, 112)
-                .addComponent(jLabel7)
-                .addGap(26, 26, 26)
-                .addComponent(jLabelLogradouro, javax.swing.GroupLayout.PREFERRED_SIZE, 355, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(132, 132, 132)
-                .addComponent(jLabel8)
-                .addGap(26, 26, 26)
-                .addComponent(jLabelNumero, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(189, 189, 189)
-                .addComponent(jLNumero))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(189, 189, 189)
-                .addComponent(jLComplemento))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(99, 99, 99)
-                .addComponent(jLabel9)
-                .addGap(24, 24, 24)
-                .addComponent(jLabelComplemento, javax.swing.GroupLayout.PREFERRED_SIZE, 355, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(145, 145, 145)
-                .addComponent(jLabel10)
-                .addGap(24, 24, 24)
-                .addComponent(jLabelBairro, javax.swing.GroupLayout.PREFERRED_SIZE, 232, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(129, 129, 129)
-                .addComponent(jLabel11)
-                .addGap(24, 24, 24)
-                .addComponent(jLabelMunicipio, javax.swing.GroupLayout.PREFERRED_SIZE, 232, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(64, 64, 64)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel18)
+                    .addComponent(jLabel6))
                 .addGap(18, 18, 18)
-                .addComponent(jLabel14)
-                .addGap(18, 18, 18)
-                .addComponent(jLabelUF))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(157, 157, 157)
-                .addComponent(jLabel12)
-                .addGap(24, 24, 24)
-                .addComponent(jLabelCEP, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(12, 12, 12)
-                .addComponent(jLabel17))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(189, 189, 189)
-                .addComponent(jLBairro))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(43, 43, 43)
-                .addComponent(jLabel3)
-                .addGap(24, 24, 24)
-                .addComponent(jLabelQtdDormitorios, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(189, 189, 189)
-                .addComponent(jLCidade))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(113, 113, 113)
-                .addComponent(jLabel4)
-                .addGap(6, 6, 6)
-                .addComponent(jLCep)
-                .addGap(18, 18, 18)
-                .addComponent(jLabelModalidade, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(155, 155, 155)
-                .addComponent(jLabel2)
-                .addGap(24, 24, 24)
-                .addComponent(jLabelTipo, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(143, 143, 143)
-                .addComponent(jLabel5)
-                .addGap(24, 24, 24)
-                .addComponent(jLabelStatus, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(168, 168, 168)
-                .addComponent(jLabel1)
-                .addGap(24, 24, 24)
-                .addComponent(jLabelValor, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(130, 130, 130)
-                .addComponent(jLabel13)
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 355, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(367, 367, 367)
-                .addComponent(jLDormitorio))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(367, 367, 367)
-                .addComponent(jLModalidade))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(367, 367, 367)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLTipo)
-                    .addComponent(jLStatus))
-                .addGap(12, 12, 12)
-                .addComponent(jButton1)
-                .addGap(18, 18, 18)
-                .addComponent(jButton2)
-                .addGap(12, 12, 12)
-                .addComponent(jButton3))
+                    .addComponent(jLCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 355, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLId))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel16)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(19, 19, 19)
+                                .addComponent(jLabel7)
+                                .addGap(18, 18, 18)
+                                .addComponent(jLLogradouro, javax.swing.GroupLayout.PREFERRED_SIZE, 355, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(41, 41, 41)
+                                .addComponent(jLabel8)
+                                .addGap(18, 18, 18)
+                                .addComponent(jLNumero, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jLabel10)
+                                    .addComponent(jLabel9)
+                                    .addComponent(jLabel12)
+                                    .addComponent(jLabel11))
+                                .addGap(18, 18, 18)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLBairro, javax.swing.GroupLayout.PREFERRED_SIZE, 232, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                            .addGroup(layout.createSequentialGroup()
+                                                .addComponent(jLCidade, javax.swing.GroupLayout.PREFERRED_SIZE, 232, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addGap(101, 101, 101)
+                                                .addComponent(jLabel14))
+                                            .addComponent(jLComplemento, javax.swing.GroupLayout.PREFERRED_SIZE, 355, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGap(18, 18, 18)
+                                        .addComponent(jLUf))
+                                    .addComponent(jLCep, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(461, 461, 461)
+                        .addComponent(jButton1)
+                        .addGap(18, 18, 18)
+                        .addComponent(jButton2)
+                        .addGap(12, 12, 12)
+                        .addComponent(jButton3))
+                    .addComponent(jSeparator2, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jSeparator1, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel17, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jLabel4)
+                                    .addComponent(jLabel3)
+                                    .addComponent(jLabel5)
+                                    .addComponent(jLabel13))
+                                .addGap(18, 18, 18)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                            .addComponent(jLNumeroDormitorios, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                            .addComponent(jLModalidade))
+                                        .addGap(113, 113, 113)
+                                        .addComponent(jLabel2))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jLStatus)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(jLabel1)))
+                                .addGap(24, 24, 24)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jLTipo)
+                                    .addComponent(jLValor))))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(jScrollPane2))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(43, 43, 43)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel6)
-                    .addComponent(jLabelCliente))
-                .addComponent(jLCliente)
                 .addGap(6, 6, 6)
-                .addComponent(jLData)
-                .addGap(15, 15, 15)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel15)
-                    .addComponent(jLabelDataCadastro))
-                .addGap(29, 29, 29)
-                .addComponent(jLLogradouro)
-                .addGap(6, 6, 6)
+                    .addComponent(jLId)
+                    .addComponent(jLabel18))
+                .addGap(25, 25, 25)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLCliente)
+                    .addComponent(jLabel6))
+                .addGap(18, 18, 18)
                 .addComponent(jLabel16)
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel7)
-                    .addComponent(jLabelLogradouro))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel8)
-                    .addComponent(jLabelNumero))
-                .addGap(12, 12, 12)
-                .addComponent(jLNumero)
-                .addGap(6, 6, 6)
-                .addComponent(jLComplemento)
-                .addGap(6, 6, 6)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel9)
-                    .addComponent(jLabelComplemento))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel10)
-                    .addComponent(jLabelBairro))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel11)
-                    .addComponent(jLabelMunicipio)
-                    .addComponent(jLabel14)
-                    .addComponent(jLabelUF))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel12)
-                    .addComponent(jLabelCEP))
                 .addGap(10, 10, 10)
-                .addComponent(jLabel17)
-                .addGap(6, 6, 6)
-                .addComponent(jLBairro)
-                .addGap(16, 16, 16)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel3)
-                    .addComponent(jLabelQtdDormitorios))
-                .addGap(6, 6, 6)
-                .addComponent(jLCidade)
-                .addGap(12, 12, 12)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel4)
-                    .addComponent(jLCep)
-                    .addComponent(jLabelModalidade))
+                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 6, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel2)
-                    .addComponent(jLabelTipo))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel5)
-                    .addComponent(jLabelStatus))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1)
-                    .addComponent(jLabelValor))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel13)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(7, 7, 7)
-                .addComponent(jLDormitorio)
-                .addGap(12, 12, 12)
-                .addComponent(jLModalidade)
-                .addGap(12, 12, 12)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel7)
+                    .addComponent(jLLogradouro))
+                .addGap(24, 24, 24)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLTipo)
-                        .addGap(12, 12, 12)
-                        .addComponent(jLStatus))
+                        .addComponent(jLabel8)
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel9)
+                            .addComponent(jLComplemento))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel10)
+                            .addComponent(jLBairro))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel11)
+                            .addComponent(jLCidade)
+                            .addComponent(jLabel14)
+                            .addComponent(jLUf))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel12)
+                            .addComponent(jLCep)))
+                    .addComponent(jLNumero))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel17)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel3)
+                    .addComponent(jLNumeroDormitorios))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(jLabel4)
+                                .addComponent(jLModalidade))
+                            .addComponent(jLabel2))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel5)
+                            .addComponent(jLStatus)
+                            .addComponent(jLabel1)
+                            .addComponent(jLValor)))
+                    .addComponent(jLTipo))
+                .addGap(18, 18, 18)
+                .addComponent(jLabel13)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jButton1)
                     .addComponent(jButton2)
-                    .addComponent(jButton3)))
+                    .addComponent(jButton3))
+                .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        int opcao = JOptionPane.showConfirmDialog(null, "Deseja Excluir este Imóvel: " , "Excluir Imóvel", 2);
+        if(opcao == 0){
+            try{
+                try {
+                    this.imovelController.delete(ImovelController.getImovelSelecionado());
+                    JOptionPane.showMessageDialog(null, "Imóvel Excluído com Sucesso!");
+                } catch (RuntimeException ex) {
+                    JOptionPane.showMessageDialog(null,"Erro ao Excluir Imóvel!","Erro",JOptionPane.ERROR_MESSAGE); 
+                }
+                dispose();
+            }catch (RuntimeException e){
+                JOptionPane.showMessageDialog(null, " Erro ao Deletar Imóvel: ERRO: "+e);
+            }
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         dispose();
@@ -478,20 +433,6 @@ public class ImovelView extends javax.swing.JDialog {
         imovelEditView.setVisible(true);
     }//GEN-LAST:event_jButton2ActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-        int opcao = JOptionPane.showConfirmDialog(null, "Deseja Excluir este Imóvel: " , "Excluir Imóvel", 2);
-            if(opcao == 0){        
-                try{
-                    this.imovelController.delete(ImovelController.getImovelSelecionado());
-                    JOptionPane.showMessageDialog(null, "Imóvel Excluído com Sucesso!");
-                    dispose();
-                }catch (RuntimeException e){
-                     JOptionPane.showMessageDialog(null, " Erro ao Deletar Imóvel: ERRO: "+e);
-                }             
-            }
-    }//GEN-LAST:event_jButton1ActionPerformed
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
@@ -501,12 +442,11 @@ public class ImovelView extends javax.swing.JDialog {
     private javax.swing.JLabel jLCidade;
     private javax.swing.JLabel jLCliente;
     private javax.swing.JLabel jLComplemento;
-    private javax.swing.JLabel jLData;
-    private javax.swing.JLabel jLDescricao;
-    private javax.swing.JLabel jLDormitorio;
+    private javax.swing.JLabel jLId;
     private javax.swing.JLabel jLLogradouro;
     private javax.swing.JLabel jLModalidade;
     private javax.swing.JLabel jLNumero;
+    private javax.swing.JLabel jLNumeroDormitorios;
     private javax.swing.JLabel jLStatus;
     private javax.swing.JLabel jLTipo;
     private javax.swing.JLabel jLUf;
@@ -517,9 +457,9 @@ public class ImovelView extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
-    private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
+    private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -528,21 +468,9 @@ public class ImovelView extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
-    private javax.swing.JLabel jLabelBairro;
-    private javax.swing.JLabel jLabelCEP;
-    private javax.swing.JLabel jLabelCliente;
-    private javax.swing.JLabel jLabelComplemento;
-    private javax.swing.JLabel jLabelDataCadastro;
-    private javax.swing.JLabel jLabelLogradouro;
-    private javax.swing.JLabel jLabelModalidade;
-    private javax.swing.JLabel jLabelMunicipio;
-    private javax.swing.JLabel jLabelNumero;
-    private javax.swing.JLabel jLabelQtdDormitorios;
-    private javax.swing.JLabel jLabelStatus;
-    private javax.swing.JLabel jLabelTipo;
-    private javax.swing.JLabel jLabelUF;
-    private javax.swing.JLabel jLabelValor;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextArea jTextArea1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JSeparator jSeparator2;
+    private javax.swing.JTextArea jTextArea2;
     // End of variables declaration//GEN-END:variables
 }
