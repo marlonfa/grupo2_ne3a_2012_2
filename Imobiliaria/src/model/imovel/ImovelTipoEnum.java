@@ -6,13 +6,13 @@ package model.imovel;
 
 /**
  *
- * @author marlon
+ * @author marlon e eder
  */
 public enum ImovelTipoEnum {
-    TIPO("Escolha um Tipo"),
+    SELECIONE("Selecione"),
     CASA("Casa"), 
     TERRENO("Terreno"), 
-    PREDIO("Predio");
+    PREDIO("Prédio");
     
     private String tipo;
     private ImovelTipoEnum(String tipo){
@@ -22,4 +22,27 @@ public enum ImovelTipoEnum {
     public String getTipo(){
         return this.tipo;
     }
+    
+    public static String[] getTipos() {  
+        String[] tipo = new String[ImovelTipoEnum.values().length];  
+        for (ImovelTipoEnum tipoEnum : ImovelTipoEnum.values()) {  
+            tipo[tipoEnum.ordinal()] = tipoEnum.getTipo();  
+        }  
+        return tipo ;  
+    } 
+    
+    public static ImovelTipoEnum getEnum(String string){
+        switch (string) {
+            case "Selecione":
+                return SELECIONE;
+            case "Casa":
+                return CASA;
+            case "Terreno":
+                return TERRENO;
+            case "Prédio":
+                return PREDIO;
+        }
+        return null;
+     }  
+       
 }

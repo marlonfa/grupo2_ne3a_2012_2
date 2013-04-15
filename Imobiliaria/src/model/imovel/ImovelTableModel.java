@@ -7,22 +7,22 @@ package model.imovel;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.table.AbstractTableModel;
+import model.cliente.ClienteEntity;
 import model.endereco.EstadoEnum;
 
 
 /**
  *
- * @author marlon
+ * @author marlon e eder
  */
 public class ImovelTableModel extends AbstractTableModel{
     private List<ImovelEntity> linhas;
-    private static final int ID = 0, //CLIENTE = 1, DATA = 2,
-                            LOGRADOURO = 1, NUMERO = 2, COMPLEMENTO = 3, BAIRRO = 4, CIDADE = 5, UF = 6, CEP = 7, 
-                            NUMERODORMITORIO = 8, MODALIDADE = 9, TIPO = 10, STATUS = 11, VALOR = 12, DESCRICAO = 13;
+    private static final int ID = 0, CLIENTE = 1, LOGRADOURO = 2, NUMERO = 3, BAIRRO = 4, CIDADE = 5, UF = 6, 
+                            NUMERODORMITORIO = 7, MODALIDADE = 8, TIPO = 9, STATUS = 10, VALOR = 11;
 
-    private String[] colunas = new String[] { "Código", //"Cliente", "Data",
-        "Logradouro", "Número", "Complemento", "Bairro", "Cidade", 
-             "UF", "CEP", "N Dorimitório", "Modalidade", "Tipo", "Status", "Valor", "Descrição" };
+    private String[] colunas = new String[] { "Código", "Cliente", 
+        "Logradouro", "Número", "Bairro", "Cidade", 
+             "UF", "N Dorimitório", "Modalidade", "Tipo", "Status", "Valor"};
 
 
     public ImovelTableModel() {
@@ -49,24 +49,24 @@ public class ImovelTableModel extends AbstractTableModel{
     switch (columnIndex) {
     case ID:
         return String.class;
-//    case CLIENTE:
-//        return String.class;
+    case CLIENTE:
+        return String.class;
 //    case DATA:
 //        return Calendar.class;
     case LOGRADOURO:
         return String.class;
     case NUMERO:
         return String.class;
-    case COMPLEMENTO:
-        return String.class;
+//    case COMPLEMENTO:
+//        return String.class;
     case BAIRRO:
         return String.class;
     case CIDADE:
         return String.class;
     case UF:
         return String.class;
-    case CEP:
-        return String.class;
+//    case CEP:
+//        return String.class;
     case NUMERODORMITORIO:
         return String.class;
     case MODALIDADE:
@@ -77,8 +77,8 @@ public class ImovelTableModel extends AbstractTableModel{
         return String.class;
     case VALOR:
         return String.class;
-    case DESCRICAO:
-        return String.class;
+//    case DESCRICAO:
+//        return String.class;
     default:
         throw new IndexOutOfBoundsException("columnIndex out of bounds");
     }
@@ -98,24 +98,24 @@ public class ImovelTableModel extends AbstractTableModel{
         switch (columnIndex) {
             case ID:
             return imovel.getId();
-    //    case CLIENTE:
-    //        return imovel.getCliente;
+        case CLIENTE:
+            return imovel.getCliente().getNome();
     //    case DATA:
     //        return imovel.getData;
             case LOGRADOURO:
                 return imovel.getEndereco().getLogradouro();
             case NUMERO:
                 return imovel.getEndereco().getNumero();
-            case COMPLEMENTO:
-                return imovel.getEndereco().getComplemento();
+//            case COMPLEMENTO:
+//                return imovel.getEndereco().getComplemento();
             case BAIRRO:
                 return imovel.getEndereco().getBairro();
             case CIDADE:
-                return imovel.getEndereco().getCidade();            
+                return imovel.getEndereco().getMunicipio();            
             case UF:
                 return imovel.getEndereco().getUf();
-            case CEP:
-                return imovel.getEndereco().getCep();
+//            case CEP:
+//                return imovel.getEndereco().getCep();
             case NUMERODORMITORIO:
                 return imovel.getDormitorio();
             case MODALIDADE:
@@ -126,8 +126,8 @@ public class ImovelTableModel extends AbstractTableModel{
                 return imovel.getStatus();
             case VALOR:
                 return imovel.getValor();
-            case DESCRICAO:
-                return imovel.getDescricao();
+//            case DESCRICAO:
+//                return imovel.getDescricao();
             default:                
                 throw new IndexOutOfBoundsException("columnIndex out of bounds");
         }
@@ -141,8 +141,8 @@ public class ImovelTableModel extends AbstractTableModel{
         switch (columnIndex) {
             case ID:
                 imovel.setId((Long) aValue); break;
-    //      case CLIENTE:
-    //          imovel.setCliente((Cliente) aValue); break; 
+          case CLIENTE:
+              imovel.setCliente((ClienteEntity) aValue); break; 
     //      case DATA:
     //          imovel.setCliente((Cliente) aValue); break; 
             case LOGRADOURO:
@@ -152,11 +152,11 @@ public class ImovelTableModel extends AbstractTableModel{
              case BAIRRO:
                 imovel.getEndereco().setBairro((String) aValue); break;
             case CIDADE:
-                imovel.getEndereco().setCidade((String) aValue); break;
+                imovel.getEndereco().setMunicipio((String) aValue); break;
             case UF:
                 imovel.getEndereco().setUf((EstadoEnum) aValue); break;
-            case CEP:
-                imovel.getEndereco().setCep((String) aValue); break;
+//            case CEP:
+//                imovel.getEndereco().setCep((String) aValue); break;
             case NUMERODORMITORIO:
                 imovel.setDormitorio((Integer) aValue); break;
             case MODALIDADE:
@@ -167,8 +167,8 @@ public class ImovelTableModel extends AbstractTableModel{
                 imovel.setStatus((ImovelStatusEnum) aValue); break;
             case VALOR:
                 imovel.setValor((Float) aValue); break;
-            case DESCRICAO:
-                imovel.setDescricao((String) aValue); break;        
+//            case DESCRICAO:
+//                imovel.setDescricao((String) aValue); break;        
             default:                
                 throw new IndexOutOfBoundsException("columnIndex out of bounds");
         }

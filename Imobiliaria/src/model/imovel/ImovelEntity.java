@@ -6,7 +6,6 @@ package model.imovel;
 
 import java.io.Serializable;
 import java.util.Arrays;
-import java.util.Calendar;
 import java.util.Objects;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -21,14 +20,12 @@ import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
-import javax.persistence.Temporal;
 import javax.persistence.Transient;
 import model.cliente.ClienteEntity;
 
-
 /**
  *
- * @author marlon
+ * @author marlon e eder
  */
 @Entity
 @Table(name = "imovel")
@@ -38,21 +35,18 @@ public class ImovelEntity implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id")
     private Long id;    
-    
-    @Transient
-    @Temporal(javax.persistence.TemporalType.DATE)
-    private Calendar data;
-    
-    @Column(name = "valor", length = 9)
+     
+    @Column(name = "valor", length = 9, nullable = false)
     private Float  valor;
     
     @Enumerated(EnumType.STRING)
-    @Column(name = "tipo") 
+    @Column(name = "tipo", length = 20, nullable = false) 
     private ImovelTipoEnum tipo;
     
-    @Column(name = "dormitorio", length = 3)
+    @Column(name = "dormitorio", length = 3, nullable = false)
     private int dormitorio;
     
+    @Transient
     @Lob
     @Column(name = "imagem")
     private byte[] imagem;
@@ -61,35 +55,26 @@ public class ImovelEntity implements Serializable {
     private ImovelEnderecoEntity endereco;
     
     @Enumerated(EnumType.STRING)
-    @Column(name = "modalidade") 
+    @Column(name = "modalidade", length = 20, nullable = false) 
     private ImovelModalidadeEnum modalidade; 
     
     @Enumerated(EnumType.STRING)
-    @Column(name = "status")
+    @Column(name = "status", length = 20, nullable = false)
     private ImovelStatusEnum status;
     
-    @Column(name = "descricao")
+    @Column(name = "descricao", length = 300)
     private String descricao;
     
-    @Transient
-    @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "cliente") 
+    @ManyToOne(cascade = CascadeType.PERSIST)
+    @JoinColumn(name = "cliente", referencedColumnName = "id") 
     private ClienteEntity cliente;   
-
+  
     public Long getId() {
         return id;
     }
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public Calendar getData() {
-        return data;
-    }
-
-    public void setData(Calendar data) {
-        this.data = data;
     }
 
     public Float getValor() {
@@ -168,7 +153,6 @@ public class ImovelEntity implements Serializable {
     public int hashCode() {
         int hash = 3;
         hash = 23 * hash + Objects.hashCode(this.id);
-        hash = 23 * hash + Objects.hashCode(this.data);
         hash = 23 * hash + Objects.hashCode(this.valor);
         hash = 23 * hash + (this.tipo != null ? this.tipo.hashCode() : 0);
         hash = 23 * hash + this.dormitorio;
@@ -191,9 +175,6 @@ public class ImovelEntity implements Serializable {
         }
         final ImovelEntity other = (ImovelEntity) obj;
         if (!Objects.equals(this.id, other.id)) {
-            return false;
-        }
-        if (!Objects.equals(this.data, other.data)) {
             return false;
         }
         if (!Objects.equals(this.valor, other.valor)) {
@@ -228,7 +209,7 @@ public class ImovelEntity implements Serializable {
 
     @Override
     public String toString() {
-        return "ImovelEntity{" + "id=" + id + ", data=" + data + ", valor=" + valor + ", tipo=" + tipo + ", dormitorio=" + dormitorio + ", imagem=" + imagem + ", endereco=" + endereco + ", modalidade=" + modalidade + ", status=" + status + ", descricao=" + descricao + ", cliente=" + cliente + '}';
+        return "ImovelEntity{" + "id=" + id + ", valor=" + valor + ", tipo=" + tipo + ", dormitorio=" + dormitorio + ", imagem=" + imagem + ", endereco=" + endereco + ", modalidade=" + modalidade + ", status=" + status + ", descricao=" + descricao + ", cliente=" + cliente + '}';
     }
     
     

@@ -6,12 +6,14 @@ package model.imovel;
 
 /**
  *
- * @author marlon
+ * @author marlon e eder
  */
 public enum ImovelStatusEnum {
+    SELECIONE("Selecione"),
+    DISPONIVEL("Disponível"),
     ALUGADO("Alugado"), 
     ALUGANDO("Alugando"), 
-    SUSPENSO("Suspenso"), 
+    SUSPENDO("Suspenso"), 
     VENDIDO("Vendido");
     
     private String status;
@@ -19,7 +21,33 @@ public enum ImovelStatusEnum {
         this.status = status;
     }
     
-    public String getStatus(){
+    public String getStatusString(){
         return this.status;
     }
+    
+    public static String[] getStatus() {  
+        String[] status = new String[ImovelStatusEnum.values().length];  
+        for (ImovelStatusEnum statusEnum : ImovelStatusEnum.values()) {  
+            status[statusEnum.ordinal()] = statusEnum.getStatusString();  
+        }  
+        return status ;  
+    } 
+    
+    public static ImovelStatusEnum getEnum(String string){
+        switch (string) {
+            case "Selecione":
+                return SELECIONE;
+            case "Disponível":
+                return DISPONIVEL;
+            case "Alugado":
+                return ALUGADO;
+            case "Alugando":
+                return ALUGANDO;
+            case "Suspenso":
+                return SUSPENDO;
+            case "Vendido":
+                return VENDIDO;
+        }
+        return null;
+     }  
 }

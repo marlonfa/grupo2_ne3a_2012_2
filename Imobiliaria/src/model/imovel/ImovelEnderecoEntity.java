@@ -14,10 +14,9 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import model.endereco.EstadoEnum;
-
 /**
  *
- * @author marlon
+ * @author marlon e eder
  */
 @Entity
 @Table(name = "endereco_imovel")
@@ -28,30 +27,27 @@ public class ImovelEnderecoEntity implements Serializable {
     @Column(name = "id")
     private Long id;
     
-    @Column(name = "logradouro", length = 255)
+    @Column(name = "logradouro", length = 100, nullable = false)
     private String logradouro;
     
-    @Column(name = "numero", length = 5)
+    @Column(name = "numero", length = 6, nullable = false)
     private int numero;
     
-    @Column(name = "complemento", length = 255)
+    @Column(name = "complemento", length = 100)
     private String complemento;
     
-    @Column(name = "bairro", length = 255)
+    @Column(name = "bairro", length = 70, nullable = false)
     private String bairro;
     
-    @Column(name = "cidade", length = 255)
-    private String cidade;
+    @Column(name = "municipio", length = 100, nullable = false)
+    private String municipio;
     
     @Enumerated(EnumType.STRING)
-    @Column(name = "uf")
+    @Column(name = "uf", length = 2, nullable = false)
     private EstadoEnum uf;
     
-    @Column(name = "cep", length = 255)
+    @Column(name = "cep", length = 8, nullable = false)
     private String cep;
-    
-    @Column(name = "descricao", length = 1000)
-    private String descricao;
 
     public Long getId() {
         return id;
@@ -93,12 +89,12 @@ public class ImovelEnderecoEntity implements Serializable {
         this.bairro = bairro;
     }
 
-    public String getCidade() {
-        return cidade;
+    public String getMunicipio() {
+        return municipio;
     }
 
-    public void setCidade(String cidade) {
-        this.cidade = cidade;
+    public void setMunicipio(String municipio) {
+        this.municipio = municipio;
     }
 
     public String getCep() {
@@ -107,14 +103,6 @@ public class ImovelEnderecoEntity implements Serializable {
 
     public void setCep(String cep) {
         this.cep = cep;
-    }
-
-    public String getDescricao() {
-        return descricao;
-    }
-
-    public void setDescricao(String descricao) {
-        this.descricao = descricao;
     }
 
     public EstadoEnum getUf() {
@@ -133,10 +121,9 @@ public class ImovelEnderecoEntity implements Serializable {
         hash = 97 * hash + this.numero;
         hash = 97 * hash + Objects.hashCode(this.complemento);
         hash = 97 * hash + Objects.hashCode(this.bairro);
-        hash = 97 * hash + Objects.hashCode(this.cidade);
+        hash = 97 * hash + Objects.hashCode(this.municipio);
         hash = 97 * hash + (this.uf != null ? this.uf.hashCode() : 0);
         hash = 97 * hash + Objects.hashCode(this.cep);
-        hash = 97 * hash + Objects.hashCode(this.descricao);
         return hash;
     }
 
@@ -164,7 +151,7 @@ public class ImovelEnderecoEntity implements Serializable {
         if (!Objects.equals(this.bairro, other.bairro)) {
             return false;
         }
-        if (!Objects.equals(this.cidade, other.cidade)) {
+        if (!Objects.equals(this.municipio, other.municipio)) {
             return false;
         }
         if (this.uf != other.uf) {
@@ -173,16 +160,14 @@ public class ImovelEnderecoEntity implements Serializable {
         if (!Objects.equals(this.cep, other.cep)) {
             return false;
         }
-        if (!Objects.equals(this.descricao, other.descricao)) {
-            return false;
-        }
         return true;
     }
 
     @Override
     public String toString() {
-        return "ImovelEnderecoEntity{" + "id=" + id + ", logradouro=" + logradouro + ", numero=" + numero + ", complemento=" + complemento + ", bairro=" + bairro + ", cidade=" + cidade + ", uf=" + uf + ", cep=" + cep + ", descricao=" + descricao + '}';
+        return "ImovelEnderecoEntity{" + "id=" + id + ", logradouro=" + logradouro + ", numero=" + numero + ", complemento=" + complemento + ", bairro=" + bairro + ", municipio=" + municipio + ", uf=" + uf + ", cep=" + cep + '}';
     }
+
     
     
     
