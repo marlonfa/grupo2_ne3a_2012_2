@@ -282,6 +282,11 @@ public class Imobiliaria extends javax.swing.JDialog {
         jMISobre.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_H, java.awt.event.InputEvent.SHIFT_MASK | java.awt.event.InputEvent.CTRL_MASK));
         jMISobre.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/helpMenu.png"))); // NOI18N
         jMISobre.setText("Sobre o Sistema");
+        jMISobre.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMISobreActionPerformed(evt);
+            }
+        });
         jMAjuda.add(jMISobre);
 
         jMenuBarTop.add(jMAjuda);
@@ -303,7 +308,7 @@ public class Imobiliaria extends javax.swing.JDialog {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jToolBar1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 235, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 243, Short.MAX_VALUE)
                 .addComponent(jLUsuarioLogado, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -344,7 +349,7 @@ public class Imobiliaria extends javax.swing.JDialog {
     }//GEN-LAST:event_jButtonLocarActionPerformed
   
     private void jButtonAjudaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAjudaActionPerformed
-        // TODO add your handling code here:
+        helpfView();
     }//GEN-LAST:event_jButtonAjudaActionPerformed
 
     private void jMICadClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMICadClienteActionPerformed
@@ -387,6 +392,10 @@ public class Imobiliaria extends javax.swing.JDialog {
     private void jMIConfiguracaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMIConfiguracaoActionPerformed
         confView();
     }//GEN-LAST:event_jMIConfiguracaoActionPerformed
+
+    private void jMISobreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMISobreActionPerformed
+        helpfView();
+    }//GEN-LAST:event_jMISobreActionPerformed
 
     /**
      * @param args the command line arguments
@@ -489,7 +498,10 @@ public class Imobiliaria extends javax.swing.JDialog {
     }
     
     public void helpfView(){
-        
+        HelpView helpView = new HelpView(new Frame(), true);
+        helpView.setLocationRelativeTo(null);
+        helpView.setResizable(false);
+        helpView.setVisible(true);
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonAjuda;
