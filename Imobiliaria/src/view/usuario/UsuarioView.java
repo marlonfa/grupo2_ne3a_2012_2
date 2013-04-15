@@ -6,7 +6,7 @@ package view.usuario;
 
 import control.UsuarioController;
 import java.awt.Color;
-import javax.swing.JFrame;
+import java.awt.Frame;
 import javax.swing.JOptionPane;
 
 /**
@@ -19,23 +19,12 @@ public class UsuarioView extends javax.swing.JDialog {
      * Creates new form UsuarioView
      */
     private UsuarioController usuarioController;
-    private boolean edit;
 
     public UsuarioView(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
-//        this.usuarioController = new UsuarioController();
+        this.usuarioController = new UsuarioController();
     }
-
-    public UsuarioController getUsuarioController() {
-        return usuarioController;
-    }
-
-    public void setUsuarioController(UsuarioController usuarioController) {
-        this.usuarioController = usuarioController;
-        setValues();
-    }
-
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -52,6 +41,9 @@ public class UsuarioView extends javax.swing.JDialog {
         jBExcluir = new javax.swing.JButton();
         jLNome = new javax.swing.JLabel();
         jLLogin = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jLCodigo = new javax.swing.JLabel();
+        jLCodigo2 = new javax.swing.JLabel();
 
         setTitle("Dados de Usuário");
 
@@ -59,7 +51,7 @@ public class UsuarioView extends javax.swing.JDialog {
 
         jLabel2.setText("Login:");
 
-        jBEditar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/small_edit.png"))); // NOI18N
+        jBEditar.setText("Editar");
         jBEditar.setToolTipText("Editar Dados do Cadastro");
         jBEditar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -67,7 +59,7 @@ public class UsuarioView extends javax.swing.JDialog {
             }
         });
 
-        jBFechar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/small_exit.png"))); // NOI18N
+        jBFechar.setText("Fechar");
         jBFechar.setToolTipText("Salvar Dados e Fechar");
         jBFechar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -75,7 +67,7 @@ public class UsuarioView extends javax.swing.JDialog {
             }
         });
 
-        jBExcluir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/small_trash.png"))); // NOI18N
+        jBExcluir.setText("Excluir");
         jBExcluir.setToolTipText("Excluir Cadastro de Usuário");
         jBExcluir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -83,145 +75,130 @@ public class UsuarioView extends javax.swing.JDialog {
             }
         });
 
-        jLNome.setForeground(new java.awt.Color(25, 118, 18));
+        jLNome.setForeground(new java.awt.Color(1, 1, 255));
         jLNome.setText("usuario");
         jLNome.setToolTipText("Nome do Usuário");
 
-        jLLogin.setForeground(new java.awt.Color(25, 118, 18));
+        jLLogin.setForeground(new java.awt.Color(0, 0, 255));
         jLLogin.setText("login");
         jLLogin.setToolTipText("Login");
+
+        jLabel3.setText("Código:");
+
+        jLCodigo2.setForeground(new java.awt.Color(0, 0, 255));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1)
-                    .addComponent(jLabel2))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLNome, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(10, 10, 10)
+                        .addComponent(jLabel3)
+                        .addGap(18, 18, 18)
+                        .addComponent(jLCodigo2, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(16, 16, 16)
+                        .addComponent(jLabel1)
+                        .addGap(18, 18, 18)
+                        .addComponent(jLNome, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel2)
+                        .addGap(18, 18, 18)
+                        .addComponent(jLLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(16, 16, 16))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jBExcluir)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(18, 18, 18)
                 .addComponent(jBEditar)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(18, 18, 18)
                 .addComponent(jBFechar)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(20, 20, 20)
+                .addGap(24, 24, 24)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1)
+                    .addComponent(jLabel3)
+                    .addComponent(jLCodigo2, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(3, 3, 3)
+                        .addComponent(jLabel1))
                     .addComponent(jLNome, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel2)
-                    .addComponent(jLLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jBExcluir)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(4, 4, 4)
+                        .addComponent(jLabel2))
+                    .addComponent(jLLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jBFechar)
                     .addComponent(jBEditar)
-                    .addComponent(jBFechar))
+                    .addComponent(jBExcluir))
                 .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void setValues() {
-        System.out.println("ID do usuario ==============="+this.usuarioController.getUsuario().getId());
+    public void setValues(UsuarioController usuario) {
+        this.usuarioController.setUsuario(usuario.getUsuario());
+        
+        jLCodigo2.setText(this.usuarioController.getUsuario().getId().toString());
+        
         jLNome.setText(this.usuarioController.getUsuario().getNome());
-        jLNome.setForeground(Color.GREEN);
+        jLNome.setForeground(Color.blue);
         jLLogin.setText(this.usuarioController.getUsuario().getLogin());
-        jLLogin.setForeground(Color.GREEN);
-    }
-
-    public boolean isEdit() {
-        return this.edit;
+        jLLogin.setForeground(Color.blue);
+        
     }
 
     private void jBEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBEditarActionPerformed
-        // TODO add your handling code here:
-        this.edit = true;
-        UsuarioEditView view = new UsuarioEditView(new JFrame(), true);
-        view.setUsuarioController(usuarioController);
-        view.setLocationRelativeTo(null);
+        UsuarioEditView editView = new UsuarioEditView(new Frame(), true);
+        editView.setLocationRelativeTo(null);
+        editView.setEdit(true);
+        editView.setValues(usuarioController);
         dispose();
-        view.setVisible(true);
+        editView.setVisible(true);
     }//GEN-LAST:event_jBEditarActionPerformed
 
     private void jBFecharActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBFecharActionPerformed
-        usuarioController.create(this.usuarioController.getUsuario());
         dispose();
     }//GEN-LAST:event_jBFecharActionPerformed
 
     private void jBExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBExcluirActionPerformed
-        //Confirmar Exclusao ATRAVEZ DE UM JOptionPane
         int pos = JOptionPane.showConfirmDialog(null, "Deseja Excluir Cadastro de Usuário?", "Exclusão de Cadastro", 2);
-        setValues();
+//        setValues();
+        setValues(this.usuarioController);
         if (pos == 0) {
             if (this.usuarioController.getUsuario().getId() > 0) {
-                this.usuarioController.getUsuarioDao().delete(this.usuarioController.getUsuario());
+                try{
+                    this.usuarioController.delete(this.usuarioController.getUsuario());
+                    JOptionPane.showMessageDialog(null, "Usuário Excluído com Sucesso!");
+                }catch(RuntimeException ex){
+                    JOptionPane.showMessageDialog(null,"Erro ao Excluir Usuário!","Erro",JOptionPane.ERROR_MESSAGE); 
+                }                
             }
             dispose();
         }
     }//GEN-LAST:event_jBExcluirActionPerformed
-    /**
-     * @param args the command line arguments
-     */
-//    public static void main(String args[]) {
-//        /* Set the Nimbus look and feel */
-//        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-//        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-//         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-//         */
-//        try {
-//            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-//                if ("Nimbus".equals(info.getName())) {
-//                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-//                    break;
-//                }
-//            }
-//        } catch (ClassNotFoundException ex) {
-//            java.util.logging.Logger.getLogger(UsuarioView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//        } catch (InstantiationException ex) {
-//            java.util.logging.Logger.getLogger(UsuarioView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//        } catch (IllegalAccessException ex) {
-//            java.util.logging.Logger.getLogger(UsuarioView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-//            java.util.logging.Logger.getLogger(UsuarioView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//        }
-//        //</editor-fold>
-//
-//        /* Create and display the dialog */
-//        java.awt.EventQueue.invokeLater(new Runnable() {
-//            public void run() {
-//                UsuarioView dialog = new UsuarioView(new javax.swing.JFrame(), true);
-//                dialog.addWindowListener(new java.awt.event.WindowAdapter() {
-//                    @Override
-//                    public void windowClosing(java.awt.event.WindowEvent e) {
-//                        System.exit(0);
-//                    }
-//                });
-//                dialog.setVisible(true);
-//            }
-//        });
-//    }
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jBEditar;
     private javax.swing.JButton jBExcluir;
     private javax.swing.JButton jBFechar;
+    private javax.swing.JLabel jLCodigo;
+    private javax.swing.JLabel jLCodigo2;
     private javax.swing.JLabel jLLogin;
     private javax.swing.JLabel jLNome;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     // End of variables declaration//GEN-END:variables
 }
