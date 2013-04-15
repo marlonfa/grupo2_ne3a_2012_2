@@ -11,7 +11,7 @@ import model.usuario.UsuarioEntity;
 
 /**
  *
- * @author eder
+ * @author marlon e eder
  */
 public class LoginView extends javax.swing.JDialog {
 
