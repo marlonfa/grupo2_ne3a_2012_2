@@ -3,6 +3,7 @@
     <head>
         <title>.::Sistema Imobiliária - Contato::..</title>
         <link rel="stylesheet" type="text/css" href="../style/style1.css" />
+        <script type="javascript" src="../javaScript/script.js" /> 
     </head>
     <body>
         <div id="div_body">
@@ -13,22 +14,28 @@
             	<a href="../index.xhtml">Home</a> | <a href="descricaoSistema.xhtml">Descrição do Sistema</a> | <a href="screenshots.xhtml">Screenshots</a> | <a href="desenvolvedores.xhtml">Desenvolvedores</a> | 				<a href="mapaDoSite.xhtml">Mapa do Site</a> | <a href="contato.xhtml">Contato</a>
             </div>
             <div id="div_conteudo">
-        		<form action="mailto:suporte@fearsoft.com" method="post">
+                <form id="form" action="mailto:fearsoft@contato.com" method="post">
 	        	<fieldset> 
 	        		<legend>Contato</legend>
 	        		
-		        	<label for="nome">Nome:</label>
-		        		<input type="text" id="nome" name="nome" size="50" /><br />
+                                <label id="labelId" for="nome">Nome*:</label>
+                                <input type="text" id="nome" name="nome" size="50" onblur="upperCase()" /><br />
+                                        
+                                <label id="labelDataNascimento" for="dataNascimento">Data de Nasc.*:</label>
+                                <input type="text" id="dataNascimento" name="dataNascimento" size="50" />Ex: 11/11/1111<br />
+                                        
+                                <label id="labelCpf" for="cpf">CPF*:</label>
+                                <input type="text" id="cpf" name="cpf" size="50" />Digite somente números<br />
 		       		
-		        	<label for="email">email:</label>
-		        		<input type="text" id="email" name="email" size="50" /><br />
+                                        <label id="labelEmail" for="email">email*:</label>
+                                        <input type="text" id="email" name="email" size="50" /><br />
 		       		
-		        	<label for="cidade">Cidade:</label>
+                                <label id="labelCidade" for="cidade">Cidade*:</label>
 		        		<input type="text" id="cidade" name="cidade" size="50" /><br />
 		       		
-		        	<label for="uf">Estado:</label>
+                                        <label id="labelUf" for="uf">Estado*:</label>
 		        		<select id="uf" name="uf" >
-							<option value=""></option>        			
+                                                    <option value="Selecione">Selecione</option>        			
 						    <option value="AC">Acre</option>
 						    <option value="AL">Alagoas</option>
 						    <option value="AM">Amazonas</option>
@@ -58,16 +65,15 @@
 						    <option value="TO">Tocantins</option>
 						</select><br />
 		       		
-		        	<label for="telefone">Telefone:</label>
-		        		<input type="text" id="telefone" name="telefone" size="50" /><br />
-		       		
-		        	<label for="mensagem">Mensagem:</label>
-		        		<textarea id="mensagem" name="mensagem" rows="4" cols="50" /><br />
-		        		
-		       		<input type="submit" value="Enviar" />
-	        		<input type="reset" value="Limpar" />     
+                                        <label id="labelMensagem" for="mensagem">Mensagem*:</label>
+		        		<textarea id="mensagem" name="mensagem" rows="4" cols="50" /><br />		        		
+                                        
+                                        
+                                        <input type="button" value="Enviar" onclick="validForm();" />
+                                        <input type="button" value="Limpar" onclick="confirmReset();" />
 	       		</fieldset>
 	        </form>
+                
     </div>
     </div>
     <div id="div_foot">
