@@ -105,7 +105,7 @@ public class HelpView extends javax.swing.JDialog {
 
     private void jBInformacoesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBInformacoesActionPerformed
         
-        String url = System.getProperty("user.dir")+"Web\\index.xhtml";
+        String url = System.getProperty("user.dir")+"Web/index.xhtml";
         try {
             Desktop d = Desktop.getDesktop();
             d.open(new File(url));
