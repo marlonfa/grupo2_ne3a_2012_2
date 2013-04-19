@@ -7,6 +7,7 @@ package dao;
 import java.util.List;
 import model.imovel.ImovelEntity;
 import org.hibernate.Session;
+import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Restrictions;
 import util.HibernateUtil;
 
@@ -31,6 +32,7 @@ public class ImovelDao extends AbstractDao<ImovelEntity>{
             list = this.session.createCriteria(ImovelEntity.class).                                
                     createAlias("endereco", "en").
                     add(Restrictions.eqProperty("id", "en.id")).
+                    addOrder(Order.desc("valor")).
                     setMaxResults(20).list();       
             this.session.getTransaction().commit();            
         }catch(Exception e){
