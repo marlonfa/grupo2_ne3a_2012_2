@@ -643,6 +643,7 @@ public class ClienteEditView extends javax.swing.JDialog {
         jLabel14.setText("Código:");
 
         jTFId.setEditable(false);
+        jTFId.setEnabled(false);
 
         jLabel28.setText("* Campos Obrigatórios");
 
