@@ -7,6 +7,7 @@ package dao;
 import java.util.List;
 import model.cliente.ClienteEntity;
 import org.hibernate.Session;
+import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Restrictions;
 import util.HibernateUtil;
 
@@ -29,6 +30,7 @@ public class ClienteDao extends AbstractDao<ClienteEntity>{
             this.session.beginTransaction();
             list = this.session.createCriteria(ClienteEntity.class).                                
                     add(Restrictions.like("cpf", cpf+"%")).
+                    addOrder(Order.asc("nome")).
                     list();       
             this.session.getTransaction().commit();            
         }catch(Exception e){
@@ -46,7 +48,8 @@ public class ClienteDao extends AbstractDao<ClienteEntity>{
         try{
             this.session.beginTransaction();
             list = this.session.createCriteria(ClienteEntity.class).                                
-                    add(Restrictions.like("nome", nome+"%")).
+                    add(Restrictions.like("nome", "%"+nome+"%")).
+                    addOrder(Order.asc("nome")).
                     list();       
             this.session.getTransaction().commit();            
         }catch(Exception e){
