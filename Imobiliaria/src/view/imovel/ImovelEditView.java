@@ -232,6 +232,7 @@ public class ImovelEditView extends javax.swing.JDialog {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jTFCliente.setEditable(false);
+        jTFCliente.setEnabled(false);
         jTFCliente.setName(""); // NOI18N
 
         jTFLogradouro.setDocument(new FixedLengthDocumentUtil(100));
