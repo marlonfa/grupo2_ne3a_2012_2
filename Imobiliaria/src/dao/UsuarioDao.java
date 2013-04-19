@@ -7,6 +7,7 @@ package dao;
 import java.util.List;
 import model.usuario.UsuarioEntity;
 import org.hibernate.Session;
+import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Restrictions;
 import util.HibernateUtil;
 
@@ -28,7 +29,8 @@ public class UsuarioDao extends AbstractDao<UsuarioEntity>{
         try{
             this.session.beginTransaction();
             list = this.session.createCriteria(UsuarioEntity.class).                                
-                    add(Restrictions.like(campo, parametro+"%")).
+                    add(Restrictions.like(campo, "%"+parametro+"%")).
+                    addOrder(Order.asc("nome")).
                     list();       
             this.session.getTransaction().commit();            
         }catch(Exception e){
