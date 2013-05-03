@@ -7,7 +7,8 @@ package view.main;
 import java.awt.Frame;
 import javax.swing.JFrame;
 import view.acoes.AlugarImovel;
-import view.acoes.ImovelSelectView;
+import view.acoes.ImovelAluguelSelectView;
+import view.acoes.VenderImovel;
 import view.cliente.ClienteEditView;
 import view.cliente.ClienteQueryView;
 import view.imovel.ImovelEditView;
@@ -343,7 +344,7 @@ public class Imobiliaria extends javax.swing.JDialog {
     }//GEN-LAST:event_jButtonConsUsuarioActionPerformed
 
     private void jButtonVendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonVendaActionPerformed
-        // TODO add your handling code here:
+        venderView();
     }//GEN-LAST:event_jButtonVendaActionPerformed
     
     private void jButtonLocarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLocarActionPerformed
@@ -372,11 +373,11 @@ public class Imobiliaria extends javax.swing.JDialog {
 
     
     private void jMIVenderImovelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMIVenderImovelActionPerformed
-        // TODO add your handling code here:
+       venderView();
     }//GEN-LAST:event_jMIVenderImovelActionPerformed
 
     private void jMILocarImovelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMILocarImovelActionPerformed
-        // TODO add your handling code here:
+        alugarView();
     }//GEN-LAST:event_jMILocarImovelActionPerformed
 
     private void jButtonLocar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLocar1ActionPerformed
@@ -511,6 +512,13 @@ public class Imobiliaria extends javax.swing.JDialog {
         alugarView.setLocationRelativeTo(null);
         alugarView.setResizable(false);
         alugarView.setVisible(true);
+    }
+    
+    public void venderView(){
+        VenderImovel venderView = new VenderImovel(new Frame(), true);
+        venderView.setLocationRelativeTo(null);
+        venderView.setResizable(false);
+        venderView.setVisible(true);
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonAjuda;

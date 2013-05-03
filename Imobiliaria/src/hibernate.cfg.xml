@@ -20,5 +20,6 @@
     <mapping class="model.imovel.ImovelEntity"/>
     <mapping class="model.imovel.ImovelEnderecoEntity"/>
     <mapping class="model.imovel.ImovelAluguelEntity"/>
+    <mapping class="model.imovel.ImovelVendaEntity"/>
   </session-factory>
 </hibernate-configuration>

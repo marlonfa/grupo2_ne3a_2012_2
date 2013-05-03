@@ -361,6 +361,10 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="jTFData">
+      <Properties>
+        <Property name="editable" type="boolean" value="false"/>
+        <Property name="enabled" type="boolean" value="false"/>
+      </Properties>
     </Component>
     <Component class="javax.swing.JSeparator" name="jSeparator4">
     </Component>

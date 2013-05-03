@@ -532,13 +532,13 @@ public class ImovelEditView extends javax.swing.JDialog {
             try {
                 this.imovelController.create();
                 JOptionPane.showMessageDialog(null, "Imóvel Cadastrado com Sucesso!");
+                ImovelView view = new ImovelView(new Frame(), true);
+                dispose();
+                view.setLocationRelativeTo(null);
+                view.setVisible(true);
             } catch (RuntimeException ex) {
                  JOptionPane.showMessageDialog(null,"Erro ao Criar Imóvel!","Erro",JOptionPane.ERROR_MESSAGE); 
-            }
-            ImovelView view = new ImovelView(new Frame(), true);
-            dispose();
-            view.setLocationRelativeTo(null);
-            view.setVisible(true);
+            }            
         }else{
             JOptionPane.showMessageDialog(null, this.msgError);
         }  

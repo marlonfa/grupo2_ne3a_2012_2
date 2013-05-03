@@ -837,13 +837,13 @@ public class ClienteEditView extends javax.swing.JDialog {
             try{
                 this.clienteController.create();
                 JOptionPane.showMessageDialog(null, "Cliente Cadastrado com Sucesso!");
+                ClienteView view = new ClienteView(new Frame(), true);
+                dispose();
+                view.setLocationRelativeTo(null);
+                view.setVisible(true); 
             }catch (RuntimeException ex){
                 JOptionPane.showMessageDialog(null,"Erro ao Criar Cliente!","Erro",JOptionPane.ERROR_MESSAGE); 
             }            
-            ClienteView view = new ClienteView(new Frame(), true);
-            dispose();
-            view.setLocationRelativeTo(null);
-            view.setVisible(true); 
         }else{
             JOptionPane.showMessageDialog(null, this.msgError);
         }               
@@ -1025,9 +1025,11 @@ public class ClienteEditView extends javax.swing.JDialog {
                 msgError.add("CPF Inválido. \n");
                 jLCpf.setForeground(Color.red);
             }else {
-                if (clienteController.getClienteDao().haveCpf(formatString(JFTFCpf.getText()))){
-                msgError.add("CPF já Cadastrado. \n");
-                jLCpf.setForeground(Color.red);
+                if(ClienteController.getClienteSelecionado().getId() == null){
+                    if (clienteController.getClienteDao().haveCpf(formatString(JFTFCpf.getText()))){
+                    msgError.add("CPF já Cadastrado. \n");
+                    jLCpf.setForeground(Color.red);
+                }
             }else {jLCpf.setForeground(Color.black);}
             }
             

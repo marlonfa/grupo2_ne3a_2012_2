@@ -4,14 +4,17 @@
  */
 package view.acoes;
 
+import control.AluguelController;
 import control.ClienteController;
-import view.imovel.*;
 import control.ImovelController;
-import dao.AluguelDao;
 import java.awt.Frame;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import javax.swing.JOptionPane;
 import model.imovel.ImovelAluguelEntity;
-import model.imovel.ImovelTableModel;
+import org.hibernate.LockOptions;
+import org.hibernate.Session;
+import util.HibernateUtil;
 
 /**
  *
@@ -21,12 +24,20 @@ public class AlugarImovel extends javax.swing.JDialog {
     /**
      * Creates new form ImovelQueryView
      */
+    private Session session;
     public AlugarImovel(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         super.setTitle("..::Tela de Locação de Imóvel::..");
         initComponents();
-        
+        session = HibernateUtil.getSessionFactory().openSession();
+        session.beginTransaction();
+        jTFData.setText(getDataAtual());
     }
+    
+    public  String getDataAtual(){
+        SimpleDateFormat formatador = new SimpleDateFormat("dd/MM/yyyy");  
+        return formatador.format(new Date());
+    }  
     
     public void setFieldCliente(){
         if(ClienteController.getClienteSelecionado() != null){
@@ -156,6 +167,9 @@ public class AlugarImovel extends javax.swing.JDialog {
 
         jTFLocadorCPF.setEditable(false);
         jTFLocadorCPF.setEnabled(false);
+
+        jTFData.setEditable(false);
+        jTFData.setEnabled(false);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -308,11 +322,21 @@ public class AlugarImovel extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jBAlugarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBAlugarActionPerformed
-        AluguelDao dao = new AluguelDao();
+        AluguelController aluguelController = new AluguelController();
         ImovelAluguelEntity aluguel = new ImovelAluguelEntity();
+        aluguel.setDataContrato(new Date());
         aluguel.setImovel(ImovelController.getImovelSelecionado());
         aluguel.setLocatario(ClienteController.getClienteSelecionado());
-        dao.alugar(aluguel, ImovelController.getImovelSelecionado());
+        int opcao = JOptionPane.showConfirmDialog(null, "Deseja Alugar este Imóvel? " , "Alugar Imóvel", 2);
+            if(opcao == 0){
+                try{
+                    aluguelController.alugar(this.session, aluguel, ImovelController.getImovelSelecionado());
+                    JOptionPane.showMessageDialog(null, "Imóvel Alugado com Sucesso!");
+                    dispose();
+                }catch(Exception e){
+                    JOptionPane.showMessageDialog(null,"Erro ao Alugar o Imóvel!","Erro",JOptionPane.ERROR_MESSAGE); 
+                }
+            }
     }//GEN-LAST:event_jBAlugarActionPerformed
 
     private void jBFecharActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBFecharActionPerformed
@@ -327,9 +351,13 @@ public class AlugarImovel extends javax.swing.JDialog {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        ImovelSelectView imovelConsulta = new ImovelSelectView(new Frame(), true);
+        ImovelAluguelSelectView imovelConsulta = new ImovelAluguelSelectView(new Frame(), true);
         imovelConsulta.setLocationRelativeTo(null);
         imovelConsulta.setVisible(true);
+        //Trava o imóvel que foi selecionado na tela de ImovelConsulta
+        if(ImovelController.getImovelSelecionado() != null){
+            this.session.buildLockRequest(LockOptions.UPGRADE).lock(ImovelController.getImovelSelecionado());
+        }
         setFieldImovelLocador();
     }//GEN-LAST:event_jButton2ActionPerformed
 

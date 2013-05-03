@@ -5,7 +5,7 @@
 package model.imovel;
 
 import java.io.Serializable;
-import java.util.Calendar;
+import java.util.Date;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -36,7 +36,7 @@ public class ImovelAluguelEntity implements Serializable {
     private ImovelEntity imovel;
     
     @Temporal(TemporalType.DATE)
-    private Calendar dataContrato;
+    private Date dataContrato;
 
     public Long getNumeroContrato() {
         return numeroContrato;
@@ -62,11 +62,11 @@ public class ImovelAluguelEntity implements Serializable {
         this.imovel = imovel;
     }
 
-    public Calendar getDataContrato() {
+    public Date getDataContrato() {
         return dataContrato;
     }
 
-    public void setDataContrato(Calendar dataContrato) {
+    public void setDataContrato(Date dataContrato) {
         this.dataContrato = dataContrato;
     }
 

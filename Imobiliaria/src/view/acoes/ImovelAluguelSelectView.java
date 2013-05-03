@@ -13,20 +13,20 @@ import model.imovel.ImovelTableModel;
  *
  * @author marlon e eder
  */
-public class ImovelSelectView extends javax.swing.JDialog {
+public class ImovelAluguelSelectView extends javax.swing.JDialog {
     private ImovelTableModel imovelTableModel;
     private ImovelController imovelController;
     /**
      * Creates new form ImovelQueryView
      */
-    public ImovelSelectView(java.awt.Frame parent, boolean modal) {
+    public ImovelAluguelSelectView(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         this.imovelController = new ImovelController();
         initComponents();
     }
 
     public ImovelTableModel getImovelTableModel() {
-        this.imovelTableModel = new ImovelTableModel(imovelController.getImovelDao().filterByStatusModalidade());
+        this.imovelTableModel = new ImovelTableModel(imovelController.getImovelDao().filterByStatusAluguelDiponivel());
         return imovelTableModel;
     }
     
@@ -58,7 +58,6 @@ public class ImovelSelectView extends javax.swing.JDialog {
         jScrollPane1.setViewportView(jTable1);
 
         jBSelecionar.setText("Selecionar");
-        jBSelecionar.setActionCommand("Selecionar");
         jBSelecionar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jBSelecionarActionPerformed(evt);
@@ -137,7 +136,7 @@ public class ImovelSelectView extends javax.swing.JDialog {
             ImovelController.setImovelSelecionado(this.imovelTableModel.getImovelEntidade(row));
             dispose();
         }else{
-            JOptionPane.showMessageDialog(null, "Por favor Selecione uma linha da Tabela para Editar!");
+            JOptionPane.showMessageDialog(null, "Por favor Selecione uma linha da Tabela!");
         }
     }//GEN-LAST:event_jBSelecionarActionPerformed
 

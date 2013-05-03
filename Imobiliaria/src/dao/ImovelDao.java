@@ -108,13 +108,33 @@ public class ImovelDao extends AbstractDao<ImovelEntity>{
         return list;
     } 
     
-     public List<ImovelEntity> filterByStatusModalidade(){
+     public List<ImovelEntity> filterByStatusAluguelDiponivel(){
         List<ImovelEntity> list = null;
         this.session = HibernateUtil.getSessionFactory().openSession();        
         try{
             this.session.beginTransaction();
             list = this.session.createCriteria(ImovelEntity.class).                                
                     add(Restrictions.eq("modalidade", ImovelModalidadeEnum.ALUGUEL)).
+                    add(Restrictions.and(Restrictions.eq("status", ImovelStatusEnum.DISPONIVEL))).           
+                    addOrder(Order.asc("endereco")).
+                    list();       
+            this.session.getTransaction().commit();            
+        }catch(Exception e){
+            System.out.println("Erro ao Buscar "+e);
+            this.session.getTransaction().rollback();
+        }finally{
+            this.session.close();
+        }
+        return list;
+    } 
+     
+     public List<ImovelEntity> filterByStatusVendaDiponivel(){
+        List<ImovelEntity> list = null;
+        this.session = HibernateUtil.getSessionFactory().openSession();        
+        try{
+            this.session.beginTransaction();
+            list = this.session.createCriteria(ImovelEntity.class).                                
+                    add(Restrictions.eq("modalidade", ImovelModalidadeEnum.VENDA)).
                     add(Restrictions.and(Restrictions.eq("status", ImovelStatusEnum.DISPONIVEL))).           
                     addOrder(Order.asc("endereco")).
                     list();       

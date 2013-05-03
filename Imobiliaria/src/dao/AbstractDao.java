@@ -21,6 +21,9 @@ public abstract class AbstractDao<T> {
     
     public void persist(T object) {
         Session session = HibernateUtil.getSessionFactory().openSession();
+        if(session.beginTransaction() == null){
+            session.beginTransaction();
+        }
         try{
             persist(session, object);
             session.getTransaction().commit();
@@ -39,6 +42,9 @@ public abstract class AbstractDao<T> {
       
     public void delete(T object) {
         Session session = HibernateUtil.getSessionFactory().openSession();
+        if(session.beginTransaction() == null){
+            session.beginTransaction();
+        }
         try{
             session.beginTransaction();
             delete(session, object);
