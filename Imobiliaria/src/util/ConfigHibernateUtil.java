@@ -29,7 +29,7 @@ public class ConfigHibernateUtil {
    
     public void lerProperties() {
 
-        file = new File("src/hibernate.properties").getAbsoluteFile();
+        file = new File("conf/hibernate.properties").getAbsoluteFile();
         properties = new Properties();
 
         FileInputStream stream = null;
