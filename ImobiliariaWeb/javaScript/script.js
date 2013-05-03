@@ -21,7 +21,7 @@ function setCookie(title){
 
 function getCookie(){
     var c_value = document.cookie;
-    if(c_value === null){
+    if(c_value === "" ){
         setActiveStyleSheet('style1');
         alert("Era pra ser EStilo 1");
     }else{
@@ -36,7 +36,7 @@ function getCookie(){
 
 /*a. Nenhum campo obrigatório pode estar em branco (1,0 ponto)*/
 /*e. A função de validação deve fazer aparecer, para cada campo obrigatório em
-branco ,uma caixa do tipo “Prompt” solicitando que o valor seja informado. O
+branco ,uma caixa do tipo “Prompt�? solicitando que o valor seja informado. O
 valor informado deve ser devidamente validado e atribuído ao campo em
 questão. (1,0 ponto)*/
 /*i. As funções Javascript devem ser implementadas em um arquivo externo (.js) ,
@@ -83,8 +83,8 @@ function promptShow(str) {
     return prompt("Preencha o Campo " + str);
 }
 
-/*b. O campo de contato via email deve possuir exatamente 1 caracter “@”, no
-mínimo 3 caracteres antes do “@” e entre um e três caracteres “.” após o “@”.
+/*b. O campo de contato via email deve possuir exatamente 1 caracter “@�?, no
+mínimo 3 caracteres antes do “@�? e entre um e três caracteres “.�? após o “@�?.
 (1,0 ponto)*/
 function isEmail() {
     var email = document.getElementById("email").value;
@@ -181,8 +181,8 @@ function isCpf() {
     return true;
 }
 
-/*f. Ao clicar no botão “RESET”, deve ser apresentada uma caixa do tipo
-“CONFIRM” para verificar se realmente o usuário deseja apagar todos os
+/*f. Ao clicar no botão “RESET�?, deve ser apresentada uma caixa do tipo
+“CONFIRM�? para verificar se realmente o usuário deseja apagar todos os
 dados. (1,0 ponto)*/
 function confirmReset() {
     var r = confirm("Deseja Limpar os Campos do Formulário?");
