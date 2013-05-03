@@ -4,6 +4,7 @@
  */
 package control;
 
+import dao.AluguelDao;
 import dao.ImovelDao;
 import java.util.List;
 import model.imovel.ImovelEnderecoEntity;
@@ -18,6 +19,7 @@ public class ImovelController {
     private ImovelDao imovelDao;
     private ImovelEntity imovel;
     private ImovelEnderecoEntity endereco;
+    private AluguelDao aluguelDao;
     private static ImovelEntity imovelSelecionado;
     
     public ImovelController(){
@@ -33,9 +35,11 @@ public class ImovelController {
     public ImovelDao getImovelDao() {
         return imovelDao;
     }
-    
-    
 
+    public AluguelDao getAluguelDao() {
+        return aluguelDao;
+    }
+    
     public void setImovel(ImovelEntity imovel) {
         this.imovel = imovel;
     }
@@ -47,8 +51,6 @@ public class ImovelController {
     public void setEndereco(ImovelEnderecoEntity endereco) {
         this.endereco = endereco;
     }
-    
-    
 
     public static ImovelEntity getImovelSelecionado() {
         return imovelSelecionado;
@@ -71,9 +73,4 @@ public class ImovelController {
      public List<ImovelEntity> findAll(){
         return this.imovelDao.findAll();
     }
-     
-     
-     
-     
-    
 }

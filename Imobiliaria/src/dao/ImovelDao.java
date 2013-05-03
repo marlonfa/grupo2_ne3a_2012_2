@@ -6,6 +6,8 @@ package dao;
 
 import java.util.List;
 import model.imovel.ImovelEntity;
+import model.imovel.ImovelModalidadeEnum;
+import model.imovel.ImovelStatusEnum;
 import org.hibernate.Session;
 import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Restrictions;
@@ -73,6 +75,7 @@ public class ImovelDao extends AbstractDao<ImovelEntity>{
                     createAlias("endereco", "en").
                     add(Restrictions.eqProperty("id", "en.id")).
                     add(Restrictions.like("status", status)).
+                    addOrder(Order.asc("endereco")).
                     list();       
             this.session.getTransaction().commit();            
         }catch(Exception e){
@@ -93,6 +96,46 @@ public class ImovelDao extends AbstractDao<ImovelEntity>{
                     createAlias("endereco", "en").
                     add(Restrictions.eqProperty("id", "en.id")).
                     add(Restrictions.like("tipo", tipo)).
+                    addOrder(Order.asc("endereco")).
+                    list();       
+            this.session.getTransaction().commit();            
+        }catch(Exception e){
+            System.out.println("Erro ao Buscar "+e);
+            this.session.getTransaction().rollback();
+        }finally{
+            this.session.close();
+        }
+        return list;
+    } 
+    
+     public List<ImovelEntity> filterByStatusModalidade(){
+        List<ImovelEntity> list = null;
+        this.session = HibernateUtil.getSessionFactory().openSession();        
+        try{
+            this.session.beginTransaction();
+            list = this.session.createCriteria(ImovelEntity.class).                                
+                    add(Restrictions.eq("modalidade", ImovelModalidadeEnum.ALUGUEL)).
+                    add(Restrictions.and(Restrictions.eq("status", ImovelStatusEnum.DISPONIVEL))).           
+                    addOrder(Order.asc("endereco")).
+                    list();       
+            this.session.getTransaction().commit();            
+        }catch(Exception e){
+            System.out.println("Erro ao Buscar "+e);
+            this.session.getTransaction().rollback();
+        }finally{
+            this.session.close();
+        }
+        return list;
+    } 
+    
+    public List<ImovelEntity> filterByEndereco(String endereco){
+        List<ImovelEntity> list = null;
+        this.session = HibernateUtil.getSessionFactory().openSession();        
+        try{
+            this.session.beginTransaction();
+            list = this.session.createCriteria(ImovelEntity.class).                                
+                    add(Restrictions.like("endereco", "%"+endereco+"%")).
+                    addOrder(Order.asc("endereco")).
                     list();       
             this.session.getTransaction().commit();            
         }catch(Exception e){

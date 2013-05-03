@@ -6,6 +6,8 @@ package view.main;
 
 import java.awt.Frame;
 import javax.swing.JFrame;
+import view.acoes.AlugarImovel;
+import view.acoes.ImovelSelectView;
 import view.cliente.ClienteEditView;
 import view.cliente.ClienteQueryView;
 import view.imovel.ImovelEditView;
@@ -345,7 +347,7 @@ public class Imobiliaria extends javax.swing.JDialog {
     }//GEN-LAST:event_jButtonVendaActionPerformed
     
     private void jButtonLocarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLocarActionPerformed
-        // TODO add your handling code here:
+        alugarView();
     }//GEN-LAST:event_jButtonLocarActionPerformed
   
     private void jButtonAjudaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAjudaActionPerformed
@@ -502,6 +504,13 @@ public class Imobiliaria extends javax.swing.JDialog {
         helpView.setLocationRelativeTo(null);
         helpView.setResizable(false);
         helpView.setVisible(true);
+    }
+    
+    public void alugarView(){
+        AlugarImovel alugarView = new AlugarImovel(new Frame(), true);
+        alugarView.setLocationRelativeTo(null);
+        alugarView.setResizable(false);
+        alugarView.setVisible(true);
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonAjuda;

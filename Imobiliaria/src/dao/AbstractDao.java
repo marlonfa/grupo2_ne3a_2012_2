@@ -14,58 +14,59 @@ import org.hibernate.Session;
 public abstract class AbstractDao<T> {
     
     private Class<T> entityClass;
-    private Session session;
 
     public AbstractDao(Class<T> entityClass) {
         this.entityClass = entityClass;
     }
     
-    public void persist(T object){
-        //Supostamente o getCurrentSession() é fechado depois de um commit
-//        this.session = HibernateUtil.getSessionFactory().getCurrentSession();
-        this.session = HibernateUtil.getSessionFactory().openSession();
+    public void persist(T object) {
+        Session session = HibernateUtil.getSessionFactory().openSession();
         try{
-            this.session.beginTransaction();
-            this.session.saveOrUpdate(object);
-            this.session.getTransaction().commit();
-        }catch(Exception e){
+            persist(session, object);
+            session.getTransaction().commit();
+        }        
+        catch(Exception e){
             System.out.println("Erro ao Persistir "+e);
-            this.session.getTransaction().rollback();
+            session.getTransaction().rollback();
         }finally{
-            this.session.close();
+            session.close();
         }
+    }
+    
+    public void persist(Session session, T object){
+        session.saveOrUpdate(object);           
     }
       
     public void delete(T object) {
-        //Supostamente o getCurrentSession() é fechado depois de um commit
-//        this.session = HibernateUtil.getSessionFactory().getCurrentSession();
-        this.session = HibernateUtil.getSessionFactory().openSession();
+        Session session = HibernateUtil.getSessionFactory().openSession();
         try{
-            this.session.beginTransaction();
-            this.session.delete(object);
-            this.session.getTransaction().commit();
+            session.beginTransaction();
+            delete(session, object);
+            session.getTransaction().commit();
         }catch(Exception e){
             System.out.println("Erro ao Remover ERRO: "+ e);
-            this.session.getTransaction().rollback();           
+            session.getTransaction().rollback();           
         }finally{
-            this.session.close();
+            session.close();
         }
     }   
+    
+    public void delete(Session session, T object){
+        session.delete(object);
+    }
         
     public List<T>findAll(){
-        //Supostamente o getCurrentSession() é fechado depois de um commit
-//        this.session = HibernateUtil.getSessionFactory().getCurrentSession();
-        this.session = HibernateUtil.getSessionFactory().openSession();
+        Session session = HibernateUtil.getSessionFactory().openSession();
         List<T>list = null;
         try{
-            this.session.beginTransaction();
-            list = this.session.createCriteria(entityClass).list();
-            this.session.getTransaction().commit();            
+            session.beginTransaction();
+            list = session.createCriteria(entityClass).list();
+            session.getTransaction().commit();            
         }catch(Exception e){
             System.out.println("Erro ao Buscar "+e);
-            this.session.getTransaction().rollback();
+            session.getTransaction().rollback();
         }finally{
-            this.session.close();
+            session.close();
         }
         return list;
     }
