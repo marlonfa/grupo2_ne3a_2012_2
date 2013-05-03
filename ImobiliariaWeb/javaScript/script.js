@@ -1,3 +1,39 @@
+/*Função para mudar os estilos da página*/
+function setActiveStyleSheet(title) {
+    var i;
+    var a;
+    var main;
+    for(i=0; (a = document.getElementsByTagName("link")[i]); i++) {
+        if(a.getAttribute("rel").indexOf("style") != -1 && a.getAttribute("title")) {
+            a.disabled = true;
+            if(a.getAttribute("title") == title){
+                a.disabled = false;
+            }
+        }
+    }
+    setCookie(title);
+}
+
+function setCookie(title){
+    var c_value=escape(title);
+    document.cookie="name=" + c_value;
+}
+
+function getCookie(){
+    var c_value = document.cookie;
+    if(c_value === null){
+        setActiveStyleSheet('style1');
+        alert("Era pra ser EStilo 1");
+    }else{
+        var quebra_de_linha = c_value.split("=");
+        var o_nome = quebra_de_linha[1];
+        var o_nome = unescape(o_nome);
+        setActiveStyleSheet(o_nome);
+        alert("Era pra ser EStilo 2" + title);
+    }
+}
+
+
 /*a. Nenhum campo obrigatório pode estar em branco (1,0 ponto)*/
 /*e. A função de validação deve fazer aparecer, para cada campo obrigatório em
 branco ,uma caixa do tipo “Prompt” solicitando que o valor seja informado. O
