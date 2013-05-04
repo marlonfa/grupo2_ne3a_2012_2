@@ -4,15 +4,18 @@
  */
 package view.acoes;
 
+import contratos.GerarContratos;
 import control.AluguelController;
 import control.ClienteController;
 import control.ImovelController;
 import java.awt.Frame;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 import javax.swing.JOptionPane;
 import model.cliente.ClienteEntity;
 import model.imovel.ImovelAluguelEntity;
+import model.imovel.ImovelEntity;
 import org.hibernate.LockOptions;
 import org.hibernate.Session;
 import util.HibernateUtil;
@@ -26,6 +29,9 @@ public class AlugarImovel extends javax.swing.JDialog {
      * Creates new form ImovelQueryView
      */
     private Session session;
+    private ClienteEntity locador;
+    private ClienteEntity locatario;
+    private ImovelEntity imovel;
     public AlugarImovel(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         super.setTitle("..::Tela de Locação de Imóvel::..");
@@ -58,9 +64,34 @@ public class AlugarImovel extends javax.swing.JDialog {
         }        
     }
     
-    private ClienteEntity getProprietario(){
+    private ClienteEntity getLocador(){
         ClienteController.setClienteSelecionado(ImovelController.getImovelSelecionado().getCliente());
+        this.locador = ImovelController.getImovelSelecionado().getCliente();
         return ClienteController.getClienteSelecionado();
+    }
+    
+    public String geraDataFimLocacao(){
+        Date date = new Date();
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(date);
+        calendar.add(Calendar.YEAR, 1);
+        SimpleDateFormat dataFormatada = new SimpleDateFormat("dd/MM/yyyy");  
+        return dataFormatada.format(calendar.getTime());
+    }
+    
+    private void gerarContrato() throws Exception{
+        GerarContratos geraContrato = new GerarContratos();
+        String dataLocacao = jTFData.getText();
+        geraContrato.gerarContratoLocacao(
+                this.locador.getNome(), this.locador.getEstadoCivil().toString().toLowerCase(), 
+                this.locador.getRg(), this.locador.getCpf(), 
+                this.locatario.getNome(), this.locatario.getEstadoCivil().toString().toLowerCase(), 
+                this.locatario.getRg(), this.locatario.getCpf(), 
+                this.imovel.getEndereco().getLogradouro(), 
+                this.imovel.getEndereco().getNumero(), this.imovel.getEndereco().getBairro(), 
+                this.imovel.getEndereco().getCep(), this.imovel.getEndereco().getMunicipio(), 
+                this.imovel.getEndereco().getUf().toString(), dataLocacao, 
+                geraDataFimLocacao(), this.imovel.getValor());
     }
 
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -328,18 +359,26 @@ public class AlugarImovel extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jBAlugarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBAlugarActionPerformed
+        this.locatario = ClienteController.getClienteSelecionado();
+        this.imovel = ImovelController.getImovelSelecionado();
         AluguelController aluguelController = new AluguelController();
         ImovelAluguelEntity aluguel = new ImovelAluguelEntity();
         aluguel.setDataContrato(new Date());
         aluguel.setImovel(ImovelController.getImovelSelecionado());
         aluguel.setLocatario(ClienteController.getClienteSelecionado());
-        aluguel.setProprietario(getProprietario());
+        aluguel.setProprietario(getLocador());
         int opcao = JOptionPane.showConfirmDialog(null, "Deseja Alugar este Imóvel? " , "Alugar Imóvel", 2);
             if(opcao == 0){
                 try{
                     aluguelController.alugar(this.session, aluguel, ImovelController.getImovelSelecionado());
                     JOptionPane.showMessageDialog(null, "Imóvel Alugado com Sucesso!");
                     dispose();
+                    try{
+                       gerarContrato(); 
+                    }catch(Exception e){
+                        JOptionPane.showMessageDialog(null,"Erro ao gerar Contrato!","Erro",JOptionPane.ERROR_MESSAGE); 
+                    }
+                    
                 }catch(Exception e){
                     JOptionPane.showMessageDialog(null,"Erro ao Alugar o Imóvel!","Erro",JOptionPane.ERROR_MESSAGE); 
                 }
