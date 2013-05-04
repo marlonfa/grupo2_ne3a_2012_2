@@ -31,6 +31,9 @@ public class ImovelVendaEntity {
     private ClienteEntity locatario;
     
     @OneToOne(cascade = CascadeType.PERSIST)
+    private ClienteEntity proprietario;
+    
+    @OneToOne(cascade = CascadeType.PERSIST)
     private ImovelEntity imovel;
     
     @Temporal(TemporalType.DATE)
@@ -52,6 +55,14 @@ public class ImovelVendaEntity {
         this.locatario = locatario;
     }
 
+    public ClienteEntity getProprietario() {
+        return proprietario;
+    }
+
+    public void setProprietario(ClienteEntity proprietario) {
+        this.proprietario = proprietario;
+    }
+
     public ImovelEntity getImovel() {
         return imovel;
     }
@@ -70,8 +81,9 @@ public class ImovelVendaEntity {
 
     @Override
     public String toString() {
-        return "ImovelVendaEntity{" + "numeroContrato=" + numeroContrato + ", locatario=" + locatario + ", imovel=" + imovel + ", dataContrato=" + dataContrato + '}';
+        return "ImovelVendaEntity{" + "numeroContrato=" + numeroContrato + ", locatario=" + locatario + ", proprietario=" + proprietario + ", imovel=" + imovel + ", dataContrato=" + dataContrato + '}';
     }
+
     
     
 }
