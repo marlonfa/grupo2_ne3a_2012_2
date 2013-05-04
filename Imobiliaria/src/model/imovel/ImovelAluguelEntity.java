@@ -33,6 +33,9 @@ public class ImovelAluguelEntity implements Serializable {
     private ClienteEntity locatario;
     
     @OneToOne(cascade = CascadeType.PERSIST)
+    private ClienteEntity proprietario;
+    
+    @OneToOne(cascade = CascadeType.PERSIST)
     private ImovelEntity imovel;
     
     @Temporal(TemporalType.DATE)
@@ -54,6 +57,14 @@ public class ImovelAluguelEntity implements Serializable {
         this.locatario = locatario;
     }
 
+    public ClienteEntity getProprietario() {
+        return proprietario;
+    }
+
+    public void setProprietario(ClienteEntity proprietario) {
+        this.proprietario = proprietario;
+    }
+
     public ImovelEntity getImovel() {
         return imovel;
     }
@@ -72,7 +83,9 @@ public class ImovelAluguelEntity implements Serializable {
 
     @Override
     public String toString() {
-        return "ImovelAlugarEntity{" + "numeroContrato=" + numeroContrato + ", locatario=" + locatario + ", imovel=" + imovel + ", dataContrato=" + dataContrato + '}';
+        return "ImovelAluguelEntity{" + "numeroContrato=" + numeroContrato + ", locatario=" + locatario + ", proprietario=" + proprietario + ", imovel=" + imovel + ", dataContrato=" + dataContrato + '}';
     }
+
+   
     
 }
