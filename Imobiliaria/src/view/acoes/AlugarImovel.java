@@ -11,6 +11,7 @@ import java.awt.Frame;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import javax.swing.JOptionPane;
+import model.cliente.ClienteEntity;
 import model.imovel.ImovelAluguelEntity;
 import org.hibernate.LockOptions;
 import org.hibernate.Session;
@@ -55,6 +56,11 @@ public class AlugarImovel extends javax.swing.JDialog {
             jTFLocadorNome.setText(ImovelController.getImovelSelecionado().getCliente().getNome());
             jTFLocadorCPF.setText(ImovelController.getImovelSelecionado().getCliente().getCpf());
         }        
+    }
+    
+    private ClienteEntity getProprietario(){
+        ClienteController.setClienteSelecionado(ImovelController.getImovelSelecionado().getCliente());
+        return ClienteController.getClienteSelecionado();
     }
 
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -327,6 +333,7 @@ public class AlugarImovel extends javax.swing.JDialog {
         aluguel.setDataContrato(new Date());
         aluguel.setImovel(ImovelController.getImovelSelecionado());
         aluguel.setLocatario(ClienteController.getClienteSelecionado());
+        aluguel.setProprietario(getProprietario());
         int opcao = JOptionPane.showConfirmDialog(null, "Deseja Alugar este Imóvel? " , "Alugar Imóvel", 2);
             if(opcao == 0){
                 try{
@@ -340,6 +347,7 @@ public class AlugarImovel extends javax.swing.JDialog {
     }//GEN-LAST:event_jBAlugarActionPerformed
 
     private void jBFecharActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBFecharActionPerformed
+        this.session.close();
         dispose();
     }//GEN-LAST:event_jBFecharActionPerformed
 
