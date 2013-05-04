@@ -1025,7 +1025,7 @@ public class ClienteEditView extends javax.swing.JDialog {
                 msgError.add("CPF Inválido. \n");
                 jLCpf.setForeground(Color.red);
             }else {
-                if(ClienteController.getClienteSelecionado().getId() == null){
+                if(ClienteController.getClienteSelecionado() == null){
                     if (clienteController.getClienteDao().haveCpf(formatString(JFTFCpf.getText()))){
                     msgError.add("CPF já Cadastrado. \n");
                     jLCpf.setForeground(Color.red);
