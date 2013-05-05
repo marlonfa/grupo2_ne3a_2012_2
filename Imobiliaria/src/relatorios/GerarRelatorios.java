@@ -24,25 +24,25 @@ import net.sf.jasperreports.view.JasperViewer;
  *
  * @author eder
  */
-public class Relatorios {
+public class GerarRelatorios {
 
-    public void gerarRelatorioLocacao(String file) throws Exception {
+    public void gerarRelatorioLocacao(File file) throws Exception {
         porData(file, null);
     }
 
-    public void gerarRelatorioLocacaoPorData(String file, Map mapa) throws Exception {
+    public void gerarRelatorioLocacaoPorData(File file, Map mapa) throws Exception {
         porData(file, mapa);
     }
     
-    public void gerarRelatorioVenda(String file) throws Exception {
+    public void gerarRelatorioVenda(File file) throws Exception {
         porData(file, null);
     }
 
-    public void gerarRelatorioVendaPorData(String file, Map mapa) throws Exception {
+    public void gerarRelatorioVendaPorData(File file, Map mapa) throws Exception {
         porData(file, mapa);
     }
 
-    private void porData(String file, Map mapa) throws HeadlessException, JRException, SQLException {
+    private void porData(File file, Map mapa) throws HeadlessException, JRException, SQLException {
         JDialog viewer = new JDialog(new javax.swing.JFrame(), "Visualização do Relatório", true);
         viewer.setSize(800, 600);
         viewer.setLocationRelativeTo(null);

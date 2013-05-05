@@ -24,7 +24,7 @@ import util.HibernateUtil;
  *
  * @author marlon e eder
  */
-public class AlugarImovel extends javax.swing.JDialog {
+public class AlugarImovelView extends javax.swing.JDialog {
     /**
      * Creates new form ImovelQueryView
      */
@@ -32,7 +32,7 @@ public class AlugarImovel extends javax.swing.JDialog {
     private ClienteEntity locador;
     private ClienteEntity locatario;
     private ImovelEntity imovel;
-    public AlugarImovel(java.awt.Frame parent, boolean modal) {
+    public AlugarImovelView(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         super.setTitle("..::Tela de Locação de Imóvel::..");
         initComponents();

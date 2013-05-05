@@ -23,7 +23,7 @@ import util.HibernateUtil;
  *
  * @author eder
  */
-public class VenderImovel extends javax.swing.JDialog {
+public class VenderImovelView extends javax.swing.JDialog {
     /**
      * Creates new form ImovelQueryView
      */
@@ -31,7 +31,7 @@ public class VenderImovel extends javax.swing.JDialog {
     private ClienteEntity comprador;
     private ClienteEntity vendedor;
     private ImovelEntity imovel;
-    public VenderImovel(java.awt.Frame parent, boolean modal) {
+    public VenderImovelView(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         super.setTitle("..::Tela de Venda de Imóvel::..");
         initComponents();

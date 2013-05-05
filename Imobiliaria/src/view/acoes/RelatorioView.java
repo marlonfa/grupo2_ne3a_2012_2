@@ -4,33 +4,35 @@
  */
 package view.acoes;
 
+import java.io.File;
 import java.text.ParseException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import util.MaskUtil;
-import Relatorios.Relatorios;
 import java.util.HashMap;
 import java.util.Map;
 import javax.swing.JOptionPane;
+import relatorios.GerarRelatorios;
 
 /**
  *
  * @author eder
  */
-public class GerarRelatorio extends javax.swing.JDialog {
+public class RelatorioView extends javax.swing.JDialog {
 
     /**
      * Creates new form GerarRelatorio
      */
     private MaskUtil maskUtil;
-    private Relatorios relatorios;
+    private GerarRelatorios relatorios;
     private Map mapa;
+    private File file;
 
-    public GerarRelatorio(java.awt.Frame parent, boolean modal) {
+    public RelatorioView(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
         maskUtil = new MaskUtil();
-        relatorios = new Relatorios();
+        relatorios = new GerarRelatorios();
         applyMask();
     }
 
@@ -44,7 +46,7 @@ public class GerarRelatorio extends javax.swing.JDialog {
             maskUtil.maskData(jFTFDataInicial);
             maskUtil.maskData(jFTFDataFinal);
         } catch (ParseException ex) {
-            Logger.getLogger(GerarRelatorio.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(RelatorioView.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -188,72 +190,35 @@ public class GerarRelatorio extends javax.swing.JDialog {
         try {
             if (this.jRBLocar.isSelected()) {               
                 if (this.jCBRelatorioTotal.isSelected() && jFTFDataInicial.getText().equals("__/__/____") && jFTFDataFinal.getText().equals("__/__/____")) {
-                    this.relatorios.gerarRelatorioLocacao("relatorios/locacao.jrxml");
+                    this.file =  new File("src/relatorios/locacao.jrxml").getAbsoluteFile();
+                    this.relatorios.gerarRelatorioLocacao(this.file);
                 } else if (!this.jCBRelatorioTotal.isSelected()) {
 
                     getData();
-                    this.relatorios.gerarRelatorioLocacaoPorData("relatorios/locacaoData.jrxml", mapa);
+                    this.file =  new File("src/relatorios/locacaoData.jrxml").getAbsoluteFile();
+                    this.relatorios.gerarRelatorioLocacaoPorData(this.file, this.mapa);
                 }else{
                     JOptionPane.showMessageDialog(null, "Por favor, desmarque a opção Relatório Total");
                 }
             } else {
 
                 if (this.jCBRelatorioTotal.isSelected() && jFTFDataInicial.getText().equals("__/__/____") && jFTFDataFinal.getText().equals("__/__/____")) {
-                    this.relatorios.gerarRelatorioLocacao("relatorios/venda.jrxml");
+                    this.file =  new File("src/relatorios/venda.jrxml").getAbsoluteFile();
+                    this.relatorios.gerarRelatorioLocacao(this.file);
                 } else if(!this.jCBRelatorioTotal.isSelected()){
 
                         getData();
-                        this.relatorios.gerarRelatorioLocacaoPorData("relatorios/vendaData.jrxml", mapa); 
+                        this.file =  new File("src/relatorios/vendaData.jrxml").getAbsoluteFile();
+                        this.relatorios.gerarRelatorioLocacaoPorData(this.file, this.mapa); 
                 }else{
                     JOptionPane.showMessageDialog(null, "Por favor, desmarque a opção Relatório Total");
                 }
             }
         } catch (Exception ex) {
-            Logger.getLogger(GerarRelatorio.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(RelatorioView.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_jBOkActionPerformed
 
-//    /**
-//     * @param args the command line arguments
-//     */
-//    public static void main(String args[]) {
-//        /* Set the Nimbus look and feel */
-//        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-//        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-//         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-//         */
-//        try {
-//            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-//                if ("Nimbus".equals(info.getName())) {
-//                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-//                    break;
-//                }
-//            }
-//        } catch (ClassNotFoundException ex) {
-//            java.util.logging.Logger.getLogger(GerarRelatorio.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//        } catch (InstantiationException ex) {
-//            java.util.logging.Logger.getLogger(GerarRelatorio.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//        } catch (IllegalAccessException ex) {
-//            java.util.logging.Logger.getLogger(GerarRelatorio.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-//            java.util.logging.Logger.getLogger(GerarRelatorio.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//        }
-//        //</editor-fold>
-//
-//        /* Create and display the dialog */
-//        java.awt.EventQueue.invokeLater(new Runnable() {
-//            public void run() {
-//                GerarRelatorio dialog = new GerarRelatorio(new javax.swing.JFrame(), true);
-//                dialog.addWindowListener(new java.awt.event.WindowAdapter() {
-//                    @Override
-//                    public void windowClosing(java.awt.event.WindowEvent e) {
-//                        System.exit(0);
-//                    }
-//                });
-//                dialog.setVisible(true);
-//            }
-//        });
-//    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup buttonGroupTipoRelatorio;
     private javax.swing.JButton jBOk;
@@ -271,15 +236,15 @@ public class GerarRelatorio extends javax.swing.JDialog {
     // End of variables declaration//GEN-END:variables
 
     private void getData() {
-        mapa = new HashMap();
-        String inicial, finaly;
-        String[] s1 = jFTFDataInicial.getText().split("/");
-        inicial = s1[2] + "-" + s1[1] + "-" + s1[0];
+       mapa = new HashMap();
+       String inicial, finaly;
+       String[] s1 = jFTFDataInicial.getText().split("/");
+       inicial = s1[2] + "" + s1[1] + "" + s1[0];
 
-        mapa.put("DATA_INICIAL", inicial);
-        String[] s2 = jFTFDataFinal.getText().split("/");
-        finaly = s1[2] + "-" + s1[1] + "-" + s1[0];
+       mapa.put("DATA_INICIAL", inicial);
+       String[] s2 = jFTFDataFinal.getText().split("/");
+       finaly = s2[2] + "" + s2[1] + "" + s2[0];
 
-        mapa.put("DATA_FINAL", finaly);
-    }
+       mapa.put("DATA_FINAL", finaly);
+   }
 }

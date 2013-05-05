@@ -6,9 +6,11 @@ package view.main;
 
 import java.awt.Frame;
 import javax.swing.JFrame;
-import view.acoes.AlugarImovel;
+import relatorios.GerarRelatorios;
+import view.acoes.AlugarImovelView;
 import view.acoes.ImovelAluguelSelectView;
-import view.acoes.VenderImovel;
+import view.acoes.RelatorioView;
+import view.acoes.VenderImovelView;
 import view.cliente.ClienteEditView;
 import view.cliente.ClienteQueryView;
 import view.imovel.ImovelEditView;
@@ -50,6 +52,7 @@ public class Imobiliaria extends javax.swing.JDialog {
         jButtonConsUsuario = new javax.swing.JButton();
         jButtonVenda = new javax.swing.JButton();
         jButtonLocar = new javax.swing.JButton();
+        jButtonLocar2 = new javax.swing.JButton();
         jButtonLocar1 = new javax.swing.JButton();
         jButtonAjuda = new javax.swing.JButton();
         jMenuBarTop = new javax.swing.JMenuBar();
@@ -64,6 +67,8 @@ public class Imobiliaria extends javax.swing.JDialog {
         jMUsuario = new javax.swing.JMenu();
         jMIVenderImovel = new javax.swing.JMenuItem();
         jMILocarImovel = new javax.swing.JMenuItem();
+        jMRelatorios = new javax.swing.JMenu();
+        jMIRelatorios = new javax.swing.JMenuItem();
         jMLocacao = new javax.swing.JMenu();
         jMIConfiguracao = new javax.swing.JMenuItem();
         jMAjuda = new javax.swing.JMenu();
@@ -145,6 +150,18 @@ public class Imobiliaria extends javax.swing.JDialog {
             }
         });
         jToolBar1.add(jButtonLocar);
+
+        jButtonLocar2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/report.png"))); // NOI18N
+        jButtonLocar2.setToolTipText("Gerar Relatórios");
+        jButtonLocar2.setFocusable(false);
+        jButtonLocar2.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jButtonLocar2.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jButtonLocar2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonLocar2ActionPerformed(evt);
+            }
+        });
+        jToolBar1.add(jButtonLocar2);
 
         jButtonLocar1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/conf.png"))); // NOI18N
         jButtonLocar1.setToolTipText("Locar Imóvel");
@@ -266,6 +283,21 @@ public class Imobiliaria extends javax.swing.JDialog {
 
         jMenuBarTop.add(jMUsuario);
 
+        jMRelatorios.setText("Relatórios");
+        jMRelatorios.setToolTipText("Relatórios");
+
+        jMIRelatorios.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_R, java.awt.event.InputEvent.SHIFT_MASK | java.awt.event.InputEvent.CTRL_MASK));
+        jMIRelatorios.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/reportMenu.png"))); // NOI18N
+        jMIRelatorios.setText("Gerar Relatórios");
+        jMIRelatorios.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMIRelatoriosActionPerformed(evt);
+            }
+        });
+        jMRelatorios.add(jMIRelatorios);
+
+        jMenuBarTop.add(jMRelatorios);
+
         jMLocacao.setText("Sistema");
 
         jMIConfiguracao.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_B, java.awt.event.InputEvent.SHIFT_MASK | java.awt.event.InputEvent.CTRL_MASK));
@@ -305,13 +337,13 @@ public class Imobiliaria extends javax.swing.JDialog {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLUsuarioLogado, javax.swing.GroupLayout.PREFERRED_SIZE, 348, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jToolBar1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(12, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jToolBar1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 243, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 253, Short.MAX_VALUE)
                 .addComponent(jLUsuarioLogado, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -399,6 +431,14 @@ public class Imobiliaria extends javax.swing.JDialog {
     private void jMISobreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMISobreActionPerformed
         helpfView();
     }//GEN-LAST:event_jMISobreActionPerformed
+
+    private void jButtonLocar2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLocar2ActionPerformed
+        gerarRelatoriosView();
+    }//GEN-LAST:event_jButtonLocar2ActionPerformed
+
+    private void jMIRelatoriosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMIRelatoriosActionPerformed
+        gerarRelatoriosView();
+    }//GEN-LAST:event_jMIRelatoriosActionPerformed
 
     /**
      * @param args the command line arguments
@@ -508,17 +548,24 @@ public class Imobiliaria extends javax.swing.JDialog {
     }
     
     public void alugarView(){
-        AlugarImovel alugarView = new AlugarImovel(new Frame(), true);
+        AlugarImovelView alugarView = new AlugarImovelView(new Frame(), true);
         alugarView.setLocationRelativeTo(null);
         alugarView.setResizable(false);
         alugarView.setVisible(true);
     }
     
     public void venderView(){
-        VenderImovel venderView = new VenderImovel(new Frame(), true);
+        VenderImovelView venderView = new VenderImovelView(new Frame(), true);
         venderView.setLocationRelativeTo(null);
         venderView.setResizable(false);
         venderView.setVisible(true);
+    }
+    
+    public void gerarRelatoriosView(){
+        RelatorioView relatorioView = new RelatorioView(new Frame(), true);
+        relatorioView.setLocationRelativeTo(null);
+        relatorioView.setResizable(false);
+        relatorioView.setVisible(true);
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonAjuda;
@@ -530,6 +577,7 @@ public class Imobiliaria extends javax.swing.JDialog {
     private javax.swing.JButton jButtonConsUsuario;
     private javax.swing.JButton jButtonLocar;
     private javax.swing.JButton jButtonLocar1;
+    private javax.swing.JButton jButtonLocar2;
     private javax.swing.JButton jButtonVenda;
     protected static javax.swing.JLabel jLUsuarioLogado;
     private javax.swing.JMenu jMAjuda;
@@ -542,10 +590,12 @@ public class Imobiliaria extends javax.swing.JDialog {
     private javax.swing.JMenuItem jMIConsImovel;
     private javax.swing.JMenuItem jMIConsUsuario;
     private javax.swing.JMenuItem jMILocarImovel;
+    private javax.swing.JMenuItem jMIRelatorios;
     private javax.swing.JMenuItem jMISobre;
     private javax.swing.JMenuItem jMIVenderImovel;
     private javax.swing.JMenu jMImovel;
     private javax.swing.JMenu jMLocacao;
+    private javax.swing.JMenu jMRelatorios;
     private javax.swing.JMenu jMUsuario;
     private javax.swing.JMenuBar jMenuBarTop;
     private javax.swing.JToolBar jToolBar1;
