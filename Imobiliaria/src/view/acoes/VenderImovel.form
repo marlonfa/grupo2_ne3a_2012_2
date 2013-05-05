@@ -233,7 +233,7 @@
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel2">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Locat&#xe1;rio:"/>
+        <Property name="text" type="java.lang.String" value="Comprador:"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="jTFLocatarioNome">
@@ -271,7 +271,7 @@
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel4">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Locador:"/>
+        <Property name="text" type="java.lang.String" value="Vendedor:"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel5">

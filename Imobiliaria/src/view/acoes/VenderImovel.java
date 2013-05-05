@@ -4,6 +4,7 @@
  */
 package view.acoes;
 
+import contratos.GerarContratos;
 import control.ClienteController;
 import control.ImovelController;
 import control.VendaController;
@@ -12,6 +13,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import javax.swing.JOptionPane;
 import model.cliente.ClienteEntity;
+import model.imovel.ImovelEntity;
 import model.imovel.ImovelVendaEntity;
 import org.hibernate.LockOptions;
 import org.hibernate.Session;
@@ -26,6 +28,9 @@ public class VenderImovel extends javax.swing.JDialog {
      * Creates new form ImovelQueryView
      */
     private Session session;
+    private ClienteEntity comprador;
+    private ClienteEntity vendedor;
+    private ImovelEntity imovel;
     public VenderImovel(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         super.setTitle("..::Tela de Venda de Imóvel::..");
@@ -58,9 +63,24 @@ public class VenderImovel extends javax.swing.JDialog {
         }        
     }
     
-    private ClienteEntity getProprietario(){
-        ClienteController.setClienteSelecionado(ImovelController.getImovelSelecionado().getCliente());
-        return ClienteController.getClienteSelecionado();
+    private ClienteEntity getVendedor(){
+        this.vendedor = ImovelController.getImovelSelecionado().getCliente();
+        return vendedor;
+    }
+    
+    private void gerarContrato() throws Exception{
+        GerarContratos geraContrato = new GerarContratos();
+        String dataVenda = jTFData.getText();
+        geraContrato.gerarContratoVenda(
+                this.vendedor.getNome(), this.vendedor.getEstadoCivil().toString().toLowerCase(), 
+                this.vendedor.getRg(), this.vendedor.getCpf(), 
+                this.comprador.getNome(), this.comprador.getEstadoCivil().toString().toLowerCase(), 
+                this.comprador.getRg(), this.comprador.getCpf(), 
+                this.imovel.getEndereco().getLogradouro(), 
+                this.imovel.getEndereco().getNumero(), this.imovel.getEndereco().getBairro(), 
+                this.imovel.getEndereco().getCep(), this.imovel.getEndereco().getMunicipio(), 
+                this.imovel.getEndereco().getUf().toString(), dataVenda, 
+                this.imovel.getValor());
     }
 
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -113,7 +133,7 @@ public class VenderImovel extends javax.swing.JDialog {
             }
         });
 
-        jLabel2.setText("Locatário:");
+        jLabel2.setText("Comprador:");
 
         jTFLocatarioNome.setEditable(false);
         jTFLocatarioNome.setEnabled(false);
@@ -137,7 +157,7 @@ public class VenderImovel extends javax.swing.JDialog {
             }
         });
 
-        jLabel4.setText("Locador:");
+        jLabel4.setText("Vendedor:");
 
         jLabel5.setText("Valor R$");
 
@@ -328,18 +348,25 @@ public class VenderImovel extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jBVenderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBVenderActionPerformed
+        this.comprador = ClienteController.getClienteSelecionado();
+        this.imovel = ImovelController.getImovelSelecionado();
         VendaController vendaController = new VendaController();
         ImovelVendaEntity venda = new ImovelVendaEntity();
         venda.setDataContrato(new Date());
         venda.setImovel(ImovelController.getImovelSelecionado());
-        venda.setLocatario(ClienteController.getClienteSelecionado());
-        venda.setProprietario(getProprietario());
+        venda.setComprador(ClienteController.getClienteSelecionado());
+        venda.setVendedor(getVendedor());
         int opcao = JOptionPane.showConfirmDialog(null, "Deseja Vender este Imóvel? " , "Alugar Imóvel", 2);
             if(opcao == 0){
                 try{
                     vendaController.vender(this.session, venda, ImovelController.getImovelSelecionado());
                     JOptionPane.showMessageDialog(null, "Imóvel Vendido com Sucesso!");
                     dispose();
+                    try{
+                       gerarContrato(); 
+                    }catch(Exception e){
+                        JOptionPane.showMessageDialog(null,"Erro ao gerar Contrato!","Erro",JOptionPane.ERROR_MESSAGE); 
+                    }
                 }catch(Exception e){
                     JOptionPane.showMessageDialog(null,"Erro ao Vender o Imóvel!","Erro",JOptionPane.ERROR_MESSAGE); 
                 }

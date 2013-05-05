@@ -60,8 +60,36 @@ public class GerarContratos {
         showContrato(parametros, file);
     }  
      
-     public void gerarContratoVenda(){
+     public void gerarContratoVenda(
+             String nomeVendedor, String estadoCivilVendedor, 
+             String rgVendedor, String cpfVendedor,
+             String nomeComprador, String estadoCivilComprador, 
+             String rgComprador, String cpfComprador, 
+             String logradouro, int numero, 
+             String bairro, String cep, 
+             String cidade, String estado, 
+             String dataVenda, Float valor) throws Exception{ 
          
+            this.file =  new File("src/contratos/contratoVenda.jrxml").getAbsoluteFile();
+            Map parametros = new HashMap();
+            parametros.put("nomeVendedor", nomeVendedor);
+            parametros.put("estadoCivilVendedor", estadoCivilVendedor);
+            parametros.put("rgVendedor", rgVendedor);
+            parametros.put("cpfVendedor", cpfVendedor);
+            parametros.put("nomeComprador", nomeComprador); 
+            parametros.put("estadoCivilComprador", estadoCivilComprador);
+            parametros.put("rgComprador", rgComprador);
+            parametros.put("cpfComprador", cpfComprador);
+            parametros.put("logradouro", logradouro);
+            parametros.put("numero", numero);
+            parametros.put("bairro", bairro);
+            parametros.put("cep", cep);
+            parametros.put("cidade", cidade);
+            parametros.put("estado", estado);
+            parametros.put("dataLocacao", dataVenda);
+            parametros.put("valor", valor);
+
+            showContrato(parametros, file);
      }
      
      public void showContrato(Map parametros, File file) throws JRException, SQLException{

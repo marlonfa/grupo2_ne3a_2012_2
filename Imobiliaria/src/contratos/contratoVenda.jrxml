@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="contratoVenda" pageWidth="595" pageHeight="842" whenNoDataType="AllSectionsNoDetail" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="16165c46-b925-4cca-8def-2541688bf2ed">
+	<property name="ireport.zoom" value="1.5"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="114"/>
+	<parameter name="nomeVendedor" class="java.lang.String"/>
+	<parameter name="estadoCivilVendedor" class="java.lang.String"/>
+	<parameter name="rgVendedor" class="java.lang.String"/>
+	<parameter name="cpfVendedor" class="java.lang.String"/>
+	<parameter name="nomeComprador" class="java.lang.String"/>
+	<parameter name="estadoCivilComprador" class="java.lang.String"/>
+	<parameter name="rgComprador" class="java.lang.String"/>
+	<parameter name="cpfComprador" class="java.lang.String"/>
+	<parameter name="logradouro" class="java.lang.String"/>
+	<parameter name="numero" class="java.lang.Integer"/>
+	<parameter name="bairro" class="java.lang.String"/>
+	<parameter name="cep" class="java.lang.String"/>
+	<parameter name="cidade" class="java.lang.String"/>
+	<parameter name="estado" class="java.lang.String"/>
+	<parameter name="dataVenda" class="java.lang.String"/>
+	<parameter name="valor" class="java.lang.Float"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="25" splitType="Stretch">
+			<rectangle>
+				<reportElement uuid="d6034beb-fd15-47f4-9601-0915821ed1ca" x="0" y="1" width="555" height="23" forecolor="#FFFFFF" backcolor="#006699"/>
+			</rectangle>
+			<staticText>
+				<reportElement uuid="e5075c33-0e59-4b9e-8949-5e6b4f8c8c2f" x="177" y="2" width="188" height="22" forecolor="#FFFFFF"/>
+				<textElement>
+					<font size="12" isBold="true" isUnderline="false"/>
+				</textElement>
+				<text><![CDATA[Contrato de Venda de Imóvel]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="379" splitType="Stretch">
+			<textField>
+				<reportElement uuid="75786c00-74d0-40ce-8f8a-459daf3350f1" x="8" y="7" width="539" height="325"/>
+				<textElement/>
+				<textFieldExpression><![CDATA["Compromissário Comprador: " + $P{nomeComprador} + ", " + $P{estadoCivilComprador} + " portador do RG nº " + $P{rgComprador} + " e CPF/MF " + $P{cpfComprador} +
+"\nCompromissário Vendedor: " + $P{nomeVendedor} + ", " + $P{estadoCivilVendedor} + " portador do RG nº " + $P{rgVendedor} + " e CPF/MF " + $P{cpfVendedor} +
+"\nPelo presente instrumento têm as partes entre si justo e acordado o disposto nas cláusulas seguintes: "+
+"\n\nDO OBJETO DO CONTRATO"+
+"\n\nO objeto do presente é o imóvel situado na " + $P{logradouro} + ", " + $P{numero} + ", Bairro: " + $P{bairro} + ", CEP: " + $P{cep} + ", Cidade de " + $P{cidade} + " - " + $P{estado} + ". Tendo as partes acordado entre si o valor de R$" + $P{valor} + " para a efetivação da compra e venda."+
+"\nCláusula Primeira - O Compromissário Comprador se compromete na data da assinatura do presente, ou no prazo máximo de 1 (um) dia útil após a referida assinatura, ao pagamento de R$ " + $P{valor} +
+"\nParágrafo Primeiro - Não havendo a efetivação do referido depósito na data ora estabelecida, o presente estará automaticamente anulado."+
+"\nCláusula Segunda - Caso, por qualquer motivo, haja desistência de quaisquer das partes do negócio ora celebrado, a parte que desistiu arcará com a multa de 10% do valor do imóvel  a ser paga à outra parte."+
+"\nParágrafo primeiro - Reitera-se que tendo o Compromissário Comprador desistido do negócio ora celebrado, além da multa acima estipulada, deverá devolver o montante pago a título de sinal, corrigido monetariamente."+
+"\nCláusula Terceira - As despesas oriundas da conservação do imóvel ficam a cargo do Compromissário Vendedor até a finalização do presente negócio."+
+"\nCláusula Quarta - Após o pagamento das prestações da forma ora acordada, fica o Compromissário Comprador obrigado a transferir a propriedade através do respectivo registro no Cartório de Imóveis, sendo que as despesas de documentação e tributos inerentes a este negócio são de responsabilidade do Compromissário Comprador."+
+"\nE por estarem justo e acordado, firmam o presente Contrato de Compromisso de Compra e Venda, juntamente com uma  testemunha."]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="95c2394a-8f99-4efd-ad46-b51bb2a197f8" x="363" y="337" width="176" height="32"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA["____________________________\n"+
+"Testemunha"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="30d15f6c-302c-42fe-a74d-bd408f0a9876" x="0" y="339" width="164" height="32"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA["____________________________\n"+
+$P{nomeVendedor}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="43f2a3f9-552a-4669-87a5-3f5fc7951211" x="173" y="338" width="180" height="32"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA["____________________________\n"+
+$P{nomeComprador}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
+</jasperReport>
