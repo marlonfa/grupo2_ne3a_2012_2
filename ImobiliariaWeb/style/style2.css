@@ -125,3 +125,17 @@ p{
 }
 /* Fim do Style para alinhar formulário */
 
+#div_navegacao{
+    width: 850px;	
+    margin:0 auto;
+}
+
+#div_navegacao a{
+	color:black;
+	text-decoration:none;
+}
+
+#div_navegacao a:hover{
+	color:#1874CD;
+	text-decoration:underline;
+}

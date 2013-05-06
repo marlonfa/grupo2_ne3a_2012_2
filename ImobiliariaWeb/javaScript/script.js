@@ -1,3 +1,42 @@
+//função navegação Dinâmica
+function navegacaoDinamica(){
+    var div = document.getElementById("div_navegacao");
+    var caminho = window.location.toString();
+    var paginas = new Array();
+    paginas[0] = "index.xhtml";
+    paginas[1] = "/pages/descricaoSistema.xhtml";
+    paginas[2] = "/pages/contato.xhtml";
+    paginas[3] = "/pages/instrucoes.xhtml";
+    paginas[4] = "/pages/mapaDoSite.xhtml";
+    paginas[5] = "/pages/screenshots.xhtml";
+    paginas[6] = "/pages/desenvolvedores.xhtml";
+    paginas[7] = "/pages/screenshots/cadastroCliente.xhtml";
+    paginas[8] = "/pages/screenshots/cadastroImovel.xhtml";
+    paginas[9] = "/pages/screenshots/cadastroUsuario.xhtml";
+    paginas[10] = "/pages/screenshots/consultaCliente.xhtml";
+    paginas[11] = "/pages/screenshots/consultaImovel.xhtml";
+    paginas[12] = "/pages/screenshots/consultaUsuario.xhtml";
+    paginas[13] = "/pages/screenshots/edicaoCliente.xhtml";
+    paginas[14] = "/pages/screenshots/edicaoImovel.xhtml";
+    paginas[15] = "/pages/screenshots/edicaoUsuario.xhtml";
+    paginas[16] = "/pages/screenshots/exclusaoCliente.xhtml";
+    paginas[17] = "/pages/screenshots/exclusaoImovel.xhtml";
+    paginas[18] = "/pages/screenshots/exclusaoUsuario.xhtml";
+    
+    var i;
+    for(i=0; i<paginas.length; i++){
+        if(caminho.contains("index")){
+            div.innerHTML = window.parent.document.title;
+        }else{
+            if(!caminho.contains("/pages/screenshots/") && caminho.contains(paginas[i])){
+                div.innerHTML = "<a href='../index.xhtml'>Home </a>"+">> "+ window.parent.document.title;
+            }else if(caminho.contains("/pages/screenshots/") && caminho.contains(paginas[i])){
+                div.innerHTML = "<a href='../../index.xhtml'>Home </a>"+">> "+ "<a href='../screenshots.xhtml'>Screenshot </a>"+">> "+ window.parent.document.title;
+            }
+        }
+    }
+}
+
 /*Função para mudar os estilos da página*/
 function setActiveStyleSheet(title) {
     var i;
@@ -16,7 +55,9 @@ function setActiveStyleSheet(title) {
 
 function setCookie(title){
     var c_value=escape(title);
-    document.cookie="name=" + c_value;
+    var exdate=new Date();
+    exdate.setDate(exdate.getDate() + 1);
+    document.cookie="name=" + c_value+"; expires="+exdate.toUTCString();
 }
 
 function getCookie(){
@@ -36,7 +77,7 @@ function getCookie(){
 
 /*a. Nenhum campo obrigatório pode estar em branco (1,0 ponto)*/
 /*e. A função de validação deve fazer aparecer, para cada campo obrigatório em
-branco ,uma caixa do tipo “Prompt�? solicitando que o valor seja informado. O
+branco ,uma caixa do tipo “Prompt? solicitando que o valor seja informado. O
 valor informado deve ser devidamente validado e atribuído ao campo em
 questão. (1,0 ponto)*/
 /*i. As funções Javascript devem ser implementadas em um arquivo externo (.js) ,
@@ -83,8 +124,8 @@ function promptShow(str) {
     return prompt("Preencha o Campo " + str);
 }
 
-/*b. O campo de contato via email deve possuir exatamente 1 caracter “@�?, no
-mínimo 3 caracteres antes do “@�? e entre um e três caracteres “.�? após o “@�?.
+/*b. O campo de contato via email deve possuir exatamente 1 caracter “@”, no
+mínimo 3 caracteres antes do “@” e entre um e três caracteres “.” após o “@”.
 (1,0 ponto)*/
 function isEmail() {
     var email = document.getElementById("email").value;
@@ -181,8 +222,8 @@ function isCpf() {
     return true;
 }
 
-/*f. Ao clicar no botão “RESET�?, deve ser apresentada uma caixa do tipo
-“CONFIRM�? para verificar se realmente o usuário deseja apagar todos os
+/*f. Ao clicar no botão “RESET�?, deve ser apresentada uma caixa do tipo
+“CONFIRM�? para verificar se realmente o usuário deseja apagar todos os
 dados. (1,0 ponto)*/
 function confirmReset() {
     var r = confirm("Deseja Limpar os Campos do Formulário?");

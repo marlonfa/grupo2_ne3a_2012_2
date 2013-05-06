@@ -1,13 +1,13 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">    
    <html xmlns="http://www.w3.org/1999/xhtml">
     <head>
-        <title>.::Sistema Imobiliária - Instruções do Sistema::..</title>
+        <title>Instruções do Sistema</title>
         <link rel="stylesheet" type="text/css" href="../style/style1.css" media="screen" title="style1" />
         <link rel="alternate stylesheet" type="text/css" href="../style/style2.css" media="screen" title="style2" />
         <link rel="alternate stylesheet" type="text/css" href="../style/style3.css" media="screen" title="style3" />
         <script type="text/javascript" src="../javaScript/script.js" /> 
     </head>
-    <body onload="getCookie();">
+    <body onload="navegacaoDinamica();getCookie();">
         <div id="div_body">
         	<div id="div_head">
             	<img src="../img/banner/imobiliaria.png" width="279" height="105" alt="Logo Imobiliária" title="Logo Imobiliária" />                
@@ -15,6 +15,7 @@
             <div id="div_menu"> 
             	<a href="../index.xhtml">Home</a> | <a href="descricaoSistema.xhtml">Descrição do Sistema</a> | <a href="screenshots.xhtml">Screenshots</a> | <a href="desenvolvedores.xhtml">Desenvolvedores</a> | 				<a href="mapaDoSite.xhtml">Mapa do Site</a> | <a href="contato.xhtml">Contato</a>
             </div>
+            <div id="div_navegacao"></div>
             <div id="div_conteudo">
             <fieldset>
             <legend>Instruções do Sistema</legend>
@@ -62,7 +63,11 @@
     </div>
     <div id="div_foot">
             	___________________________________________________________________________<br />
-                Desenvolvido por FEARSOFT - 2013
+                Desenvolvido por FEARSOFT - 2013 <br /><br />
+                
+            <a href="#" title="Mudar tema para Estilo 1" onclick="setActiveStyleSheet('style1', 1);return false;">Mudar tema para Estilo 1</a> |
+            <a href="#" title="Mudar tema para Estilo 2" onclick="setActiveStyleSheet('style2', 1);return false;">Mudar tema para Estilo 2</a> |
+            <a href="#" title="Mudar tema para Estilo 3" onclick="setActiveStyleSheet('style3', 1);return false;">Mudar tema para Estilo 3</a>
     </div>
         
         <div id="div_w3" >
