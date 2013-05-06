@@ -38,7 +38,7 @@
                             <th>Valor</th>
 
                         </tr>  
-                        <%                    } else {
+                        <%  } else {
                                 out.println("<h1>Nenhum Imóvel Pesquisado!</h1>");
                             }
                         %>
@@ -59,7 +59,7 @@
                             <td> <%=imovel.getDescricao()%> </td>
                             <td>R$ <%=imovel.getValor()%> </td>
                         </tr>    
-                        <%           }
+                        <%      }
                             }
                         %>  
                     </table>  

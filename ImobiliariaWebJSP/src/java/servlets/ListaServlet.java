@@ -12,7 +12,6 @@ public class ListaServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         ImovelEntity imovelEntity = null;
-        String descricao = request.getParameter("descricao");
         ImovelDao imovelDao = new ImovelDao();
         
         if(request.getParameter("radios") != null) {
