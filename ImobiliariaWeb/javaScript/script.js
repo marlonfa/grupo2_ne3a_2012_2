@@ -64,13 +64,11 @@ function getCookie(){
     var c_value = document.cookie;
     if(c_value === "" ){
         setActiveStyleSheet('style1');
-        alert("Era pra ser EStilo 1");
     }else{
         var quebra_de_linha = c_value.split("=");
         var o_nome = quebra_de_linha[1];
         var o_nome = unescape(o_nome);
         setActiveStyleSheet(o_nome);
-        alert("Era pra ser EStilo 2" + title);
     }
 }
 
