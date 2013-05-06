@@ -187,35 +187,39 @@ public class RelatorioView extends javax.swing.JDialog {
     }//GEN-LAST:event_jBSairActionPerformed
 
     private void jBOkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBOkActionPerformed
-        try {
-            if (this.jRBLocar.isSelected()) {               
-                if (this.jCBRelatorioTotal.isSelected() && jFTFDataInicial.getText().equals("__/__/____") && jFTFDataFinal.getText().equals("__/__/____")) {
-                    this.file =  new File("src/relatorios/locacao.jrxml").getAbsoluteFile();
-                    this.relatorios.gerarRelatorioLocacao(this.file);
-                } else if (!this.jCBRelatorioTotal.isSelected()) {
-
-                    getData();
-                    this.file =  new File("src/relatorios/locacaoData.jrxml").getAbsoluteFile();
-                    this.relatorios.gerarRelatorioLocacaoPorData(this.file, this.mapa);
-                }else{
-                    JOptionPane.showMessageDialog(null, "Por favor, desmarque a opção Relatório Total");
-                }
-            } else {
-
-                if (this.jCBRelatorioTotal.isSelected() && jFTFDataInicial.getText().equals("__/__/____") && jFTFDataFinal.getText().equals("__/__/____")) {
-                    this.file =  new File("src/relatorios/venda.jrxml").getAbsoluteFile();
-                    this.relatorios.gerarRelatorioLocacao(this.file);
-                } else if(!this.jCBRelatorioTotal.isSelected()){
+        if(jCBRelatorioTotal.isSelected() || !jFTFDataFinal.getText().equals("__/__/____") || !jFTFDataInicial.getText().equals("__/__/____")){
+            try {
+                if (this.jRBLocar.isSelected()) {               
+                    if (this.jCBRelatorioTotal.isSelected() && jFTFDataInicial.getText().equals("__/__/____") && jFTFDataFinal.getText().equals("__/__/____")) {
+                        this.file =  new File("src/relatorios/locacao.jrxml").getAbsoluteFile();
+                        this.relatorios.gerarRelatorioLocacao(this.file);
+                    } else if (!this.jCBRelatorioTotal.isSelected()) {
 
                         getData();
-                        this.file =  new File("src/relatorios/vendaData.jrxml").getAbsoluteFile();
-                        this.relatorios.gerarRelatorioLocacaoPorData(this.file, this.mapa); 
-                }else{
-                    JOptionPane.showMessageDialog(null, "Por favor, desmarque a opção Relatório Total");
-                }
+                        this.file =  new File("src/relatorios/locacaoData.jrxml").getAbsoluteFile();
+                        this.relatorios.gerarRelatorioLocacaoPorData(this.file, this.mapa);
+                    }else{
+                        JOptionPane.showMessageDialog(null, "Por favor, desmarque a opção Relatório Total");
+                    }
+                } else {
+
+                    if (this.jCBRelatorioTotal.isSelected() && jFTFDataInicial.getText().equals("__/__/____") && jFTFDataFinal.getText().equals("__/__/____")) {
+                        this.file =  new File("src/relatorios/venda.jrxml").getAbsoluteFile();
+                        this.relatorios.gerarRelatorioLocacao(this.file);
+                    } else if(!this.jCBRelatorioTotal.isSelected()){
+
+                            getData();
+                            this.file =  new File("src/relatorios/vendaData.jrxml").getAbsoluteFile();
+                            this.relatorios.gerarRelatorioLocacaoPorData(this.file, this.mapa); 
+                    }else{
+                        JOptionPane.showMessageDialog(null, "Por favor, desmarque a opção Relatório Total");
+                    }
             }
         } catch (Exception ex) {
             Logger.getLogger(RelatorioView.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        }else {
+            JOptionPane.showMessageDialog(null, "Por favor Selecione Relatório Total ou digite uma data Válida!");
         }
     }//GEN-LAST:event_jBOkActionPerformed
 
