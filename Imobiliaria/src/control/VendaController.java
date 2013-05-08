@@ -24,11 +24,8 @@ public class VendaController {
             imovel.setStatus(ImovelStatusEnum.VENDIDO);
             this.imovelDao.persist(session, imovel);
             vendaDao.persist(session, venda);
-            session.getTransaction().commit();
         }catch(Exception e){
-            session.getTransaction().rollback();
-        }finally{
-            session.close();
+            System.out.println(e);
         }
         
     }

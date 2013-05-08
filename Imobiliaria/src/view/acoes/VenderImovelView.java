@@ -360,6 +360,7 @@ public class VenderImovelView extends javax.swing.JDialog {
             if(opcao == 0){
                 try{
                     vendaController.vender(this.session, venda, ImovelController.getImovelSelecionado());
+                    this.session.beginTransaction().commit();
                     JOptionPane.showMessageDialog(null, "Imóvel Vendido com Sucesso!");
                     dispose();
                     try{
@@ -369,11 +370,15 @@ public class VenderImovelView extends javax.swing.JDialog {
                     }
                 }catch(Exception e){
                     JOptionPane.showMessageDialog(null,"Erro ao Vender o Imóvel!","Erro",JOptionPane.ERROR_MESSAGE); 
+                    this.session.beginTransaction().rollback();
+                }finally{
+                    this.session.close();
                 }
             }
     }//GEN-LAST:event_jBVenderActionPerformed
 
     private void jBFecharActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBFecharActionPerformed
+        this.session.beginTransaction().rollback();
         this.session.close();
         dispose();
     }//GEN-LAST:event_jBFecharActionPerformed

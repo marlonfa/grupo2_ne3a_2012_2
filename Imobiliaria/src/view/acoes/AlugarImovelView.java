@@ -16,6 +16,7 @@ import javax.swing.JOptionPane;
 import model.cliente.ClienteEntity;
 import model.imovel.ImovelAluguelEntity;
 import model.imovel.ImovelEntity;
+import org.hibernate.LockMode;
 import org.hibernate.LockOptions;
 import org.hibernate.Session;
 import util.HibernateUtil;
@@ -371,6 +372,7 @@ public class AlugarImovelView extends javax.swing.JDialog {
             if(opcao == 0){
                 try{
                     aluguelController.alugar(this.session, aluguel, ImovelController.getImovelSelecionado());
+                    this.session.beginTransaction().commit();
                     JOptionPane.showMessageDialog(null, "Imóvel Alugado com Sucesso!");
                     dispose();
                     try{
@@ -381,11 +383,15 @@ public class AlugarImovelView extends javax.swing.JDialog {
                     
                 }catch(Exception e){
                     JOptionPane.showMessageDialog(null,"Erro ao Alugar o Imóvel!","Erro",JOptionPane.ERROR_MESSAGE); 
+                    this.session.beginTransaction().rollback();
+                }finally{
+                    this.session.close();
                 }
             }
     }//GEN-LAST:event_jBAlugarActionPerformed
 
     private void jBFecharActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBFecharActionPerformed
+        this.session.getTransaction().rollback();
         this.session.close();
         dispose();
     }//GEN-LAST:event_jBFecharActionPerformed
@@ -403,7 +409,7 @@ public class AlugarImovelView extends javax.swing.JDialog {
         imovelConsulta.setVisible(true);
         //Trava o imóvel que foi selecionado na tela de ImovelConsulta
         if(ImovelController.getImovelSelecionado() != null){
-            this.session.buildLockRequest(LockOptions.UPGRADE).lock(ImovelController.getImovelSelecionado());
+               this.session.buildLockRequest(LockOptions.UPGRADE).lock(ImovelController.getImovelSelecionado());
         }
         setFieldImovelLocador();
     }//GEN-LAST:event_jButton2ActionPerformed

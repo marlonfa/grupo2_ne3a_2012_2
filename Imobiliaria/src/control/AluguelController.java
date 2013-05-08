@@ -24,11 +24,8 @@ public class AluguelController {
             imovel.setStatus(ImovelStatusEnum.ALUGADO);
             this.imovelDao.persist(session, imovel);
             aluguelDao.persist(session, aluguel);
-            session.getTransaction().commit();
         }catch(Exception e){
-            session.getTransaction().rollback();
-        }finally{
-            session.close();
+            System.out.println(e);
         }
         
     }
