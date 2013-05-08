@@ -14,7 +14,7 @@ v.numeroContrato as"Número do Contrato", v.dataContrato as "Início do Contrato
 i.descricao as "Descrição", i.dormitorio as "Nº Dormitórios", i.status as "Status", i.tipo as "Tipo", i.valor as "Valor",
 ei.bairro as "Bairro", ei.cep as "CEP", ei.complemento as "Complemento", ei.logradouro as "Logradouro", ei.municipio as "Município", ei.numero as "Numero", ei.uf as "UF"
 from
-venda v inner join imovel i inner join cliente c inner join cliente c2 inner join endereco_imovel ei
+aluguel v inner join imovel i inner join cliente c inner join cliente c2 inner join endereco_imovel ei
 on v.imovel_id = i.id
  and v.locatario_id = c.id
  and v.proprietario_id = c2.id and i.endereco_id = ei.id
