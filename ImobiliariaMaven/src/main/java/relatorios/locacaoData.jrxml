@@ -1,0 +1,452 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="venda" pageWidth="595" pageHeight="842" whenNoDataType="AllSectionsNoDetail" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="439731fc-a7d5-44f4-b3a2-81178b69424c">
+	<property name="ireport.zoom" value="1.7715610000000013"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="670"/>
+	<parameter name="DATA_INICIAL" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="DATA_FINAL" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[select  c.cpf as "CPF Locatário", c.data_nascimento as "Data de Nascimento Locatário", c.estado_civil as "Estado Civil Locatário", c.nome as "Nome Locatário", c.rg as "RG Locatário",
+c2.cpf as "CPF Proprietario", c2.data_nascimento as "Data de Nascimento Proprietario", c2.estado_civil as "Estado Civil Proprietario", c2.nome as "Nome Proprietario", c2.rg as "RG Proprietario",
+v.numeroContrato as"Número do Contrato", v.dataContrato as "Início do Contrato",
+i.descricao as "Descrição", i.dormitorio as "Nº Dormitórios", i.status as "Status", i.tipo as "Tipo", i.valor as "Valor",
+ei.bairro as "Bairro", ei.cep as "CEP", ei.complemento as "Complemento", ei.logradouro as "Logradouro", ei.municipio as "Município", ei.numero as "Numero", ei.uf as "UF"
+from
+aluguel v inner join imovel i inner join cliente c inner join cliente c2 inner join endereco_imovel ei
+on v.imovel_id = i.id
+ and v.locatario_id = c.id
+ and v.proprietario_id = c2.id and i.endereco_id = ei.id
+ and i.cliente = v.proprietario_id
+where v.dataContrato  between $P{DATA_INICIAL} and $P{DATA_FINAL};]]>
+	</queryString>
+	<field name="CPF Locatário" class="java.lang.String"/>
+	<field name="Data de Nascimento Locatário" class="java.sql.Date"/>
+	<field name="Estado Civil Locatário" class="java.lang.String"/>
+	<field name="Nome Locatário" class="java.lang.String"/>
+	<field name="RG Locatário" class="java.lang.String"/>
+	<field name="CPF Proprietario" class="java.lang.String"/>
+	<field name="Data de Nascimento Proprietario" class="java.sql.Date"/>
+	<field name="Estado Civil Proprietario" class="java.lang.String"/>
+	<field name="Nome Proprietario" class="java.lang.String"/>
+	<field name="RG Proprietario" class="java.lang.String"/>
+	<field name="Número do Contrato" class="java.lang.Long"/>
+	<field name="Início do Contrato" class="java.sql.Date"/>
+	<field name="Descrição" class="java.lang.String"/>
+	<field name="Nº Dormitórios" class="java.lang.Integer"/>
+	<field name="Status" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="Tipo" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="Valor" class="java.lang.Float">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="Bairro" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CEP" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="Complemento" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="Logradouro" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="Município" class="java.lang.String"/>
+	<field name="Numero" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="UF" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<variable name="IMOVEL_VENDIDO" class="java.lang.Integer" calculation="Count">
+		<variableExpression><![CDATA[$F{Número do Contrato}]]></variableExpression>
+	</variable>
+	<background>
+		<band/>
+	</background>
+	<title>
+		<band height="72">
+			<frame>
+				<reportElement uuid="bc9016ba-9626-40cf-9ba3-e560dc939095" mode="Opaque" x="-20" y="-20" width="595" height="92" backcolor="#006699"/>
+				<staticText>
+					<reportElement uuid="d2f044e7-1780-4438-b951-bb7970f2f1f5" x="109" y="9" width="375" height="43" forecolor="#FFFFFF"/>
+					<textElement>
+						<font size="34" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Sistema Imobiliária]]></text>
+				</staticText>
+				<staticText>
+					<reportElement uuid="887343b7-646d-4765-8b64-47b3a27e55c9" x="215" y="60" width="160" height="20" forecolor="#FFFFFF"/>
+					<textElement textAlignment="Right">
+						<font size="14" isBold="false"/>
+					</textElement>
+					<text><![CDATA[Relatório de Locação]]></text>
+				</staticText>
+			</frame>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="24"/>
+	</pageHeader>
+	<detail>
+		<band height="120">
+			<staticText>
+				<reportElement uuid="93ed597a-19fe-482e-8773-f60d27799cd9" x="0" y="0" width="123" height="13"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Dados do Locatário:]]></text>
+			</staticText>
+			<line>
+				<reportElement uuid="31f639c9-1876-415f-a57f-3cb88368cb29" x="0" y="18" width="555" height="1"/>
+			</line>
+			<staticText>
+				<reportElement uuid="c517b773-4b3b-4364-8a9a-211ee26562ae" x="71" y="50" width="29" height="20"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[CPF:]]></text>
+			</staticText>
+			<textField>
+				<reportElement uuid="a2a60f25-2abf-4235-8d9b-1fac49d140d7" x="113" y="50" width="100" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{CPF Locatário}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="62ea2478-2b48-4e1f-9b2b-20b7793d1516" x="15" y="70" width="87" height="23"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Data de Nasc.:]]></text>
+			</staticText>
+			<textField>
+				<reportElement uuid="b3b698cd-b126-494e-9cfb-2218f3ccd536" x="113" y="70" width="161" height="23"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{Data de Nascimento Locatário}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="72b6c011-df40-49ae-9150-44fb050b16b0" x="438" y="70" width="117" height="23"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{Estado Civil Locatário}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="a131d7a9-8183-4f5e-b77a-6bbf96964e27" x="61" y="30" width="39" height="20"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Nome:]]></text>
+			</staticText>
+			<textField>
+				<reportElement uuid="29223076-b776-4a82-b8cf-a3029e1b16bc" x="112" y="30" width="426" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{Nome Locatário}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="a527dfc4-c091-42d6-9dde-26187dd3e53f" x="438" y="50" width="100" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{RG Locatário}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="da171a5c-8ba5-4b80-9883-53ac8f18361d" x="357" y="70" width="75" height="23"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Estado Civil:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="b5f10965-037c-45cd-82d3-d84319edba26" x="406" y="50" width="22" height="20"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[RG:]]></text>
+			</staticText>
+		</band>
+		<band height="121">
+			<staticText>
+				<reportElement uuid="1170c3a6-7a79-406d-86d9-6fe95da376a3" x="0" y="0" width="140" height="16"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Dados do Proprietário:]]></text>
+			</staticText>
+			<line>
+				<reportElement uuid="f0d4df78-75aa-4fb3-846a-fac85c12b8ae" x="0" y="16" width="555" height="1"/>
+			</line>
+			<staticText>
+				<reportElement uuid="9dd3bc4e-dc23-4ce4-a3d2-37ec32fd1f76" x="72" y="48" width="28" height="19"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[CPF:]]></text>
+			</staticText>
+			<textField>
+				<reportElement uuid="c594f2fd-7e58-4132-b44f-80ac2c7b4104" x="114" y="48" width="100" height="19"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{CPF Proprietario}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="1aa1c9db-720d-4c9a-8d29-19cf0cd55a29" x="15" y="67" width="87" height="22"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Data de Nasc.:]]></text>
+			</staticText>
+			<textField>
+				<reportElement uuid="78e60fe6-833e-4671-a201-cf28158f6e99" x="114" y="67" width="182" height="22"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{Data de Nascimento Proprietario}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="a71b20dc-9afb-40a2-a0ba-3a710047b4ec" x="359" y="67" width="75" height="22"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Estado Civil:]]></text>
+			</staticText>
+			<textField>
+				<reportElement uuid="faba00cb-1075-428c-9fe5-5860747e1103" x="438" y="67" width="100" height="33"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{Estado Civil Proprietario}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="6c0bc97e-022f-4ac3-b087-d7ebf39280d2" x="114" y="28" width="394" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{Nome Proprietario}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="e7a0956e-0863-4485-b9aa-534ace214912" x="438" y="48" width="100" height="19"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{RG Proprietario}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="90e9a43b-2421-4402-956b-aa90a030225b" x="62" y="28" width="39" height="20"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Nome:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="4563cb38-c2c5-4e49-9452-95369a171d47" x="407" y="48" width="21" height="19"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[RG:]]></text>
+			</staticText>
+		</band>
+		<band height="196">
+			<staticText>
+				<reportElement uuid="ede70492-ce5e-4468-abeb-a751e484b3c2" x="0" y="0" width="123" height="16"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Detalhes da Locação:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="0cb31b78-3b2b-4559-a794-bc9e3372285d" x="8" y="27" width="93" height="13"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Nº do Contrato:]]></text>
+			</staticText>
+			<textField>
+				<reportElement uuid="ee2c529e-fd19-44fd-a375-3cd4588500e6" x="114" y="27" width="85" height="13"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{Número do Contrato}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement uuid="a2ecdf16-b2eb-49d8-a749-63bb6b7813e2" x="0" y="16" width="555" height="1"/>
+			</line>
+			<staticText>
+				<reportElement uuid="424c5556-a426-41e4-a4a1-59360684fbd2" x="336" y="27" width="92" height="13"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Data da Venda:]]></text>
+			</staticText>
+			<textField>
+				<reportElement uuid="b81bc907-a83e-4ad1-bdaa-e84a137a00d5" x="438" y="27" width="100" height="13"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{Início do Contrato}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="f9ca59d2-850a-4900-ade0-2ea94fdcd81b" x="40" y="49" width="60" height="21"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Município:]]></text>
+			</staticText>
+			<textField>
+				<reportElement uuid="3e0c03ec-7874-4573-8e4d-3c9be4cda3a1" x="114" y="49" width="394" height="21"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{Município}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="fd129777-80d5-4238-bcf5-6fdb15b00feb" x="79" y="70" width="23" height="21"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[UF:]]></text>
+			</staticText>
+			<textField>
+				<reportElement uuid="0d26075e-6f7e-46af-8bb2-d5da1504993d" x="114" y="70" width="85" height="21"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{UF}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="c0a4c903-697e-4a68-bc1a-d608f0c1c9d9" x="397" y="70" width="31" height="21"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[CEP:]]></text>
+			</staticText>
+			<textField>
+				<reportElement uuid="983d8ccb-ca21-4cbe-9bb8-0b7dae1faca7" x="438" y="70" width="100" height="21"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{CEP}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="66866f55-149b-45a8-a91b-d9026b74a7c0" x="30" y="91" width="72" height="19"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Logradouro:]]></text>
+			</staticText>
+			<textField>
+				<reportElement uuid="c5eaa956-128f-422b-bd54-83cb5355ffce" x="114" y="91" width="272" height="19"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{Logradouro}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="f628a5cc-0d61-49e7-ac89-01eba78bf219" x="404" y="91" width="22" height="19"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Nº:]]></text>
+			</staticText>
+			<textField>
+				<reportElement uuid="4c55e090-fdf7-4bb2-b043-68f0bf1068eb" x="438" y="91" width="100" height="19"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{Numero}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="98c544c8-ae10-4bcb-a659-410d4d5c77c0" x="18" y="110" width="84" height="20"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Complemento:]]></text>
+			</staticText>
+			<textField>
+				<reportElement uuid="e52991f2-3fc7-4d6c-a6c5-aab861370121" x="114" y="110" width="199" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{Complemento}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="82a04fd0-1d14-4daa-8f6e-b76a68c14937" x="387" y="110" width="39" height="20"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Bairro:]]></text>
+			</staticText>
+			<textField>
+				<reportElement uuid="668dbdc2-eed9-473c-9f50-f21a47cc41ea" x="438" y="110" width="100" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{Bairro}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="11358b76-e520-469b-a5f3-ab8834999513" x="57" y="130" width="43" height="13"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Imóvel:]]></text>
+			</staticText>
+			<textField>
+				<reportElement uuid="d5bda4fd-03b4-41ae-bb18-099cba875fc3" x="114" y="130" width="100" height="13"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{Tipo}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="62cb0c64-3b82-479f-85e3-7820adb6c16c" x="407" y="130" width="20" height="13"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[R$:]]></text>
+			</staticText>
+			<textField>
+				<reportElement uuid="d109eeed-50e4-483e-b5a4-1d7cf6b52f46" x="438" y="130" width="100" height="13"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{Valor}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="83a438bc-117e-4db9-a450-429c6c17185c" x="0" y="150" width="101" height="14"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Qtd. Dormitórios:]]></text>
+			</staticText>
+			<textField>
+				<reportElement uuid="b7b04b05-987c-4b35-85a2-7e5a36dc32ff" x="114" y="150" width="100" height="14"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{Nº Dormitórios}]]></textFieldExpression>
+			</textField>
+			<rectangle>
+				<reportElement uuid="53e5023d-af51-46f3-9485-ade715d94c68" x="0" y="174" width="555" height="7" backcolor="#006699"/>
+				<graphicElement>
+					<pen lineWidth="0.0"/>
+				</graphicElement>
+			</rectangle>
+		</band>
+	</detail>
+	<columnFooter>
+		<band/>
+	</columnFooter>
+	<pageFooter>
+		<band height="17">
+			<textField>
+				<reportElement uuid="68ffecaa-c6e3-435c-b8d7-5c909fab52fe" mode="Opaque" x="0" y="4" width="515" height="13" backcolor="#E6E6E6"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA["Página "+$V{PAGE_NUMBER}+" de"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement uuid="d99d2637-bc75-4dca-b2df-ce6613782176" mode="Opaque" x="515" y="4" width="40" height="13" backcolor="#E6E6E6"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField pattern="EEEEE dd MMMMM yyyy">
+				<reportElement uuid="fb8370fe-4087-4682-bc0c-f1669e8c64d5" x="0" y="4" width="100" height="13"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band height="97">
+			<frame>
+				<reportElement uuid="e8d1549f-0b62-4984-a8dc-168bd75ba47e" mode="Opaque" x="0" y="12" width="555" height="36" backcolor="#006699"/>
+			</frame>
+			<staticText>
+				<reportElement uuid="5a3039f3-2da7-4d4c-aee2-f260cecf6500" x="236" y="19" width="60" height="20" forecolor="#FFFFFF"/>
+				<textElement>
+					<font size="14" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Sumário]]></text>
+			</staticText>
+			<textField>
+				<reportElement uuid="516553c7-be5a-4caa-8ce6-983637302dba" x="114" y="58" width="124" height="22"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$V{IMOVEL_VENDIDO}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="0e8c286f-2f3e-49cd-be1c-263db614f6b0" x="0" y="58" width="107" height="22"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Imóveis Alugados:]]></text>
+			</staticText>
+		</band>
+	</summary>
+</jasperReport>

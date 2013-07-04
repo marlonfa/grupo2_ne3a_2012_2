@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="contratoLocacao" pageWidth="595" pageHeight="842" whenNoDataType="AllSectionsNoDetail" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="96fb5187-49ff-4bc6-9504-6de26f0668d7">
+	<property name="ireport.zoom" value="2.0"/>
+	<property name="ireport.x" value="121"/>
+	<property name="ireport.y" value="25"/>
+	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["C:\\Users\\Marlon\\Desktop\\MARLONBKP\\gitHubProjects\\grupo2_ne3a_2012_2\\Imobiliaria\\src\\util\\"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="nomeLocador" class="java.lang.String"/>
+	<parameter name="estadoCivilLocador" class="java.lang.String"/>
+	<parameter name="rgLocador" class="java.lang.String"/>
+	<parameter name="cpfLocador" class="java.lang.String"/>
+	<parameter name="nomeLocatario" class="java.lang.String"/>
+	<parameter name="rgLocatario" class="java.lang.String"/>
+	<parameter name="cpfLocatario" class="java.lang.String"/>
+	<parameter name="tipoLogradouro" class="java.lang.String"/>
+	<parameter name="logradouro" class="java.lang.String"/>
+	<parameter name="numero" class="java.lang.Integer"/>
+	<parameter name="bairro" class="java.lang.String"/>
+	<parameter name="cep" class="java.lang.String"/>
+	<parameter name="cidade" class="java.lang.String"/>
+	<parameter name="estado" class="java.lang.String"/>
+	<parameter name="dataLocacao" class="java.lang.String"/>
+	<parameter name="valor" class="java.lang.Float"/>
+	<parameter name="estadoCivilLocatario" class="java.lang.String"/>
+	<parameter name="dataFimLocacao" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="24" splitType="Stretch">
+			<rectangle>
+				<reportElement uuid="5575b603-5403-4ba0-9d64-83b19a367a71" x="0" y="1" width="555" height="23" forecolor="#FFFFFF" backcolor="#006699"/>
+			</rectangle>
+			<staticText>
+				<reportElement uuid="2377e9b1-fbf6-4013-ba7e-b60dd8cf09d2" x="174" y="3" width="188" height="20" forecolor="#FFFFFF"/>
+				<textElement>
+					<font size="12" isBold="true" isUnderline="false"/>
+				</textElement>
+				<text><![CDATA[Contrato de Locação de Imóvel]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="572" splitType="Stretch">
+			<textField>
+				<reportElement uuid="79ef1a89-2c3f-4cd2-a17b-185253cd59ba" x="13" y="11" width="530" height="528"/>
+				<textElement/>
+				<textFieldExpression><![CDATA["Locador: " + $P{nomeLocador} + ", "+$P{estadoCivilLocador} + " portador da cédula de identidade R.G. "+ $P{rgLocador} + " e CPF/MF " + $P{cpfLocador} +
+"\nLocatário: " + $P{nomeLocatario} + ", " + $P{estadoCivilLocatario} + ", portador da cédula de identidade R.G. " + $P{rgLocatario} + " e CPF/MF " + $P{cpfLocatario} +
+"\nCláusula primeira: O objeto deste contrato de locação é o imóvel residencial, situado à " + $P{logradouro} + ", " + $P{numero} + ", Bairro: " + $P{bairro} + ", CEP: " + $P{cep} + ", na Cidade de: " + $P{cidade} + " - " + $P{estado} + "." +
+"\nCláusula segunda: O prazo da locação é de 12 meses, iniciando-se em " + $P{dataLocacao} + " com término em " + $P{dataFimLocacao} + " independentemente e aviso, notificação ou interpelação judicial ou mesmo extrajudicial." +
+"\nCláusula terceira: O aluguel mensal deverá ser pago até o dia 10 (dez) do mês subsequente ao vencido, no local indicado pelo LOCADOR, é de R$ " + $P{valor} + " mensais, reajustados anualmente, de conformidade com a variação do IGP-M apurada no ano anterior, e na sua falta, por outro índice criado pelo Governo Federal e, ainda, em sua substituição, pela Fundação Getúlio Vargas, reajustamento este sempre incidente e calculado sobre o último aluguel pago no último mês do ano anterior." +
+"\nCláusula quarta: Em caso de mora no pagamento do aluguel, será aplicada multa de 2% (dois por cento) sobre o valor devido e juros mensais de 1% (um por cento) do montante devido." +
+"\nCláusula quinta: O Locatário declara, que o imóvel ora locado, destina-se única e exclusivamente para o seu uso residencial e de sua família." +
+"\nParágrafo único: O Locatário obriga por si e sua família, a cumprir e a fazer cumprir integralmente as disposições legais sobre o Condomínio, a sua Convenção e o seu Regulamento Interno."+
+"\nCláusula Sexta: O Locatário não poderá sublocar transferir ou ceder o imóvel, sendo nulo de pleno direito qualquer ato praticado com este fim sem o consentimento prévio e por escrito do LOCADOR"+
+"\nCláusula Sétima: Em caso de sinistro parcial ou total do prédio, que impossibilite a habitação o imóvel locado, o presente contrato estará rescindido, independentemente de aviso ou interpelação judicial ou extrajudicial; no caso de incêndio parcial, obrigando a obras de reconstrução, o presente contrato terá suspenso a sua vigência e reduzida a renda do imóvel durante o período da reconstrução à metade do que na época for o aluguel, e sendo após a reconstrução devolvido o Locatário pelo prazo restante do contrato, que ficará prorrogado pelo mesmo tempo de duração das obras de reconstrução."+
+"\nCláusula Oitava: Em caso de desapropriação total ou parcial do imóvel locado, ficará rescindido de pleno direito o presente contrato de locação, independente de quaisquer indenizações de ambas as partes ou contratantes."+
+"\nCláusula Nona: Falecendo o Locatário, em 30 (trinta) dias, dar substituto idôneo que possa garantir o valor locativo e encargos do referido imóvel, ou prestar seguro fiança de empresa idônea."+
+"\nCláusula Décima: No caso de alienação do imóvel, obriga-se o LOCADOR, dar preferência ao Locatário, e se o mesmo não utilizar-se dessa prerrogativa, o LOCADOR deverá constar da respectiva escritura pública, a existência do presente contrato, para que o adquirente o respeite nos termos da legislação vigente."+
+"\nCláusula Décima primeira: É facultado ao LOCADOR vistoriar, por si ou seus procuradores, sempre que achar conveniente, para a certeza do cumprimento das obrigações assumidas neste contrato."+
+"\nCláusula Décima segunda: As partes contratantes obrigam-se por si, herdeiros e/ou sucessores, elegendo o Foro da Cidade do (colocar o fórum do município), para a propositura de qualquer ação. E, por assim estarem justos e contratados, mandaram extrair o presente instrumento em três (03) vias, para um só efeito, assinando-as, juntamente com as testemunhas, a tudo presentes."]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="7a725de1-2e90-4527-9482-6597e30f7489" x="13" y="539" width="174" height="32"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA["____________________________\n"+
+$P{nomeLocador}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="be1f50fe-eb94-43b0-8958-a2e703ae4fe4" x="191" y="539" width="175" height="32"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA["____________________________\n"+
+$P{nomeLocatario}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="6c8805f1-48b5-4155-917f-9b23965a97cb" x="372" y="539" width="171" height="32"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA["____________________________\n"+
+"Testemunha"]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
+</jasperReport>
