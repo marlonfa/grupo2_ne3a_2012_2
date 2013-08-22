@@ -55,6 +55,13 @@
             <artifactId>AbsoluteLayout</artifactId>
             <version>RELEASE701</version>
         </dependency>
+        <dependency>
+            <groupId>org.netbeans.external</groupId>
+            <artifactId>junit-4.5</artifactId>
+            <version>RELEASE69</version>
+            <scope>test</scope>
+            <type>jar</type>
+        </dependency>
     </dependencies>
   
     <developers>
